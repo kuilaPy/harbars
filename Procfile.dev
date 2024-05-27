@@ -1,0 +1,2 @@
+web: bin/rails server -p 3020
+css: bin/rails tailwindcss:watch
