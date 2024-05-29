@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+.flex-grow{
+  flex-grow: 1;
+}
+.form-section {
+  background-color: #0a1f44;
+}
+.form-section input, .form-section textarea {
+  background-color: #102a57;
+  border: 1px solid #4a5568;
+  color: #ffffff;
+}
+.form-section input:focus, .form-section textarea:focus {
+  border-color: #63b3ed;
+  outline: none;
+}
+.form-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.form-section .required {
+  color: #f56565;
+}
