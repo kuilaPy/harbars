@@ -7,4 +7,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  resources :replies
+  resources :questions
+  resources :reviews
+  resources :addresses
+  resources :payments
+  resources :cart_items
+  resources :carts
+  resources :order_items
+  resources :orders
+  devise_for :users
+  resources :products
+  resources :categories
 end

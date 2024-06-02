@@ -1,0 +1,19 @@
+= form_for @reply do |f|
+  - if @reply.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@reply.errors.count, "error")} prohibited this reply from being saved:"
+      %ul
+        - @reply.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :question
+    = f.text_field :question
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :content
+    = f.text_area :content
+  .actions
+    = f.submit 'Save'
