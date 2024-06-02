@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Order:
+  = @payment.order
+%p
+  %b Amount:
+  = @payment.amount
+%p
+  %b Payment method:
+  = @payment.payment_method
+%p
+  %b Status:
+  = @payment.status
+
+= link_to 'Edit', edit_payment_path(@payment)
+\|
+= link_to 'Back', payments_path

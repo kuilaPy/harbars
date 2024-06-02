@@ -68,3 +68,6 @@ end
 
 gem "tailwindcss-rails", "~> 2.6"
 gem "haml-rails"
+gem 'devise'
+gem 'devise-jwt'
+

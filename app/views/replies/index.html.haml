@@ -1,0 +1,25 @@
+%h1 Listing replies
+
+%table
+  %thead
+    %tr
+      %th Question
+      %th User
+      %th Content
+      %th
+      %th
+      %th
+
+  %tbody
+    - @replies.each do |reply|
+      %tr
+        %td= reply.question
+        %td= reply.user
+        %td= reply.content
+        %td= link_to 'Show', reply
+        %td= link_to 'Edit', edit_reply_path(reply)
+        %td= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Reply', new_reply_path
