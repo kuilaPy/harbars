@@ -1,0 +1,158 @@
+
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    let observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        console.log({entry, r: entry.intersectionRatio , i: entry.isIntersecting})
+        if (entry.isIntersecting) {
+          if (!entry.target.classList.contains('animate__fadeInUp')) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+            observer.unobserve(entry.target);
+          }
+        } 
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+      observer.observe(element);
+    });
+  });
+= render 'top'
+%section#home.bg-cover.bg-center{:style => "background-image: url(#{asset_path 'demo.jpeg'}); height: 100vh;"}
+  .bg-black.bg-opacity-50.h-full.flex.items-center.justify-center
+    .text-center.text-white.animate-on-scroll
+      %h1.text-4xl.font-bold Welcome to Chandra Herbals
+      %p.mt-4.text-lg Your source for high-quality herbal products
+      %a.mt-8.inline-block.bg-blue-700.text-white.px-6.py-2.rounded{:href => "#products"} Explore Our Products
+
+-# / Products Section
+%section#products.py-20
+  .container.mx-auto
+    %h2.text-3xl.font-bold.text-center.mb-10 Our Products
+    .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-10
+      -# .bg-white.rounded-lg.shadow-lg.overflow-hidden
+      -#   -# %img.w-full.h-56.object-contain{:alt => "Product 1", :src => "#{asset_path 'spirulina_super_120_tablet.jpeg'}"}/
+      -#   = image_tag('spirulina_super_120_tablet.jpeg', class: 'w-ful', style: 'display: block;margin-left: auto;margin-right: auto;width: 50%;',size: '200x200')
+      -#   .p-6
+      -#     %h3.text-2xl.font-bold Spirulina Powder
+      -#     %p.mt-4.text-gray-600 High-quality spirulina powder for smoothies, shakes, and more. Ideal for adding a nutritional boost to your diet.
+      -# .bg-white.rounded-lg.shadow-lg.overflow-hidden
+      -#   -# %img.w-full.h-56.object-contain{:alt => "Product 2", :src => "#{asset_path 'moringa_super_120_tablet.jpeg'}"}/
+      -#   = image_tag('moringa_super_120_tablet.jpeg', class: 'img-thumbnail', style: 'display: block;margin-left: auto;margin-right: auto;width: 50%;',size: '200x200')
+      -#   .p-6
+      -#     %h3.text-2xl.font-bold Spirulina Tablets
+      -#     %p.mt-4.text-gray-600 Convenient spirulina tablets for daily supplementation. Easy to carry and perfect for maintaining your health on the go.
+      -# .bg-white.rounded-lg.shadow-lg.overflow-hidden
+      -#   -# %img.w-full.h-56.object-contain{:alt => "Product 3", :src => "#{asset_path 'six_m_mineral_syrup_100_ml.jpeg'}"}/
+      -#   = image_tag('six_m_mineral_syrup_100_ml.jpeg', style: 'display: block;margin-left: auto;margin-right: auto;', size: '160x200')
+      -#   .p-6
+      -#     %h3.text-2xl.font-bold Spirulina Capsules
+      -#     %p.mt-4.text-gray-600 Easy-to-swallow spirulina capsules for optimal health. A simple and effective way to incorporate spirulina into your daily routine.
+      
+      .bg-white.rounded.shadow.p-6.animate-on-scroll
+        = image_tag('herbal-agro-energy.jpeg', class: 'w-ful', style: 'display: block;margin-left: auto;margin-right: auto;width: 50%;',size: '200x200')
+        %h3.text-xl.font-bold.mb-2 Herbal Agro Energy
+        %p.text-gray-700.mb-4 A research-based natural herbal product prepared from a variety of naturally grown grasses, plants, and vegetable juices. Used as a spray on crops, vegetables, horticultural plants, and other plants, it promotes rapid growth and prevents flowers from falling
+        %a.bg-green-700.text-white.py-2.px-4.rounded{href: "#"} Learn More
+      .bg-white.rounded.shadow.p-6.animate-on-scroll
+        = image_tag('spirulina_super_120_tablet.jpeg', class: 'w-ful', style: 'display: block;margin-left: auto;margin-right: auto;width: 50%;',size: '200x200')
+        %h3.text-xl.font-bold.mb-2 Herbal Spirulina
+        %p.text-gray-700.mb-4 Convenient spirulina tablets for daily supplementation. Easy to carry and perfect for maintaining your health on the go.
+        %a.bg-green-700.text-white.py-2.px-4.rounded{href: "#"} Learn More
+      .bg-white.rounded.shadow.p-6.animate-on-scroll
+        = image_tag('chandra-moringa-120.jpeg', class: 'w-ful', style: 'display: block;margin-left: auto;margin-right: auto;width: 50%;',size: '200x200')
+        %h3.text-xl.font-bold.mb-2 Herbal Shampoo
+        %p.text-gray-700.mb-4 Moringa contains seven times more vitamin C than an orange and fifteen times more potassium than a banana. It also contains calcium, protein, iron, and amino acids, which help your body heal and build muscle. Additionally, it's loaded with antioxidants, substances that can protect cells from damage and boost your immune system.
+        %a.bg-green-700.text-white.py-2.px-4.rounded{href: "#"} Learn More
+      
+
+-# / Benefits Section
+%section#benefits.bg-gray-200.py-20
+  .container.mx-auto.text-center
+    %h2.text-3xl.font-bold.mb-10 Benefits of Using Herbal Products
+    .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-10
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 Natural Ingredients
+        %p.text-gray-700 Herbal products are made from natural ingredients that are gentle on the skin and hair, reducing the risk of adverse reactions.
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 Eco-Friendly
+        %p.text-gray-700 Our products are environmentally friendly, with sustainable sourcing and biodegradable packaging.
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 Health Benefits
+        %p.text-gray-700 Herbal products often have additional health benefits, such as promoting relaxation, reducing inflammation, and improving overall well-being.
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 No Harmful Chemicals
+        %p.text-gray-700 Herbal products are free from harmful chemicals and synthetic ingredients, making them safer for long-term use.
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 Rich in Nutrients
+        %p.text-gray-700 Herbal products are often rich in vitamins, minerals, and antioxidants that nourish the skin and hair.
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %h3.text-xl.font-bold.mb-2 Traditional Wisdom
+        %p.text-gray-700 Herbal products are based on traditional knowledge and practices, which have been used for centuries to promote health and well-being.
+      / Add more benefits as needed
+
+-# / Testimonials Section
+%section#testimonials.py-20
+  .container.mx-auto.text-center
+    %h2.text-3xl.font-bold.mb-10 What Our Customers Say
+    .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-10
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %p.text-gray-700.mb-4 "Chandra Herbals' products have transformed my skin. I love that they are all-natural and free from harsh chemicals."
+        %h3.text-xl.font-bold - Ramchander
+      .bg-white.p-6.rounded.shadow.animate-on-scroll
+        %p.text-gray-700.mb-4 "The herbal Herbal Spirulina is amazing! I feels so much healthier and looks great."
+        %h3.text-xl.font-bold - Rahul Kumar
+      / Add more testimonials as needed
+
+-# / About Section
+%section#about.bg-gray-200.py-20
+  .container.mx-auto
+    %h2.text-3xl.font-bold.text-center.mb-10.animate-on-scroll About Us
+    %div.max-w-2xl.mx-auto.text-lg
+      %p.mb-4 Chandra Herbals is dedicated to providing the highest quality herbal products. Our mission is to bring the benefits of natural herbs to everyone, promoting health and wellness through our wide range of products.
+      %p.mb-4 Founded in 2000, Chandra Herbals started as a small family business with a passion for natural remedies and sustainable living. Over the years, we have grown into a trusted name in the herbal products industry, known for our commitment to quality and customer satisfaction.
+      %p.mb-4 We believe in the power of nature to heal and rejuvenate. Our products are crafted with the finest natural ingredients, sourced from sustainable farms and ethical suppliers. We prioritize environmental sustainability and social responsibility in all aspects of our business.
+      %p.mb-4 Our team consists of experts in herbal medicine, natural skincare, and sustainable agriculture. We are dedicated to continuous learning and innovation, ensuring that our products meet the highest standards of efficacy and safety.
+      %p.mb-4 At Chandra Herbals, we are more than just a company; we are a community of like-minded individuals who share a passion for natural health and wellness. We are committed to educating our customers about the benefits of herbal products and supporting their journey towards a healthier, more sustainable lifestyle.
+    .team-section.mt-10
+      %h3.text-2xl.font-bold.text-center.mb-6 Our Team
+      .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-10
+        .team-member.bg-white.p-6.rounded.shadow.animate-on-scroll
+          %img.w-24.h-24.object-cover.rounded-full.mx-auto.mb-4{src: "https://via.placeholder.com/100", alt: "Team Member 1"}
+          %h4.text-xl.font-bold.text-center.mb-2 Ram Kumar Verma
+          %p.text-center Herbalist and Founder
+        .team-member.bg-white.p-6.rounded.shadow.animate-on-scroll
+          %img.w-24.h-24.object-cover.rounded-full.mx-auto.mb-4{src: "https://via.placeholder.com/100", alt: "Team Member 2"}
+          %h4.text-xl.font-bold.text-center.mb-2 Avijit Kuila
+          %p.text-center Head of Product Marketing
+
+%section#contact.py-16.form-section
+  .max-w-screen-xl.mx-auto.px-4.flex.flex-col.md:flex-row.items-center
+    .mb-8.md:mb-0.text-center.md:text-left.animate-on-scroll{:class => "md:w-1/2"}
+      %h2.text-2xl.font-bold.mb-4.text-white Have any questions?
+      %h3.text-4xl.font-bold.mb-4.text-white Contact us.
+      %p.text-lg.mb-4.text-gray-500 Want to understand more about Products ?
+      %p.text-lg.text-gray-500 Get in touch with us and one of our experts will reach out to you.
+    %div.animate-on-scroll{:class => "md:w-1/2"}
+      %form.space-y-6{:action => "#", :method => "post"}
+        %div
+          %label.text-lg.text-white{:for => "name"}
+            Name
+            %span.required *
+          %input#name.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "name", :required => "", :type => "text"}/
+        %div
+          %label.text-lg.text-white{:for => "email"}
+            Email
+            %span.required *
+          %input#email.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "email", :required => "", :type => "email"}/
+        %div
+          %label.text-lg.text-white{:for => "message"}
+            Message
+            %span.required *
+          %textarea#message.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "message", :required => "", :rows => "5"}
+        .text-center.md:text-left
+          %button.mt-4.inline-block.bg-blue-600.text-white.px-8.py-3.rounded-full.shadow-lg.hover:bg-blue-700.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:type => "submit"} Send Message
+%footer.bg-green-700.py-8.text-center.text-white
+  .max-w-screen-xl.mx-auto.px-4
+    %p © 2024 Chandra Herbals. All rights reserved.
