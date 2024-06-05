@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::BaseController 
   before_action :find_by_id_order, only: [:show, :edit, :update, :destroy]
   
   def index

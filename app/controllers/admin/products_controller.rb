@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < Admin::BaseController 
   before_action :find_by_id_product, only: [:show, :edit, :update, :destroy]
   
   def index
