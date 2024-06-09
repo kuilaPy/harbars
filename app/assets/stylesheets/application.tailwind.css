@@ -1,13 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'actiontext.css';
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 0;
+  margin: 0px;
 }
 
-*/
+.breadcrumbs > span.separator {
+  color: rgb(145, 158, 171);
+  font-size: 16px;
+}
+
+.breadcrumbs span {
+  color: rgb(145, 158, 171);
+}
+
+.breadcrumbs  a, span {
+  padding: 0px 6px;
+}
+
+.breadcrumbs a {
+  color: rgb(33, 43, 54);
+  font-size: 15px;
+  color: rgb(33, 43, 54);
+}
+
+.breadcrumbs.first {
+  padding-left: 0px;
+  font-size: 25px;
+  color: "red"
+}
+
+.breadcrumbs a:hover {
+    text-decoration: var(--secondary_color);
+  }

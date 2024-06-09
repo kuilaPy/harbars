@@ -1,0 +1,29 @@
+%table.w-full.text-sm.text-left.rtl:text-right.text-gray-500
+  %thead.text-xs.text-gray-700.uppercase.bg-gray-50
+    %tr
+      %th.p-4{:scope => "col"}
+        = "#id"
+      %th.px-6.py-3{:scope => "col"}
+        Name
+      %th.px-6.py-3{:scope => "col"}
+        Description
+      %th.px-6.py-3{:scope => "col"}
+        Price
+      %th.px-6.py-3{:scope => "col"}
+        Stock quantity
+      %th.px-6.py-3{:scope => "col"}
+        Category
+      %th.px-6.py-3{:scope => "col"}
+        Action
+  %tbody
+    - @products.each do |product|
+      %tr.bg-white.border-b.hover:bg-gray-200
+        %td.w-4.p-4= product.id
+        %th.px-6.py-4.text-gray-900.whitespace-nowrap{:scope => "row"}= product.name
+        %td.px-6.py-4= product.description
+        %td.px-6.py-4= product.price
+        %td.px-6.py-4= product.stock_quantity
+        %td.px-6.py-4= product.category&.name
+        %td.px-6.py-4
+          = link_to "Edit", edit_admin_product_path(product), class: "font-medium text-blue-600 hover:underline"
+      

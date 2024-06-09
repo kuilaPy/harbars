@@ -16,5 +16,11 @@
     %main
       = render 'layouts/admin_top_nav_bar'
       = render 'layouts/admin_side_bar'
-      = yield 
+      .p-4.sm:ml-64
+        .mt-14
+        .breadcrumbs
+          = breadcrumbs.render(format: :inline, separator: ">")
+        = yield
+        = tag.div data: { controller: "turbo-modal" }, class: "", id: 'modal' do
+          = turbo_frame_tag "modal"
 

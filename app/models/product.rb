@@ -7,5 +7,8 @@ class Product < ApplicationRecord
   has_many :reviews
   has_many :questions
 
+  has_many_attached :product_images
+  has_rich_text :specification
+
   validates :name, presence: true
 end
