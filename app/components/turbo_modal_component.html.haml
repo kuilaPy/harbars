@@ -1,0 +1,5 @@
+= turbo_frame_tag "modal" do
+  = @title
+  = content
+  -# = tag.div data: { controller: "turbo-modal", action: "turbo:submit-end->turbo-modal#submitEnd" } do
+  = button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: "rounded-lg py-3 px-5 bg-red-600 text-white"
