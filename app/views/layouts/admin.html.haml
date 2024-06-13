@@ -21,6 +21,5 @@
         .breadcrumbs
           = breadcrumbs.render(format: :inline, separator: ">")
         = yield
-        = tag.div data: { controller: "turbo-modal" }, class: "", id: 'modal' do
-          = turbo_frame_tag "modal"
+        = turbo_frame_tag "modal"
 
