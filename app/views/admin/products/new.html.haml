@@ -1,42 +1,4 @@
 .container.mx-auto.py-8
   .bg-white.shadow-md.rounded-lg.p-6
     %h2.text-xl.font-semibold.mb-4 New Product
-    = form_with(model: [:admin, @product], local: true, class: "space-y-6") do |f|
-      .grid.grid-cols-1.md:grid-cols-2.gap-6
-        .col-span-1
-          %label.block.text-sm.font-medium.text-gray-700 Name
-          %div.mt-1
-            = f.text_field :name, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
-
-        .col-span-1
-          %label.block.text-sm.font-medium.text-gray-700 Price
-          %div.mt-1
-            = f.number_field :price, step: 0.01, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
-
-        .col-span-1
-          %label.block.text-sm.font-medium.text-gray-700 Stock Quantity
-          %div.mt-1
-            = f.number_field :stock_quantity, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
-
-        .col-span-1
-          %label.block.text-sm.font-medium.text-gray-700 Category
-          %div.mt-1
-            = f.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "form-select block w-full border-gray-300 rounded-md shadow-sm"}
-            -# = f.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category", class: "form-select block w-full border-gray-300 rounded-md shadow-sm"
-        .col-span-1
-          %label.block.text-sm.font-medium.text-gray-700 Product Images
-          %div.mt-1
-            = f.file_field :product_images, multiple: true, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
-
-      .col-span-2
-        %label.block.text-sm.font-medium.text-gray-700 Description
-        %div.mt-1
-          = f.text_area :description, rows: 2, class: "form-textarea block w-full border-gray-300 rounded-md shadow-sm"
-
-      .col-span-2
-        %label.block.text-sm.font-medium.text-gray-700 Specification
-        %div.mt-1
-          = f.rich_text_area :specification
-
-      .flex.justify-end
-        = f.submit 'Create Product', class: "btn bg-green-600 text-white px-4 py-2 rounded-md"
+    = render "form", product: @product

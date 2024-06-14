@@ -12,7 +12,7 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
 
-  %body
+  %body(data-controller="cart")
     = render 'layouts/top'
     %main
       = turbo_frame_tag "log_in_form"

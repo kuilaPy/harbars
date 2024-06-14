@@ -42,8 +42,14 @@
         -#     .py-1
         -#       %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Sign out
         = active_link_to 'Products', products_path, active: [['products'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white'    
-        %li
-          %a.block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700{:href => "#about"} Cart
+        = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white' do
+          .flex
+            %div.px-2 Cart
+            %div.relative
+              = heroicon 'shopping-cart', options: { class: "w-5 h-5" }
+              %div.absolute.cart-count(data-cart-target="count") 0
+              
+
         %li 
           .block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
             = link_to 'Sign in', new_user_session_path, data: { turbo_frame: 'log_in_form' }

@@ -11,4 +11,20 @@ class Product < ApplicationRecord
   has_rich_text :specification
 
   validates :name, presence: true
+
+  after_save :update_price 
+
+  def update_price
+    price = (original_price * (1 - discount / 100))
+    update_columns(price: price)
+  end
+
+  def product_ratings
+    reviews&.average(:rating) || 0
+  end
+
+  def review_count 
+    reviews.count
+  end
+
 end

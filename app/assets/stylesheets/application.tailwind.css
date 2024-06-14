@@ -44,3 +44,11 @@
   background: white;
   color: green;
 }
+
+.cart-count{
+  top: -16px;
+  right: -16px;
+  background-color: red !important;
+  padding: 0px 4px;
+  border-radius: 8px;
+}

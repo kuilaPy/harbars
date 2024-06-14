@@ -8,7 +8,12 @@
     .col-span-1
       %label.block.text-sm.font-medium.text-gray-700 Price
       %div.mt-1
-        = f.number_field :price, step: 0.01, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
+        = f.number_field :original_price, step: 0.01, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
+    
+    .col-span-1
+      %label.block.text-sm.font-medium.text-gray-700 Discount
+      %div.mt-1
+        = f.number_field :discount, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
 
     .col-span-1
       %label.block.text-sm.font-medium.text-gray-700 Stock Quantity

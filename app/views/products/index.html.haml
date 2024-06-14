@@ -1,6 +1,5 @@
-
-.flex.justify-center.items-center.min-h-screen
-  .container.mx-auto.px-4
+.flex.justify-center.min-h-screen
+  .container.mx-auto.px-4.mt-20.max-w-screen-xl
     .flex.justify-between.items-center.py-4
       .w-full.flex.justify-between
         %input{type: "text", placeholder: "Search for Products", class: "form-input w-full md:w-1/2"}
@@ -9,23 +8,12 @@
             %i.fas.fa-th
           %button{class: "btn bg-gray-200 p-2 rounded-md ml-2"}
             %i.fas.fa-list
-    .mt-4
-      .grid.grid-cols-1.gap-4
-        - products = [{ name: "Apple iPhone XR (64GB) - Black (6 GB RAM)", img: "iphone_xr_black.jpg", price: "₹ 31,365.00", original_price: "₹36,900.00", discount: "15%", description: "The iPhone XR has arrived to stun our senses with a host of features such as the Liquid Retina Display, a faster Face ID, and the powerful A12 Bionic Chip.", specs: ["64 GB ROM", "15.49 cm (6.1 inch) Display", "12MP Rear Camera / 7MP Front Camera", "A12 Bionic Chip Processor", "iOS 13 Compatible"] },{ name: "Apple iPhone 11 Pro Max 64GB (Midnight Green, 6GB RAM)", img: "iphone_11_pro_max.jpg", price: "₹ 4,050.00", original_price: "₹4,500.00", discount: "10%", description: "The iPhone XR has arrived to stun our senses with a host of features such as the Liquid Retina Display, a faster Face ID, and the powerful A12 Bionic Chip.", specs: ["64 GB ROM", "15.49 cm (6.1 inch) Display", "12MP Rear Camera / 7MP Front Camera", "A12 Bionic Chip Processor", "iOS 13 Compatible"] },{ name: "Apple iPhone 6 64GB (Space Gray)", img: "iphone_6_gray.jpg", price: "₹ 11,990.00", original_price: "", discount: "", description: "The iPhone XR has arrived to stun our senses with a host of features such as the Liquid Retina Display, a faster Face ID, and the powerful A12 Bionic Chip.", specs: ["64 GB ROM", "15.49 cm (6.1 inch) Display", "12MP Rear Camera / 7MP Front Camera", "A12 Bionic Chip Processor", "iOS 13 Compatible"] }]
-
-        - products.each do |product|
-          .bg-white.shadow-md.rounded-lg.p-4.flex.justify-between.items-center
-            .flex.items-center
-              %img{src: product[:img], alt: product[:name], class: "w-24 h-24 rounded-md"}
-              .ml-4
-                %h2.text-xl.font-semibold= product[:name]
-                %p.text-gray-600.mt-1= product[:description]
-                %ul.text-sm.mt-2
-                  - product[:specs].each do |spec|
-                    %li= spec
-            .text-right
-              %p.text-xl.font-semibold= product[:price]
-              - if product[:original_price].present?
-                %p.text-gray-500.line-through= product[:original_price]
-                %p.text-green-500.font-semibold.mt-1= "#{product[:discount]} OFF"
-              %button{class: "btn bg-blue-500 text-white p-2 rounded-md mt-4"} Add to Cart
+    
+    %div.container.mx-auto.px-4.mt-4
+      %div.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-4.gap-4
+        - @products.each do |product|
+          = render 'product_tiles_view', {product: product}
+    -# .mt-4
+    -#   .grid.grid-cols-1.gap-4
+    -#     - @products.each do |product|
+    -#       = render 'product_list_view', {product: product}

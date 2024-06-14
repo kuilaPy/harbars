@@ -139,6 +139,8 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -338,6 +340,7 @@ DEPENDENCIES
   devise
   devise-jwt
   haml-rails
+  heroicon
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

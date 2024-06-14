@@ -3,7 +3,7 @@ class Admin::ProductsController < Admin::BaseController
   before_action :add_breadcrumbs
   
   def index
-    @products = Product.all
+    @products = Product.all.with_rich_text_specification
   end
 
   def show
@@ -32,7 +32,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.find_by_id(params[:id])
     respond_to do |format|
       if @product.update(product_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "product/product", locals: {product: @product}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@product, partial: "admin/products/product", locals: {product: @product}) }
         format.html { redirect_to admin_products_path(@product), notice: "Product was successfully updated." }
       end
     end
@@ -50,7 +50,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :specification, :stock_quantity, :category_id, :product_images)
+    params.require(:product).permit(:name, :price, :description, :specification, :stock_quantity, :original_price, :discount, :category_id, product_images: [])
   end
 
   def add_breadcrumbs
