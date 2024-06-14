@@ -74,3 +74,4 @@ gem 'breadcrumbs'
 
 
 gem "view_component", "~> 3.12"
+gem 'active_link_to'

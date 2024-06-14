@@ -38,4 +38,9 @@
 
 .breadcrumbs a:hover {
     text-decoration: var(--secondary_color);
-  }
+}
+
+.public-nav-active {
+  background: white;
+  color: green;
+}
