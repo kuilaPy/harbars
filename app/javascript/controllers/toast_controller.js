@@ -8,7 +8,11 @@ export default class extends Controller {
     this.messageTarget.innerText = message
     let background = type === 'success' ? 'bg-green-100' : type === 'error' ? 'bg-rose-100' : 'bg-blue-100'
     let border = type === 'success' ? 'border-green-500' : type === 'error' ? 'border-red-500' : 'border-blue-500'
-    this.containerTarget.classList.add(background, border)
+    let text_color = type === 'success' ? 'text-green-700' : type === 'error' ? 'text-rose-700' : 'text-blue-700'
+    // console.log({type, background, border})
+    this.containerTarget.classList.add(background)
+    this.containerTarget.classList.add(border)
+    this.containerTarget.classList.add(text_color)
     this.toastTarget.classList.remove('hidden')
     setTimeout(() => {
       this.toastTarget.classList.add('hidden')

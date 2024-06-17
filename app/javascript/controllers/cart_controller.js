@@ -45,8 +45,9 @@ export default class extends Controller {
           product_id: productId
         }
       }
-    }).done(function(res){
-      console.log("from done", res.status)
+    }).done((res) => {
+      //console.log("from done", res.status)
+      // console.log("from done:----", res.message)
       localStorage.setItem("cart", JSON.stringify(cart))
       this.type = "success"
       this.message = "Item added to cart successfully"
