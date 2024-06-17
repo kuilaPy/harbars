@@ -12,8 +12,11 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
 
-  %body(data-controller="cart")
+  %body(data-controller="cart root")
     = render 'layouts/top'
     %main
       = turbo_frame_tag "log_in_form"
       = yield 
+      #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
+        = render 'layouts/flash_message'
+      

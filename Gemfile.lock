@@ -298,6 +298,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uuidtools (2.2.0)
     view_component (3.12.1)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
@@ -354,6 +355,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.6)
   turbo-rails
   tzinfo-data
+  uuidtools
   view_component (~> 3.12)
   web-console
 

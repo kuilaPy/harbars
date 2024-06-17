@@ -1,23 +1,46 @@
-%h1 Listing carts
+%div.container.mx-auto.px-4.py-8
+  %h1.text-3xl.font-semibold.mb-6 My Cart
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Total price
-      %th
-      %th
-      %th
+  %div.grid.grid-cols-1.md:grid-cols-3.gap-6
+    %div.md:col-span-2
+      %table.w-full.text-left
+        %thead
+          %tr
+            %th Product
+            %th Quantity
+            %th Total
+        %tbody
+          - @cart.cart_items.each do |item|
+            %tr.border-b
+              %td.p-4
+                %div.flex.items-center
+                  %img.w-20.h-20.object-cover.mr-4(src=item.product.image_url alt=item.product.name)
+                  %div
+                    %p.text-sm.font-semibold.uppercase.text-gray-500 25 YEARS* WARRANTY
+                    %p.text-lg.font-bold.text-gray-800= item.product.name
+                    %p.text-red-500.font-bold
+                      = number_to_currency(item.product.discounted_price, unit: "Rs. ")
+                    %p.text-sm.text-gray-600.line-through.ml-2
+                      = number_to_currency(item.product.original_price, unit: "Rs. ")
+              %td.p-4.text-center
+                %div.flex.items-center.justify-center
+                  %button.bg-gray-200.text-gray-600.px-2.py-1.rounded.hover:bg-gray-300(data-action="click->cart#decrementQuantity" data-product-id="#{item.product.id}") -
+                  %span.mx-2= item.quantity
+                  %button.bg-gray-200.text-gray-600.px-2.py-1.rounded.hover:bg-gray-300(data-action="click->cart#incrementQuantity" data-product-id="#{item.product.id}") +
+                %button.mt-2.text-red-600.hover:text-red-800(data-action="click->cart#removeFromCart" data-product-id="#{item.product.id}") Remove
+              %td.p-4.text-right
+                = number_to_currency(item.total_price, unit: "Rs. ")
 
-  %tbody
-    - @carts.each do |cart|
-      %tr
-        %td= cart.user
-        %td= cart.total_price
-        %td= link_to 'Show', cart
-        %td= link_to 'Edit', edit_cart_path(cart)
-        %td= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' }
+    %div.md:col-span-1
+      %div.bg-white.p-6.rounded-lg.shadow-md
+        %h2.text-2xl.font-semibold.text-gray-800.mb-4 Total
+        %div.flex.justify-between.items-center.mb-2
+          %p.font-bold.text-lg= "You saved #{number_to_currency(988, unit: "Rs. ")}!"
+        %p.font-bold.text-2xl.text-gray-800= number_to_currency(6767, unit: "Rs. ")
+        %div.mt-4
+          %textarea.w-full.px-3.py-2.border.rounded.placeholder-gray-400 Order instructions
+        %p.text-sm.text-gray-600.mt-2 Taxes and shipping calculated at checkout
+        %button.mt-4.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600 Checkout
 
-%br
-
-= link_to 'New Cart', new_cart_path
+    %div.mt-8.text-center
+      %p.text-sm.text-gray-600 100% Secure Payments

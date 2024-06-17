@@ -5,3 +5,7 @@ import "controllers"
 
 import "trix"
 import "@rails/actiontext"
+
+import jQuery from "jquery"
+window.jQuery = jQuery
+window.$ = jQuery 
