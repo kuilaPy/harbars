@@ -42,7 +42,7 @@
         -#     .py-1
         -#       %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Sign out
         = active_link_to 'Products', products_path, active: [['products'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white'    
-        = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white' do
+        = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white', 'data-controller': 'root', 'data-root-target': 'link' do
           .flex
             %div.px-2 Cart
             %div.relative
