@@ -52,3 +52,26 @@
   padding: 0px 4px;
   border-radius: 8px;
 }
+.public-nav-active .cart-count{
+  color: #fff;
+}
+.flag {
+  display: inline-block;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  background-color: #084e8a;
+  padding: 4px 10px;
+  font-size: 15px;
+  line-height: 17px;
+  position: relative;
+  margin-right: 12px;
+  height: 25px;
+}
+.flag-extension{
+  border-top: 12px solid #084e8a;
+  border-bottom: 13px solid #084e8a;
+  border-right: 13px solid transparent;
+  position: absolute;
+  right: -13px;
+  top: 0;
+}

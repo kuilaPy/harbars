@@ -12,6 +12,11 @@ class User < ApplicationRecord
 
 
   validates :phone_number, presence: true, uniqueness: true ,length: { is: 10 }
+
+
+  def full_name
+    self.first_name + " " + self.last_name
+  end
   
 
 end

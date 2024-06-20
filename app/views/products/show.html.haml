@@ -1,21 +1,65 @@
-%p#notice= notice
+-# app/views/products/show.html.haml
+.bg-gray-100{data: {controller: 'product'}}
+  %div.container.mx-auto.px-4.py-8
+    .breadcrumbs.mt-4
+      = breadcrumbs.render(format: :inline, separator: ">")
+    %div.flex.gap-8.pt-4.overflow-y-auto
+      %div.overflow-y-auto{style: 'height: 80vh', class: "w-2/3"}
+        .grid.grid-col-1.overflow-y-auto
+          = render 'image_gallery'
+          %div.mt-8.p-4.bg-white.rounded-lg
+            %h3.text-xl.font-bold.mb-4 Description
+            %p.text-gray-700= @product.description
+          %div.mt-8.p-4.bg-white.rounded-lg
+            %h3.text-xl.font-bold.mb-4 Specification
+            %p.text-gray-700= @product.specification
+          %div.mt-8.p-4.bg-white.rounded-lg
+            %h3.text-xl.font-bold.mb-4 Reviews
+            .py-4.mb-4
+              - [5, 4, 3, 2, 1].each do |key|
+                .flex.items-center.mt-4
+                  %a.text-sm.font-medium.text-blue-600.hover:underline{:href => "#"} #{key} star
+                  .h-5.mx-4.bg-gray-200.rounded{:class => "w-2/4"}
+                    .h-5.bg-yellow-300.rounded{:style => "width: #{@rating_percentage[key].to_i}%"}
+                  %span.text-sm.font-medium.text-gray-500 #{@rating_percentage[key].to_i}%
 
-%p
-  %b Name:
-  = @product.name
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Price:
-  = @product.price
-%p
-  %b Stock quantity:
-  = @product.stock_quantity
-%p
-  %b Category:
-  = @product.category
+            - @product.reviews.each do |review|
+              %div.mb-4.p-4.bg-gray-100.rounded-lg
+                .flex.justify-between
+                  %div  
+                    %p.font-bold.text-gray-900= review.user.full_name
+                    %p.text-sm.text-gray-600= review.created_at.strftime("%B %d, %Y")
+                  %div.flex.items-center
+                    %span.text-yellow-400.text-sm
+                      - ratings = review&.rating
+                      = (1..5).map { |i| ratings >= i ? "★" : "☆" }.join(' ')
+                    %span (#{ratings})
+                %p.text-gray-700.mt-2= review.comment
+      %div.overflow-y-hidden{class: "w-1/3"}
+        .card.border.border-gray-200.bg-white.rounded-lg.shadow-md.p-4
+          %div.card-header.p-4.flex.items-center
+            %div.flag
+              = "#2 best seller"
+              %span.flag-extension
+            .text-gray-500.ml-4= "in #{@product.category.name} category"
+          %div.card-body.p-4
+            %h2.text-2xl.font-semibold.mb-4.text-gray-500= @product.name
+            %div.text-l.text-gray-300= @product.description
+            %div.flex.items-center.mt-8
+              %span.text-yellow-400.text-sm
+                - ratings = @product&.product_ratings
+                = (1..5).map { |i| ratings >= i ? "★" : "☆" }.join(' ')
+              %span.text-gray-600.text-sm
+                = "#{ratings.to_f} (#{@product&.review_count} reviews)"
+            - if @product.discount.present?
+              %div.mt-8
+                %span.bg-red-500.text-white.px-2.py-1.text-xs.font-bold.uppercase.rounded
+                  Save #{@product.discount}%
+            %div.mt-4
+              %span.text-sm.text-gray-400 Price: 
+              %span.text-3xl.font-bold.text-red-500
+                = number_to_currency(@product.price, unit: "Rs. ")
+              %span.text-m.text-gray-600.line-through.ml-2
+                = number_to_currency(@product.original_price, unit: "Rs. ")
+            %button.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600.mb-4.mt-20{'data-action': "click->cart#addToCart", 'data-product-id': "#{@product.id}"} Add to Cart
 
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path

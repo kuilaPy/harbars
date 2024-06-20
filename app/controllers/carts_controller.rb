@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
   # GET /carts or /carts.json
   def index
-    @cart = Cart.last
+    @cart = Cart.find_by(external_user_id: params[:external_id])
     @cart_items = @cart.cart_items
   end
 

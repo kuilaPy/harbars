@@ -8,6 +8,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    @rating_percentage = @product.reviews.rating_percentage
+    breadcrumbs.add "Products", products_path
+    breadcrumbs.add @product.name
   end
 
   # GET /products/new

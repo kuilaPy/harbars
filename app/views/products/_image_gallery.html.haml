@@ -1,0 +1,8 @@
+.flex.bg-white.rounded.p-4
+  .flex.flex-col.items-center.overflow-y-auto{class: "h-[600px] w-[70px]"}
+    - @product.product_images.each_with_index do |image, index|
+      %div.mb-2.cursor-pointer
+        = image_tag image, alt: @product.name, class: "object-contain w-full h-auto border-2 #{index.zero? ? 'border-green-500' : 'border-transparent'}", data: { action: "click->product#selectImage", image_url: url_for(image) }
+  %div.flex-1.flex.justify-center.items-center
+    %div.w-full.max-w-lg
+      = image_tag @product.product_images.first, alt: @product.name, id: "main_product_image", class: "object-contain w-full h-auto border-2 border-gray-200", data: {"product-target": 'mainImage'}

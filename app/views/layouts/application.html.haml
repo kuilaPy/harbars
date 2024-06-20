@@ -14,9 +14,10 @@
 
   %body(data-controller="cart root")
     = render 'layouts/top'
-    %main
-      = turbo_frame_tag "log_in_form"
-      = yield 
-      #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
-        = render 'layouts/flash_message'
+    %main.bg-gray-100
+      .mt-14
+        = turbo_frame_tag "log_in_form"
+        = yield 
+        #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
+          = render 'layouts/flash_message'
       
