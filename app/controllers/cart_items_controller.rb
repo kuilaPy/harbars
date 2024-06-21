@@ -38,9 +38,11 @@ class CartItemsController < ApplicationController
   def update
     respond_to do |format|
       if @cart_item.update(cart_item_params)
+        format.turbo_stream 
         format.html { redirect_to cart_item_url(@cart_item), notice: "Cart item was successfully updated." }
-        format.json { render :show, status: :ok, location: @cart_item }
+        format.json { render json: { message: "Add item to cart"} , status: :ok }
       else
+        format.turbo_stream 
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }
       end

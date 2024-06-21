@@ -1,46 +1,58 @@
-%div.container.mx-auto.px-4.py-8
-  %h1.text-3xl.font-semibold.mb-6 My Cart
+%div.mx-auto.px-4.mt-20.bg-gray-100.w-full.h-screen
+  %div.mt-8.p-4
+    %h2.text-2xl.font-bold.mb-6 My cart
+    %div.grid.grid-cols-1.md:grid-cols-3.gap-4
+      %div.col-span-2
+        %table.w-full.shadow-md.rounded-lg.bg-white
+          %thead
+            %tr
+              %th.text-left.px-4.py-4 Product
+              %th.text-left.px-4.py-4 Quantity
+              %th.text-left.px-4.py-4 Total
+          %tbody
+            - @cart_items.each do |item|
+              %tr.border-t
+                %td.px-4.py-4
+                  %div.flex.items-center
+                    = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-cover mr-4"
+                    %div
+                      %div.p-4
+                        %h2.text-lg.font-bold.text-gray-800
+                          = item.product.name
+                        %h6= item.product.description
+                        %div.mt-2
+                          %span.text-l.font-bold.text-red-500
+                            = number_to_currency(item.product.price, unit: "Rs. ")
+                          %span.text-sm.text-gray-600.line-through.ml-2
+                            = number_to_currency(item.product.original_price, unit: "Rs. ")
+                %td.px-4.py-4
+                  %div.flex.items-center
+                    %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
+                    %span.mx-2= item.quantity
+                    %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
+                  
+                %td.px-4.py-4
+                  %span.text-xl.font-bold.text-gray-900
+                    = number_to_currency(item.price, unit: "Rs. ")
+                %td 
+                  %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
+      %div
+        %div.bg-white.shadow-md.rounded-lg.p-4.border-4
+          %h2.text-xl.font-bold.mb-4 Total
+          %div.flex.justify-between.text-lg.font-semibold.text-gray-900
+            %span Sub total
+            %span= number_to_currency(@cart.total_price, unit: "Rs. ")
+          %div.flex.justify-between.text-lg.font-semibold.text-red-500
+            %span You saved
+            %span= number_to_currency(@cart.total_saved, unit: "Rs. ")
+          %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
+          %div.flex.justify-between.text-sm.text-black-500
+            %span GST(18%)
+            %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+          %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
+          %div.flex.justify-between.text-lg.font-semibold.text-gray-900
+            %span Total
+            %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
 
-  %div.grid.grid-cols-1.md:grid-cols-3.gap-6
-    %div.md:col-span-2
-      %table.w-full.text-left
-        %thead
-          %tr
-            %th Product
-            %th Quantity
-            %th Total
-        %tbody
-          - @cart.cart_items.each do |item|
-            %tr.border-b
-              %td.p-4
-                %div.flex.items-center
-                  %img.w-20.h-20.object-cover.mr-4(src=item.product.image_url alt=item.product.name)
-                  %div
-                    %p.text-sm.font-semibold.uppercase.text-gray-500 25 YEARS* WARRANTY
-                    %p.text-lg.font-bold.text-gray-800= item.product.name
-                    %p.text-red-500.font-bold
-                      = number_to_currency(item.product.discounted_price, unit: "Rs. ")
-                    %p.text-sm.text-gray-600.line-through.ml-2
-                      = number_to_currency(item.product.original_price, unit: "Rs. ")
-              %td.p-4.text-center
-                %div.flex.items-center.justify-center
-                  %button.bg-gray-200.text-gray-600.px-2.py-1.rounded.hover:bg-gray-300(data-action="click->cart#decrementQuantity" data-product-id="#{item.product.id}") -
-                  %span.mx-2= item.quantity
-                  %button.bg-gray-200.text-gray-600.px-2.py-1.rounded.hover:bg-gray-300(data-action="click->cart#incrementQuantity" data-product-id="#{item.product.id}") +
-                %button.mt-2.text-red-600.hover:text-red-800(data-action="click->cart#removeFromCart" data-product-id="#{item.product.id}") Remove
-              %td.p-4.text-right
-                = number_to_currency(item.total_price, unit: "Rs. ")
-
-    %div.md:col-span-1
-      %div.bg-white.p-6.rounded-lg.shadow-md
-        %h2.text-2xl.font-semibold.text-gray-800.mb-4 Total
-        %div.flex.justify-between.items-center.mb-2
-          %p.font-bold.text-lg= "You saved #{number_to_currency(988, unit: "Rs. ")}!"
-        %p.font-bold.text-2xl.text-gray-800= number_to_currency(6767, unit: "Rs. ")
-        %div.mt-4
-          %textarea.w-full.px-3.py-2.border.rounded.placeholder-gray-400 Order instructions
-        %p.text-sm.text-gray-600.mt-2 Taxes and shipping calculated at checkout
-        %button.mt-4.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600 Checkout
-
-    %div.mt-8.text-center
-      %p.text-sm.text-gray-600 100% Secure Payments
+          %div.mt-4
+            %button.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600 Checkout

@@ -31,6 +31,50 @@ export default class extends Controller {
     this.sendAddToCartRequest(productId, cart)
   }
 
+  increment(event) {
+    const itemId = event.currentTarget.dataset.itemId
+    const quantity = parseInt(event.currentTarget.dataset.quantity)
+    const price = parseInt(event.currentTarget.dataset.price)
+    const productId = event.currentTarget.dataset.productId
+    this.updateQuantity(itemId, quantity + 1, price, productId)
+  }
+
+  decrement(event) {
+    const itemId = event.currentTarget.dataset.itemId
+    const quantity = parseInt(event.currentTarget.dataset.quantity)
+    const price = parseInt(event.currentTarget.dataset.price)
+    const productId = event.currentTarget.dataset.productId
+    if(parseInt(quantity) > 1) this.updateQuantity(itemId, quantity - 1, price, productId)
+  }
+
+  updateQuantity(itemId, quantity, price, productId) {
+    $.ajax({
+      url: `/cart_items/${itemId}`,
+      type: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      },
+      data: { cart_item: { quantity: quantity, price: quantity * price }}
+    }).done((res) => {
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || []
+      const item = cart.find(item => item.product_id === productId)
+      if (item) {
+        item.quantity = quantity
+      } else {
+        cart.push({ product_id: productId, quantity: quantity })
+      }
+      localStorage.setItem("cart", JSON.stringify(cart))
+      Turbo.visit(window.location.href)
+    }).fail((e) => {
+      console.log("Error", e)
+      this.type = "error"
+      this.message = e?.responseJSON?.message ?? "Something went wrong"
+      this.showToast()
+    })
+  }
+
   sendAddToCartRequest(productId, cart) {
     let externalUserId = this.externalUserId
     $.ajax({
