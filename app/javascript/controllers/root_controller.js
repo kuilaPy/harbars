@@ -2,21 +2,37 @@ import { Controller } from "@hotwired/stimulus"
 import { v4 as uuid_v4 } from 'uuid';
 
 export default class extends Controller {
-  static targets = ["user"]
+  static targets = ["user", "link"]
   connect() {
+    console.log("connected root")
     this.ensureExternalUserId()
   }
   ensureExternalUserId() {
+    let externalUserId
     if(this.hasUserTarget){
-      let externalUserId = this.userTarget.dataset.ExternalId
+      externalUserId = this.userTarget.dataset.ExternalId
       localStorage.setItem("externalUserId", externalUserId)
     }else{
-      let externalUserId = localStorage.getItem("externalUserId")
+      externalUserId = localStorage.getItem("externalUserId")
       if (!externalUserId) {
         externalUserId = uuid_v4()
         localStorage.setItem("externalUserId", externalUserId)
       }
     }
+    if(this.hasLinkTarget){
+      this.updateHref(externalUserId)
+    }
+
+  }
+
+  updateHref(externalUserId) {
+    this.linkTargets.forEach(link => {
+      console.log({link})
+      const url = new URL(link.href);
+      console.log({url})
+      url.searchParams.set('external_id', externalUserId); // Add or update query parameter
+      link.href = url.toString();
+    });
   }
   
 }

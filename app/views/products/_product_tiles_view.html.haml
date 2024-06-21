@@ -8,8 +8,9 @@
     - if product.product_images.attached?
       = image_tag product.product_images.first, class: "w-full h-52 object-cover mt-8 mb-8"
   %div.p-4
-    %h2.mt-1.text-lg.font-bold.text-gray-800
-      = product.name
+    = link_to product_path(product) do
+      %h2.mt-1.text-lg.font-bold.text-gray-800
+        = product.name
     %div.flex.items-center.mt-2
       %span.text-yellow-400.text-sm
         - ratings = product&.product_ratings

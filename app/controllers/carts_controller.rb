@@ -3,7 +3,8 @@ class CartsController < ApplicationController
 
   # GET /carts or /carts.json
   def index
-    @carts = Cart.all
+    @cart = Cart.find_by(external_user_id: params[:external_id])
+    @cart_items = @cart.cart_items
   end
 
   # GET /carts/1 or /carts/1.json
@@ -21,7 +22,7 @@ class CartsController < ApplicationController
 
   # POST /carts or /carts.json
   def create
-    # begin
+    begin
       @cart = Cart.find_by(external_user_id: cart_product_params[:external_user_id])
       @cart = Cart.new(cart_params) unless @cart.present?
       if @cart.save
@@ -40,16 +41,16 @@ class CartsController < ApplicationController
         format.html
         format.json {render json: { message: "Add item to cart" }, status: 200}
       end
-    # rescue => e
-    #   respond_to do |format|
-    #     flash.now[:alert] = "Something went worng"
-    #     format.turbo_stream 
-    #     format.html {
-    #       render json: { message: "Failed to add item to cart: #{e.message}" }, status: :unprocessable_entity
-    #     }
-    #     format.json {render json: { message: "Failed to add item to cart" }, status: :unprocessable_entity}
-    #   end
-    # end
+    rescue => e
+      respond_to do |format|
+        flash.now[:alert] = "Something went worng"
+        format.turbo_stream 
+        format.html {
+          render json: { message: "Failed to add item to cart: #{e.message}" }, status: :unprocessable_entity
+        }
+        format.json {render json: { message: "Failed to add item to cart" }, status: :unprocessable_entity}
+      end
+    end
   end
 
   # PATCH/PUT /carts/1 or /carts/1.json

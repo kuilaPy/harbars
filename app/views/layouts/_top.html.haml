@@ -7,7 +7,7 @@
       %ul.flex.flex-col.font-medium.p-4.md:p-0.mt-4.border.border-gray-100.rounded-lg.bg-gray-50.md:space-x-8.rtl:space-x-reverse.md:flex-row.md:mt-0.md:border-0.primary-bg.dark:border-gray-700
         = active_link_to "Home", root_path, active: [['home'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700'
         = active_link_to 'Products', products_path, active: [['products'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white'    
-        = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white' do
+        = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white', 'data-controller': 'root', 'data-root-target': 'link' do
           .flex
             %div.px-2 Cart
             %div.relative
