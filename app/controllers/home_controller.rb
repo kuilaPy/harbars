@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  # layout 'public'
+  layout 'application'
   def index
-    render 'new_index'
+    # render 'new_index'
   end
 end

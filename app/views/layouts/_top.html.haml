@@ -1,58 +1,87 @@
 %nav.primary-bg.border-gray-200.dark:border-green-700.fixed.w-full.z-20.top-0.start-0.border-b
   .flex.flex-wrap.items-center.justify-between.mx-auto.p-4
     %a.flex.items-center.space-x-3.rtl:space-x-reverse{:href => "#"}
-      -# %img.h-8{:alt => "Flowbite Logo", :src => "/harbars/app/assets/images/chandra_herbal_logo.jpeg"}/
       =image_tag 'chandra_herbal_logo.jpeg', class: "h-8"
       %span.self-center.text-2xl.font-semibold.whitespace-nowrap.text-white Chandra Harbarls
-    %button.inline-flex.items-center.p-2.w-10.h-10.justify-center.text-sm.text-gray-500.rounded-lg.md:hidden.hover:bg-gray-100.focus:outline-none.focus:ring-2.focus:ring-gray-200.dark:text-gray-400.dark:hover:bg-gray-700.dark:focus:ring-gray-600{"aria-controls" => "navbar-multi-level", "aria-expanded" => "false", "data-collapse-toggle" => "navbar-multi-level", :type => "button"}
-      %span.sr-only Open main menu
-      %svg.w-5.h-5{"aria-hidden" => "true", :fill => "none", :viewbox => "0 0 17 14", :xmlns => "http://www.w3.org/2000/svg"}
-        %path{:d => "M1 1h15M1 7h15M1 13h15", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
     #navbar-multi-level.hidden.w-full.md:block.md:w-auto
       %ul.flex.flex-col.font-medium.p-4.md:p-0.mt-4.border.border-gray-100.rounded-lg.bg-gray-50.md:space-x-8.rtl:space-x-reverse.md:flex-row.md:mt-0.md:border-0.primary-bg.dark:border-gray-700
         = active_link_to "Home", root_path, active: [['home'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700'
-        -# %a.block.py-2.px-3.text-white.bg-blue-700.rounded.md:bg-transparent.md:text-blue-700.md:p-0.md:dark:text-blue-500.dark:bg-blue-600.md:dark:bg-transparent{"aria-current" => "page", :href => "#"} Home
-        -# %li
-        -#   %button#dropdownNavbarLink.flex.items-center.justify-between.w-full.py-2.px-3.text-gray-900.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-700.md:p-0.md:w-auto.dark:text-white.md:dark:hover:text-blue-500.dark:focus:text-white.dark:hover:bg-gray-700.md:dark:hover:bg-transparent{"data-dropdown-toggle" => "dropdownNavbar"}
-        -#     Dropdown
-        -#     %svg{"aria-hidden" => "true", :class => "w-2.5 h-2.5 ms-2.5", :fill => "none", :viewbox => "0 0 10 6", :xmlns => "http://www.w3.org/2000/svg"}
-        -#       %path{:d => "m1 1 4 4 4-4", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
-        -#   / Dropdown menu
-        -#   #dropdownNavbar.z-10.hidden.font-normal.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-44.dark:bg-gray-700.dark:divide-gray-600
-        -#     %ul.py-2.text-sm.text-gray-700.dark:text-gray-200{"aria-labelledby" => "dropdownLargeButton"}
-        -#       %li
-        -#         %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Dashboard
-        -#       %li{"aria-labelledby" => "dropdownNavbarLink"}
-        -#         %button#doubleDropdownButton.flex.items-center.justify-between.w-full.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{"data-dropdown-placement" => "right-start", "data-dropdown-toggle" => "doubleDropdown", :type => "button"}
-        -#           Dropdown
-        -#           %svg{"aria-hidden" => "true", :class => "w-2.5 h-2.5 ms-2.5", :fill => "none", :viewbox => "0 0 10 6", :xmlns => "http://www.w3.org/2000/svg"}
-        -#             %path{:d => "m1 1 4 4 4-4", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
-        -#         #doubleDropdown.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-44.dark:bg-gray-700
-        -#           %ul.py-2.text-sm.text-gray-700.dark:text-gray-200{"aria-labelledby" => "doubleDropdownButton"}
-        -#             %li
-        -#               %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Overview
-        -#             %li
-        -#               %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} My downloads
-        -#             %li
-        -#               %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Billing
-        -#             %li
-        -#               %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Rewards
-        -#       %li
-        -#         %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Earnings
-        -#     .py-1
-        -#       %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-200.dark:hover:text-white{:href => "#"} Sign out
         = active_link_to 'Products', products_path, active: [['products'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white'    
         = active_link_to carts_path, active: [['carts'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700 hover:text-white', 'data-controller': 'root', 'data-root-target': 'link' do
           .flex
             %div.px-2 Cart
             %div.relative
               = heroicon 'shopping-cart', options: { class: "w-5 h-5" }
-              %div.absolute.cart-count(data-cart-target="count") 0
-              
+              %div.absolute.cart-count(data-cart-target="count") 0  
+        - if !current_user.present?         
+          %li 
+            .block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
+              = link_to 'Sign in', new_user_session_path, data: { turbo_frame: 'log_in_form' }
+          -# %li.block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
+            -# = button_to "Sign Out", destroy_admin_user_session_path, method: :delete
+        - else
+          %li 
+            .flex.items-center
+              .flex.items-center.ms-3
+                %div
+                  %button.flex.text-sm.bg-gray-800.rounded-lg.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-user", type: "button"}
+                    %span.sr-only Open user menu
+                    %img.w-8.h-8.rounded-lg{alt: "user photo", src: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}/
+                #dropdown-user.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow.dark:bg-gray-700.dark:divide-gray-600
+                  .px-4.py-3{role: "none"}
+                    %p.text-sm.text-gray-900.dark:text-white{role: "none"}
+                      Neil Sims
+                    %p.text-sm.font-medium.text-gray-900.truncate.dark:text-gray-300{role: "none"}
+                      neil.sims@flowbite.com
+                  %ul.py-1{role: "none"}
+                    %li
+                      %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:text-gray-300.dark:hover:bg-gray-600.dark:hover:text-white{href: "#", role: "menuitem"} Profile
+                    %li
+                      %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:text-gray-300.dark:hover:bg-gray-600.dark:hover:text-white{href: "#", role: "menuitem"} Order
+                    %li
+                      %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100.dark:text-gray-300.dark:hover:bg-gray-600.dark:hover:text-white{href: "#", role: "menuitem"} Whish List
+                    %li
+                      .block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
+                        = button_to "Sign Out", destroy_admin_user_session_path, method: :delete
 
-        %li 
-          .block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
-            = link_to 'Sign in', new_user_session_path, data: { turbo_frame: 'log_in_form' }
-        %li.block.py-2.px-3.text-gray-100.rounded.hover:bg-blue-700
-          = button_to "Sign Out", destroy_admin_user_session_path, method: :delete
 
+-# %nav.primary-bg.border-gray-200.fixed.w-full.z-20.top-0.start-0.border-b
+-#   .max-w-screen-xl.flex.flex-wrap.items-center.justify-between.mx-auto.p-4
+-#     %a.flex.items-center.space-x-3.rtl:space-x-reverse{href: ""}
+-#       =image_tag 'chandra_herbal_logo.jpeg' , size: 40
+-#       %span.self-center.text-2xl.font-semibold.whitespace-nowrap Flowbite
+-#     .flex.items-center.md:order-2.space-x-3.md:space-x-0.rtl:space-x-reverse
+-#       %button#user-menu-button.flex.text-sm.bg-gray-800.rounded-full.md:me-0.focus:ring-4.focus:ring-gray-300{"aria-expanded" => "false", "data-dropdown-placement" => "bottom", "data-dropdown-toggle" => "user-dropdown", type: "button"}
+-#         %span.sr-only Open user menu
+-#         %img.w-8.h-8.rounded-full{alt: "user photo", src: "/docs/images/people/profile-picture-3.jpg"}/
+-#       / Dropdown menu
+-#       #user-dropdown.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded-lg.shadow
+-#         .px-4.py-3
+-#           %span.block.text-sm.text-gray-900 Bonnie Green
+-#           %span.block.text-sm.text-gray-500.truncate name@flowbite.com
+-#         %ul.py-2{"aria-labelledby" => "user-menu-button"}
+-#           %li
+-#             %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{href: "#"} Dashboard
+-#           %li
+-#             %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{href: "#"} Settings
+-#           %li
+-#             %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{href: "#"} Earnings
+-#           %li
+-#             %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{href: "#"} Sign out
+-#       %button.inline-flex.items-center.p-2.w-10.h-10.justify-center.text-sm.text-gray-500.rounded-lg.md:hidden.hover:bg-gray-100.focus:outline-none.focus:ring-2.focus:ring-gray-200{"aria-controls" => "navbar-user", "aria-expanded" => "false", "data-collapse-toggle" => "navbar-user", type: "button"}
+-#         %span.sr-only Open main menu
+-#         %svg.w-5.h-5{"aria-hidden" => "true", fill: "none", viewbox: "0 0 17 14", xmlns: "http://www.w3.org/2000/svg"}
+-#           %path{d: "M1 1h15M1 7h15M1 13h15", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+-#     #navbar-user.items-center.justify-between.hidden.w-full.md:flex.md:w-auto.md:order-1
+-#       %ul.flex.flex-col.font-medium.p-4.md:p-0.mt-4.border.border-gray-100.rounded-lg.primary-bg.md:space-x-8.rtl:space-x-reverse.md:flex-row.md:mt-0.md:border-0.md:bg-white.md:bg-white
+-#         %li
+-#           -# %a.block.py-2.px-3.text-white.rounded.md:bg-transparent.md:text-blue-700.md:p-0.md:dark:text-blue-500{"aria-current" => "page", href: "#"} Home
+-#           = active_link_to "Home", root_path, active: [['home'], []], wrap_tag: :li, class_active: 'public-nav-active', wrap_class: 'block py-2 px-3 text-white rounded hover:bg-blue-700'
+-#         %li
+-#           %a.block.py-2.px-3.text-gray-900.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:hover:text-blue-700.md:p-0.dark:text-white.md:dark:hover:text-blue-500.md:hover:bg-transparent{href: "#"} About
+-#         %li
+-#           %a.block.py-2.px-3.text-gray-900.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:hover:text-blue-700.md:p-0.dark:text-white.md:dark:hover:text-blue-500.dark:hover:bg-gray-700.dark:hover:text-white.md:dark:hover:bg-transparent.dark:border-gray-700{href: "#"} Services
+-#         %li
+-#           %a.block.py-2.px-3.text-gray-900.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:hover:text-blue-700.md:p-0.dark:text-white.md:dark:hover:text-blue-500.dark:hover:bg-gray-700.dark:hover:text-white.md:dark:hover:bg-transparent.dark:border-gray-700{href: "#"} Pricing
+-#         %li
+-#           %a.block.py-2.px-3.text-gray-900.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:hover:text-blue-700.md:p-0.dark:text-white.md:dark:hover:text-blue-500.dark:hover:bg-gray-700.dark:hover:text-white.md:dark:hover:bg-transparent.dark:border-gray-700{href: "#"} Contact

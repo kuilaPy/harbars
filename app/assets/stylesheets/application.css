@@ -21,6 +21,12 @@
 .primary-bg {
   background-color: var(--primary_bg_color);
 }
+.primary_color{
+  color: var(--primary_bg_color);
+}
+.secondary_color{
+  color: var(--secondary_color);
+}
 .flex-grow{
   flex-grow: 1;
 }
