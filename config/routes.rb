@@ -15,6 +15,15 @@ Rails.application.routes.draw do
 
   devise_for :users
   root "home#index"
+  resources :home do
+    collection do
+      get :privacy_policy
+      get :terms_conditions
+      get :shipping_policy
+      get :return_policy
+      get :cancellation_policy
+    end
+  end
   resources :replies
   resources :questions
   resources :reviews
