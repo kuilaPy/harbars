@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   resources :addresses
   resources :payments
   resources :cart_items
-  resources :carts
+  resources :carts do 
+    member do
+      get :checkout, as: :checkout_process
+    end
+  end
   resources :order_items
   resources :orders
   resources :products
