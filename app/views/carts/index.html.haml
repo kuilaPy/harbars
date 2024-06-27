@@ -34,8 +34,10 @@
                 %td.px-4.py-4
                   %span.text-xl.font-bold.text-gray-900
                     = number_to_currency(item.price, unit: "Rs. ")
-                %td 
-                  %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
+                %td.w-2.cursor-pointer
+                  -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
+                  = heroicon 'trash', options: { class: "w-5 h-5 text-red-500",data: {action:"click->cart#remove", "item-id":"#{item.id}"} }
+
       %div
         %div.bg-white.shadow-md.rounded-lg.p-4.border-4
           %h2.text-xl.font-bold.mb-4 Total
