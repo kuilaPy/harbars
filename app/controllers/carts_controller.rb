@@ -1,5 +1,9 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show edit update destroy ]
+  include Wicked::Wizard
+  before_action :authenticate_user!, only: [:checkout, :show]
+  before_action :set_cart, only: %i[ edit destroy ]
+
+  steps :user_details, :order_address, :place_order, :review
 
   # GET /carts or /carts.json
   def index
@@ -9,6 +13,14 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    @cart = Cart.first
+    case step
+    when :user_details
+    when :order_address
+    when :place_order
+    when :review
+    end
+    render_wizard
   end
 
   # GET /carts/new
@@ -55,15 +67,17 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1 or /carts/1.json
   def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html { redirect_to cart_url(@cart), notice: "Cart was successfully updated." }
-        format.json { render :show, status: :ok, location: @cart }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
+    @cart = Cart.first
+    case step
+    when :user_details
+      current_user.update(user_params)
+    when :order_address
+      shipping_address = current_user.addresses.where(id: order_params[:shipping_address_id])
+      shipping_address.update(is_default: true)
+    when :place_order
+    when :review
     end
+    render_wizard @cart
   end
 
   # DELETE /carts/1 or /carts/1.json
@@ -76,10 +90,25 @@ class CartsController < ApplicationController
     end
   end
 
+  def checkout
+  end
+
+  def finish_wizard_path
+    product_path(product)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = Cart.find(params[:id])
+    end
+
+    def user_params 
+      params.require(:user).permit(:email, :first_name, :last_name, :phone_number)
+    end
+
+    def order_params
+      params.require(:order).permit(:shipping_address_id)
     end
 
     # Only allow a list of trusted parameters through.

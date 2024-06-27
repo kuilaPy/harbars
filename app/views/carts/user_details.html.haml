@@ -1,0 +1,28 @@
+
+%div.mx-auto.px-4.mt-20.bg-gray-100.w-full.h-screen.container.max-w-screen-lg
+  .flex.pt-4
+    = render 'indicator', {step: 1}
+    .flex-grow.bg-white.ml-4.rounded
+      %div.p-4.text-blue-500.text-2xl.bold Personal Information
+      = form_with(model: current_user, url: wizard_path, local: true, data_turbo: false) do |f|
+        .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
+          %div 
+            = f.label :email, class: "block mb-2 text-sm font-medium text-gray-900"
+            = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          %div 
+            = f.label :phone_number, class: "block mb-2 text-sm font-medium text-gray-900"
+            = f.number_field :phone_number, autocomplete: "phone number", placeholder: "9836908790", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          %div 
+            = f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900"
+            = f.text_field :first_name, autocomplete: "first_name",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          %div 
+            = f.label :last_name, class: "block mb-2 text-sm font-medium text-gray-900"
+            = f.text_field :last_name, autocomplete: "last_name",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        .grid.grid-col-1.p-4
+          .flex.flex-row-reverse
+            = f.submit "Next", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+
+
+
+
+

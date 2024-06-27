@@ -1,12 +1,1 @@
-%p#notice= notice
 
-%p
-  %b User:
-  = @cart.user
-%p
-  %b Total price:
-  = @cart.total_price
-
-= link_to 'Edit', edit_cart_path(@cart)
-\|
-= link_to 'Back', carts_path
