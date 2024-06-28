@@ -15,7 +15,11 @@ class User < ApplicationRecord
 
 
   def full_name
-    self.first_name + " " + self.last_name
+    if first_name.present? && last_name.present?
+      self.first_name + " " + self.last_name
+    else
+      "User"
+    end
   end
   
 
