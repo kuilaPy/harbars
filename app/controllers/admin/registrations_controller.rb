@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-class AdminUsers::RegistrationsController < Devise::RegistrationsController
+class Admin::RegistrationsController < Devise::RegistrationsController
+  layout 'admin'
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super do |resource|
+      render template: 'admin/devise/registrations/new' and return
+    end
+  end
 
   # POST /resource
   # def create

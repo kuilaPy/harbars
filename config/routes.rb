@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  devise_for :admin_users, path: 'admin', controllers: {
-    sessions: 'admin_users/sessions',
-    registrations: 'admin_users/registrations'
-  }
+  # devise_for :admin_users, path: 'admin', controllers: {
+  #   sessions: 'admin_users/sessions',
+  #   registrations: 'admin_users/registrations'
+  # }
   
   namespace :admin do
+    devise_for :admin_users, controllers: {
+      sessions: 'admin/sessions',
+      registrations: 'admin/registrations',
+      passwords: 'admin/passwords'
+    }
     root to: 'dash_board#index'
     resources :orders
     resources :products
