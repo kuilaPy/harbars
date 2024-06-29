@@ -22,4 +22,6 @@
           = breadcrumbs.render(format: :inline, separator: ">")
         = yield
         = turbo_frame_tag "modal"
+        = render 'layouts/flash_message'
+
 

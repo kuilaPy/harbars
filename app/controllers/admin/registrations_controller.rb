@@ -6,11 +6,11 @@ class Admin::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    super do |resource|
-      render template: 'admin/devise/registrations/new' and return
-    end
-  end
+  # def new
+  #   super do |resource|
+  #     render template: 'admin/devise/registrations/new' and return
+  #   end
+  # end
 
   # POST /resource
   # def create
