@@ -4,3 +4,45 @@
     = render 'indicator', {step: 3}
     .flex-grow.bg-white.ml-4.rounded
       %div.p-4.text-blue-500.text-2xl.bold Payment & Book order
+      %div.grid.grid-cols-1.md:grid-cols-3.gap-4.p-4
+        %div.col-span-2
+          %table.w-full.shadow-md.rounded-lg.bg-gray-100
+            %thead
+              %tr
+                %th.text-left.text-xs.px-2.py-2 Product
+                %th.text-left.text-xs.px-2.py-2 Quantity
+                %th.text-xs.px-2.py-4 Total
+            %tbody
+              - @cart_items.each do |item|
+                %tr.border-t
+                  %td.px-4.py-4
+                    %div.flex.items-center
+                      = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-cover mr-4"
+                      %div
+                        %div.p-4
+                          %h6.text-sm.text-gray-800
+                            = item.product.name
+                          -# %h6= item.product.description
+                          %div.mt-2
+                            %span.text-sm.text-red-500
+                              = number_to_currency(item.product.price, unit: "Rs. ")
+                            -# %span.text-sm.text-gray-600.line-through.ml-2
+                            -#   = number_to_currency(item.product.original_price, unit: "Rs. ")
+                  %td.px-4.py-4
+                    %div.flex.items-center
+                      -# %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
+                      %span.mx-2= item.quantity
+                      -# %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
+                    
+                  %td.px-4.py-4
+                    %span.text-sm.font-bold.text-gray-900
+                      = number_to_currency(item.price, unit: "₹")
+        %div.shadow-md.rounded-lg.bg-gray-100
+          .text-xs.font-bold.py-4.px-2 Payment Mode
+          .flex.items-center.mb-2.border-t.px-2.pt-2
+            %input#default-checkbox.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.focus:ring-2{type: "checkbox", value: ""}/
+            %label.ms-2.text-sm.font-medium.text-gray-900{for: "default-checkbox"} Online
+          .flex.items-center.px-2
+            %input#checked-checkbox.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.focus:ring-2{checked: "checked", type: "checkbox", value: ""}/
+            %label.ms-2.text-sm.font-medium.text-gray-900{for: "checked-checkbox"} Cash on Delivery        
+

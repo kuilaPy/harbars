@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # normal_user_routes
 
   devise_for :users
+  get 'users/show'
+  get 'users/edit', to: 'users#edit'
+  get 'users/update'
   root "home#index"
   resources :home do
     collection do
