@@ -1,0 +1,23 @@
+.grid.grid-cols-4.gap-4.px-24.py-8
+  .col-span-1   
+    %div.flex.items-center.shadow.p-2.bg-white.rounded-lg
+      = heroicon 'user-circle', options: {class: "w-14 h-14 mr-1 text-green-700"}
+      %div.leading-4
+        %p.text-xs Hello,
+        .text-bold
+          = current_user.full_name
+    .shadow.p-2.bg-white.rounded-lg.mt-4
+      %div.flex.items-center.p-2
+        = heroicon 'user', options: {class: "w-8 h-6 mr-1 text-green-700"}
+        %span.text-gray-500.font-bold	  Account Setting
+      %hr/
+      %ul.p-2.text-sm
+        %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
+          = active_link_to "Profile Information",users_show_path(current_user),active: [['users'], ["show"]], class_active: 'public-nav-active' 
+        %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
+          = link_to "Change Password",""
+        %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
+          = link_to "Manage Addresses",""   
+  .col-span-3.rounded-lg.shadow.p-2.bg-white
+    = turbo_frame_tag "show_user" do
+      = render partial: "users/personal_information", locals: {user: current_user} 

@@ -42,7 +42,9 @@
 
 .public-nav-active {
   background: white;
-  color: green;
+  /* color: green; */
+  color: rgb(23, 206, 23);
+
 }
 
 .cart-count{
