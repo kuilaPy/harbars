@@ -1,27 +1,26 @@
-= turbo_frame_tag "personal_information" do
-  .p-2.text-bold.text-xl.flex.flex-row
-    %div Personal Information
-    %div{"data-tooltip-target" => "tooltip-default", "data-tooltip-placement" => "right"}
-      = link_to users_edit_path(user) do
-        = heroicon 'pencil-square',variant: :outline , options: {class: "w-6 h-6 ml-2 inline-block text-green-500" } 
-    #tooltip-default.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.transition-opacity.duration-300.bg-green-100.rounded-lg.shadow-sm.opacity-0.tooltip{role: "tooltip"}
-      edit
-      -# .tooltip-arrow{"data-popper-arrow" => ""}
-  .grid.grid-cols-2.gap-4.p-2
-    .col-span-1
-      %p.block.mb-2.text-sm.font-medium.text-gray-900 First Name
-      .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5    
-        = user.first_name
-    .col-span-1
-      %p.block.mb-2.text-sm.font-medium.text-gray-900 Last Name
-      .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
-        = user.last_name
-    .col-span-1
-      %p.block.mb-2.text-sm.font-medium.text-gray-900 Email
-      .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
-        = user.email
-    .col-span-1
-      %p.block.mb-2.text-sm.font-medium.text-gray-900 Phone Number
-      .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
-        = user.phone_number
+.p-4.text-bold.text-xl.flex.flex-row
+  %div Personal Information
+  %div
+    = link_to edit_user_path(user) , data:{turbo: true} do
+      = heroicon 'pencil-square',variant: :outline , options: {class: "w-6 h-6 ml-2 inline-block text-green-500" } 
+.grid.grid-cols-3.gap-4.p-4.border-t
+  .col-span-1
+    %p.block.mb-2.text-sm.font-medium.text-gray-900 First Name
+    .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5    
+      = user.first_name
+  .col-span-1
+    %p.block.mb-2.text-sm.font-medium.text-gray-900 Last Name
+    .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
+      = user.last_name
+  .col-span-1
+  .col-span-1
+    %p.block.mb-2.text-sm.font-medium.text-gray-900 Email
+    .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
+      = user.email
+  .col-span-1
+    %p.block.mb-2.text-sm.font-medium.text-gray-900 Phone Number
+    .bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.p-2.5
+      = user.phone_number
+  .col-span-1
+
     

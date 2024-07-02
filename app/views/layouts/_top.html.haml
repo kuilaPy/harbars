@@ -37,7 +37,7 @@
                   %ul.py-1{role: "none"}
                     %li
                       .block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100
-                        = link_to users_show_path(current_user) do
+                        = link_to user_path(current_user) do
                           = heroicon 'user-circle',variant: :outline , options: {class: "w-4 h-4 mr-1 inline-block "} 
                           %span Profile
                     %li

@@ -13,10 +13,8 @@ Rails.application.routes.draw do
   end
   # normal_user_routes
 
-  devise_for :users
-  get 'users/show'
-  get 'users/edit', to: 'users#edit'
-  get 'users/update'
+  devise_for :users 
+  resources :users, only: [:show, :edit, :update]
   root "home#index"
   resources :home do
     collection do

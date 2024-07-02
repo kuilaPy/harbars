@@ -1,4 +1,4 @@
-.grid.grid-cols-4.gap-4.px-24.py-8
+.grid.grid-cols-4.gap-4.px-24.py-8.h-screen
   .col-span-1   
     %div.flex.items-center.shadow.p-2.bg-white.rounded-lg
       = heroicon 'user-circle', options: {class: "w-14 h-14 mr-1 text-green-700"}
@@ -13,7 +13,7 @@
       %hr/
       %ul.p-2.text-sm
         %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-          = active_link_to "Profile Information",users_show_path(current_user),active: [['users'], ["show"]], class_active: 'public-nav-active' 
+          = active_link_to "Profile Information",user_path(current_user),active: [['users'], ["show"]], class_active: 'public-nav-active' 
         %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
           = link_to "Change Password",""
         %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
