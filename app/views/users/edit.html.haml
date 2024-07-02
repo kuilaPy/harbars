@@ -1,2 +1,25 @@
-%h1 Users#edit
-%p Find me in app/views/users/edit.html.haml
+= turbo_frame_tag "show_user" do
+  .p-4.text-bold.text-xl.flex.flex-row
+    %div Personal Information
+  = form_for @user do |f|
+    .grid.grid-cols-3.gap-4.p-4.border-t
+      .col-span-1
+        = f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900"
+        = f.text_field :first_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true, autofocus: true
+      .col-span-1
+        = f.label :last_name, class: "block mb-2 text-sm font-medium text-gray-900"
+        = f.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true
+      .col-span-1
+      .col-span-1
+        = f.label :email, "Email address", class: "block mb-2 text-sm font-medium text-gray-900"
+        = f.email_field :email, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true
+      .col-span-1
+        = f.label :phone_number, class: "block mb-2 text-sm font-medium text-gray-900"
+        = f.telephone_field :phone_number, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true
+      .col-span-1
+      .col-span-1
+        = f.submit "Submit", class: "text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        = link_to "cancel", "" , class: "text-sm "
+
+
+
