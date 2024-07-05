@@ -1,25 +1,63 @@
-%h1 Listing orders
+-# %h1 Listing orders
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Total price
-      %th Status
-      %th
-      %th
-      %th
+-# %table
+-#   %thead
+-#     %tr
+-#       %th User
+-#       %th Total price
+-#       %th Status
+-#       %th
+-#       %th
+-#       %th
 
-  %tbody
+-#   %tbody
+-#     - @orders.each do |order|
+-#       %tr
+-#         %td= order.user.full_name
+-#         %td= order.total_price
+-#         %td= order.status
+-#         %td= link_to 'Show', order
+-#         %td= link_to 'Edit', edit_order_path(order)
+-#         %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
+
+-# %br
+
+-# = link_to 'New Order', new_order_path
+.grid.grid-cols-12.gap-4.px-4.py-8.h-full
+  .col-span-2
+    .flex.flex-col.shadow.p-2.bg-white.rounded-lg
+      %h2 Filter
+      %hr/
+      %ul.text-sm
+        %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500 
+          -# = check_box_tag , {}
+  .col-span-10
+    %form.max-w-screen-lg
+      %label.mb-2.text-sm.font-medium.text-gray-900.sr-only.dark:text-white{for: "default-search"} Search
+      .relative
+        .absolute.inset-y-0.start-0.flex.items-center.ps-3.pointer-events-none
+          %svg.w-4.h-4.text-gray-500.dark:text-gray-400{"aria-hidden" => "true", fill: "none", viewbox: "0 0 20 20", xmlns: "http://www.w3.org/2000/svg"}
+            %path{d: "m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+        %input#default-search.block.w-full.p-4.ps-10.text-sm.text-gray-900.border.border-gray-300.rounded-lg.bg-gray-50.focus:ring-blue-500.focus:border-blue-500{placeholder: "Search order...", required: "", type: "search"}/
+        %button.text-white.absolute.bg-green-500.hover:bg-green-700.focus:ring-4.focus:outline-none.focus:ring-green-300.font-medium.rounded-lg.text-sm.px-4.py-2{class: "end-2.5 bottom-2.5", type: "submit"} Search
     - @orders.each do |order|
-      %tr
-        %td= order.user
-        %td= order.total_price
-        %td= order.status
-        %td= link_to 'Show', order
-        %td= link_to 'Edit', edit_order_path(order)
-        %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Order', new_order_path
+      %div.mt-2  
+        %div.text-center.py-0.px-0.my-8.relative.border-solid.border-b.border-gray-500.text-gray-500.text-sm{style:"line-height: 0;"} 
+          %span.bg-gray-100=order.created_at.strftime("%d %^b %Y")
+        %div.bg-white.p-4.rounded-lg.border.hover:shadow-xl
+          = link_to order_path(order) do 
+            %ul.text-gray-600
+              order ##{order.id}
+              - order.order_items.each do |order_item|
+                %li.border-green.p-2.my-2.rounded-lg
+                  .grid.grid-cols-12.gap-4
+                    .col-span-2
+                      = image_tag(order_item.product.product_images.last, size: "60x60", alt: "Edit Entry")
+                    .col-span-4 
+                      %h2= order_item.product.name 
+                      %p Qnt: #{order_item.quantity}
+                    .col-span-3 
+                      %p ₹#{order_item.price}
+                    .col-span-3
+            
+            
