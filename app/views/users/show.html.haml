@@ -17,7 +17,7 @@
         %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
           = link_to "Change Password",""
         %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-          = link_to "Manage Addresses",""   
+          = active_link_to "Manage Addresses", addresses_path, active: [['addresses'], ["index"]], class_active: 'public-nav-active', data: { turbo_frame: 'show_user' }
   .col-span-3.rounded-lg.shadow.p-2.bg-white
     = turbo_frame_tag "show_user" do
       = render partial: "users/personal_information", locals: {user: current_user} 
