@@ -5,22 +5,7 @@
     .flex-grow.bg-white.ml-4.rounded
       %div.p-4.text-blue-500.text-2xl.bold Payment & Book order
       %div 
-        = form_with(model: Order.new, url: wizard_path, method: "PATCH") do |f|
-          .grid.grid-cols-1.gap-4.mx-4
-            .text-gray-500.text-lg.font-semibold Order details
-          -# .grid.grid-cols-2.gap-4
-          -#   .flex.p-4.items-center
-          -#     .flex.items-center.h-5.mx-4
-          -#       = f.radio_button :shipping_mode, value: 1, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-          -#     .ms-2.text-sm
-          -#       %label.font-medium.text-gray-500.text-base.my-2
-          -#         Cash on delivery
-          -#   .flex.p-4.items-center
-          -#     .flex.items-center.h-5.mx-4
-          -#       = f.radio_button :shipping_mode, value: 2, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-          -#     .ms-2.text-sm
-          -#       %label.font-medium.text-gray-500.text-base.my-2
-          -#         Other Payment Options
+        = form_with(model: @payment, url: wizard_path, method: "PATCH", data: {turbo_stream: false, turbo: false}) do |f|
           .grid.grid-cols-1
             %div.bg-gray-100.mx-4.my-4.rounded
               - @cart.cart_items.each do |item|
@@ -46,6 +31,34 @@
           .grid.grid-col-1.p-4
             .flex.flex-row-reverse
               = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-              = f.submit "Proceed", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+              %button#rzp-button1 Pay with Razorpay
+              -# %script{"data-buttontext"=>"Pay INR #{(@payment.amount.to_f).round} with Razorpay", "data-order_id" =>  "#{@payment.razorpay_order_id}", "data-description" => "Campaign Name", "data-key" => "#{Figaro.env.RAZORPAY_KEY}", "data-name" => "herbal", "data-prefill.contact" => "#{current_user.phone_number}", "data-prefill.email" => "#{current_user.email}", "data-prefill.name" => "", "data-theme.color" => "#198F69", :src => "https://checkout.razorpay.com/v1/checkout.js", "data-disable-with" => "Please wait..." }
+              %script{:src => "https://checkout.razorpay.com/v1/checkout.js" }
+
+:javascript
+  var options = {
+      "key": "#{Figaro.env.RAZORPAY_KEY}", // Enter the Key ID generated from the Dashboard
+      "currency": "INR",
+      "name": "Chandra Herbal",
+      "description": "Chandra Herbal",
+      "order_id": "#{@payment.razorpay_order_id}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "callback_url": "http://localhost:3020/payments/#{@payment.id}/payment_success",
+      "prefill": {
+          "name": "#{current_user.full_name}",
+          "email": "#{current_user.email}",
+          "contact": "#{current_user.phone_number}"
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('rzp-button1').onclick = function(e){
+      rzp1.open();
+      e.preventDefault();
+  }
 
 

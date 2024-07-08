@@ -1,9 +1,9 @@
 class CartsController < ApplicationController
   include Wicked::Wizard
   before_action :authenticate_user!, only: [:checkout, :show]
-  before_action :set_cart, only: %i[ edit destroy ]
+  before_action :set_cart, only: %i[ edit destroy]
 
-  steps :user_details, :order_address, :place_order, :review
+  steps :user_details, :order_address, :place_order, :payment, :review
 
   # GET /carts or /carts.json
   def index
@@ -13,12 +13,17 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
-    @cart = Cart.first
+    @cart = Cart.find_by(external_user_id: current_user.external_user_id)
     case step
     when :user_details
     when :order_address
     when :place_order
+    when :payment
+      @payment = @cart.payment
     when :review
+      @payment = Payment.find_by(id: params[:payment_id])
+      @order = @payment.order
+      @order.get_expect_delivery_date unless @order.expected_delivery_date.present?
     end
     render_wizard
   end
@@ -67,7 +72,7 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1 or /carts/1.json
   def update
-    @cart = Cart.first
+    @cart = Cart.find_by(external_user_id: current_user.external_user_id)
     case step
     when :user_details
       current_user.update(user_params)
@@ -75,6 +80,15 @@ class CartsController < ApplicationController
       shipping_address = current_user.addresses.where(id: order_params[:shipping_address_id])
       shipping_address.update(is_default: true)
     when :place_order
+      @payment = current_user.payments.new(amount: @cart.total_price * 1.18, payment_method: 'online', status: 'pending', cart_id: @cart.id)
+      if @payment.save
+        redirect_to next_wizard_path(payment_id: @payment.id) and return
+      else
+        redirect_to wizard_path, alert: @payment.errors.full_messages.to_sentence and return
+      end
+    when :payment
+      # default_address = current_user.default_address
+      # current_user.orders.create(status: 'initiate', total_price: @cart.total_price, total_with_gst: @cart.total_price * 1.18, shipping_address_id: default_address.id, billing_address: default_address.id)
     when :review
     end
     render_wizard @cart
@@ -102,6 +116,7 @@ class CartsController < ApplicationController
     def set_cart
       @cart = Cart.find(params[:id])
     end
+
 
     def user_params 
       params.require(:user).permit(:email, :first_name, :last_name, :phone_number)
