@@ -10,7 +10,8 @@ class Address < ApplicationRecord
   validates_length_of :zip_code, is: 6,  message: "Number must be 6 digit long"
 
   after_save :set_default
-
+  scope :default, -> { where(is_default: true)}
+  
   private
 
   def set_default

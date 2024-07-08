@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   resources :questions
   resources :reviews
   resources :addresses
-  resources :payments
+  resources :payments do
+    member do
+      post :payment_success
+    end
+  end
   resources :cart_items
   resources :carts do 
     member do
