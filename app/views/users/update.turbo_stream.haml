@@ -1,0 +1,3 @@
+= turbo_stream.replace "show_user" do
+  = turbo_frame_tag "show_user" do
+    = render partial: "users/personal_information", locals: {user: current_user} 

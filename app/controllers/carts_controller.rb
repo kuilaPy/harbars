@@ -14,6 +14,7 @@ class CartsController < ApplicationController
   # GET /carts/1 or /carts/1.json
   def show
     @cart = Cart.find_by(external_user_id: current_user.external_user_id)
+    @cart_items = @cart.cart_items
     case step
     when :user_details
     when :order_address

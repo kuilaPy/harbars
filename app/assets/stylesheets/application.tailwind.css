@@ -37,12 +37,14 @@
 }
 
 .breadcrumbs a:hover {
-    text-decoration: var(--secondary_color);
+  text-decoration: var(--secondary_color);
 }
 
 .public-nav-active {
   background: white;
-  color: green;
+  /* color: green; */
+  color: rgb(23, 206, 23);
+
 }
 
 .cart-count{
@@ -74,4 +76,7 @@
   position: absolute;
   right: -13px;
   top: 0;
+}
+.border-green{
+  border: 0.5px solid #2eec4b;
 }
