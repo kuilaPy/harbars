@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     member do
       post :payment_success
     end
+    collection do
+      post :webhook
+    end
   end
   resources :cart_items
   resources :carts do 
