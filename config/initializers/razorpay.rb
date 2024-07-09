@@ -1,0 +1,1 @@
+Razorpay.setup(ENV['RAZORPAY_KEY'], ENV['RAZORPAY_SECRET'])

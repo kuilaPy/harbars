@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :replies
   has_many :addresses
+  has_many :payments
 
 
 
@@ -20,6 +21,10 @@ class User < ApplicationRecord
     else
       "User"
     end
+  end
+
+  def default_address
+    addresses.default.first
   end
   
 

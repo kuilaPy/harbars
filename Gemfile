@@ -46,7 +46,8 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  # gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem 'byebug'
 end
 
 group :development do
@@ -78,5 +79,9 @@ gem 'active_link_to'
 gem "heroicon"
 gem 'uuidtools'
 gem 'wicked'
+gem 'razorpay'
 gem "aws-sdk-s3"
+gem "figaro"
+gem "aasm"
+gem "httparty"
 

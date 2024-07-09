@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
-  before_action :set_payment, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token, only: [:payment_success, :webhook]
+  before_action :set_payment, only: %i[ show edit update destroy payment_success ]
 
   # GET /payments or /payments.json
   def index
@@ -57,14 +58,48 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def payment_success
+    @payment.update(razorpay_params)
+    redirect_to cart_path(id: 'review', payment_id: @payment.id), notice: "Payment was successfully completed."
+  end
+
+  def webhook
+    webhook_secret = ENV[:WEBHOOK_SECRET]
+    payload = request.body.read
+    signature = request.env['HTTP_X_RAZORPAY_SIGNATURE']
+    if verify_signature(payload, signature, webhook_secret) && params[:payload].present? && params[:payload][:payment].present? && params[:payload][:payment][:entity].present?
+      data = params[:payload][:payment][:entity]
+      case params[:event]
+      when 'payment.captured'
+      when 'payment.failed'
+      when 'payment.authorized'
+        @payment = Payment.find_by(razorpay_payment_id: data[:id])
+        @payment.authorize! if @payment.present?
+      end
+      render plain: "Webhook success", status: 200
+    else
+      render plain: 'Signature mismatch', status: :unauthorized
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
       @payment = Payment.find(params[:id])
     end
 
+    def verify_signature(payload, signature, secret)
+      digest = OpenSSL::Digest.new('sha256')
+      expected_signature = OpenSSL::HMAC.hexdigest(digest, secret, payload)
+      signature == expected_signature
+    end
+
     # Only allow a list of trusted parameters through.
     def payment_params
       params.require(:payment).permit(:order_id, :amount, :payment_method, :status)
+    end
+
+    def razorpay_params
+      params.permit(:razorpay_payment_id, :razorpay_order_id, :razorpay_signature)
     end
 end
