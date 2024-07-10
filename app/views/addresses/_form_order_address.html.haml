@@ -1,4 +1,4 @@
-= form_for @address do |f|
+= form_for @address, url: create_order_address_addresses_path do |f|
   - if @address.errors.any?
     #error_explanation.p-4.m-4.border-2.border-red-400.rounded-lg
       %h2.text-red-500.text-lg.font-semibold= "#{pluralize(@address.errors.count, "error")} prohibited this address from being saved:"
@@ -39,6 +39,6 @@
       
   .grid.grid-col-1.p-4
     .flex.flex-row-reverse
-      = link_to 'Cancel', addresses_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-      = f.submit "Save", class: "text-white bg-green-500 hover:bg-green-700  font-medium rounded-lg text-sm px-5 text-center py-2"
+      = link_to 'Cancel', cart_path(id: 'order_address'), class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
+      = f.submit "Save", class: "text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
 

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :add_breadcrumbs
   def show
   end
 
@@ -17,5 +18,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :phone_number)
+  end
+
+  def add_breadcrumbs
+    breadcrumbs.add "Home", :root_path
+    breadcrumbs.add "Profile", :users_path
+    breadcrumbs.add "Profile Information", user_path(current_user.id)
   end
 end

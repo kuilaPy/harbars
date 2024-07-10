@@ -78,5 +78,16 @@
   top: 0;
 }
 .border-green{
+  /* border: 0.5px solid #d1d5db; */
   border: 0.5px solid #2eec4b;
+
+}
+.border-gray{
+  border: 0.5px solid #d1d5db;
+}
+.border-green-top{
+  border-top: 0.5px solid #2eec4b;
+}
+.border-green-bottom{
+  border-bottom: 0.5px solid #2eec4b;
 }
