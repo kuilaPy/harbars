@@ -14,7 +14,7 @@
 
   %body(data-controller="cart root")
     = render 'layouts/top'
-    %main.bg-gray-100
+    %main.bg-gray-100{style: "min-height: 80vh"}
       .mt-14
         = turbo_frame_tag "log_in_form"
         = yield 

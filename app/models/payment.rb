@@ -45,7 +45,10 @@ class Payment < ApplicationRecord
     if self.captured?
       user = self.user
       cart = Cart.find_by(external_user_id: user.external_user_id)
-      Order.create(payment_id: self.id, user: user, status: 'initiate', total_price: cart.total_price, total_with_gst: cart.total_price * 1.18, shipping_address_id: user.default_address.id, billing_address_id: user.default_address.id)
+      order = Order.create(payment_id: self.id, user: user, status: 'initiate', total_price: cart.total_price, total_with_gst: cart.total_price * 1.18, shipping_address_id: user.default_address.id, billing_address_id: user.default_address.id)
+      cart.cart_items.each do |item|
+        order.order_items.create(product_id: item.product_id, quantity: item.quantity, price: item.price)
+      end
       cart.update_columns(status: false)
     end
   end
