@@ -1,5 +1,5 @@
 
-%div.mx-auto.px-4.mt-20.bg-gray-100.w-full.h-screen.container.max-w-screen-lg
+%div.mx-auto.p-8.bg-gray-100.w-full.h-auto.container.max-w-screen-lg
   .flex.pt-4
     = render 'indicator', {step: 2}
     .flex-grow.bg-white.ml-4.rounded
@@ -7,7 +7,7 @@
         .flex.justify-between
           %div.p-4.text-blue-500.text-2xl.bold Address Information
           %div.self-center
-            = link_to 'Add Address', new_address_path, class: "text-md px-5 text-center py-2 text-white bg-green-500 hover:bg-green-600 mx-4 rounded-lg"
+            = link_to 'Add Address', new_order_address_addresses_path, class: "text-md px-5 text-center py-2 text-white bg-green-500 hover:bg-green-600 mx-4 rounded-lg"
 
         %div 
           = form_with(model: Order.new, url: wizard_path, local: true, data: {turbo: false, turbo_stream: false}, method: "PATCH") do |f|

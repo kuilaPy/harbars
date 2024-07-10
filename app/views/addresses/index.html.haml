@@ -1,40 +1,16 @@
--# %h1 Listing addresses
-
--# %table
--#   %thead
--#     %tr
--#       %th User
--#       %th Address line 1
--#       %th Address line 2
--#       %th City
--#       %th State
--#       %th Zip code
--#       %th Country
--#       %th Address type
--#       %th
--#       %th
--#       %th
-
--#   %tbody
--#     - @addresses.each do |address|
--#       %tr
--#         %td= address.user
--#         %td= address.address_line_1
--#         %td= address.address_line_2
--#         %td= address.city
--#         %td= address.state
--#         %td= address.zip_code
--#         %td= address.country
--#         %td= address.address_type
--#         %td= link_to 'Show', address
--#         %td= link_to 'Edit', edit_address_path(address)
--#         %td= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' }
-
--# %br
-
--# = link_to 'New Address', new_address_path
-= turbo_frame_tag "show_user" do
-  .p-4.text-bold.text-xl.flex.flex-row
-    %div Personal Information
-    %div.text-right
-      = link_to 'New Address', new_address_path
+= render partial: "shared/breadcrumbs"
+.grid.grid-cols-4.gap-4.px-24.pt-2.pb-8
+  = render "users/profile_side_nav"
+  .col-span-3.rounded-lg.shadow.p-2.bg-white.h-auto
+    .p-4.text-bold.text-xl
+      %div Mange Addresses
+      %div.border-green.my-2.p-3.rounded-lg
+        = turbo_frame_tag Address.new do
+          = link_to new_address_path(for: "user_new_address") do
+            = heroicon 'plus',variant: :outline , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
+            %span.text-green-500.text-base Add New Address
+      %div.border-green.rounded-lg
+        = turbo_frame_tag "addresses" do
+          - @addresses.each_with_index do |address, index|
+            = render partial: "address", locals: {address: address, index: index}
+      

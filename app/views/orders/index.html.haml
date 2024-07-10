@@ -26,11 +26,19 @@
 .grid.grid-cols-12.gap-4.px-4.py-8.h-full
   .col-span-2
     .flex.flex-col.shadow.p-2.bg-white.rounded-lg
-      %h2 Filter
+      %h2.p-2 Filter
+      %hr/
+      %ul.text-sm.p-2
+        ORDER STATUS
+        %li.p-2
+          = check_box_tag 'On the Way', 'yes', false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+          %label on the way
+
       %hr/
       %ul.text-sm
-        %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500 
-          -# = check_box_tag , {}
+        ORDER Time
+        %li.p-2
+          
   .col-span-10
     %form.max-w-screen-lg
       %label.mb-2.text-sm.font-medium.text-gray-900.sr-only.dark:text-white{for: "default-search"} Search

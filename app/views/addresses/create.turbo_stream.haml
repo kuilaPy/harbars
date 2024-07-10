@@ -1,0 +1,5 @@
+= turbo_stream.prepend "addresses", partial: "address", locals: { address: @address , index: "appended" } 
+= turbo_stream.update Address.new  do 
+  = link_to new_address_path(for: "user_new_address") do
+    = heroicon 'plus',variant: :outline , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
+    %span.text-green-500.text-base Add New Address

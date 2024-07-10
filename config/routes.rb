@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   resources :replies
   resources :questions
   resources :reviews
-  resources :addresses
+  resources :addresses do
+    collection do
+      get :new_order_address
+      post :create_order_address
+    end
+  end
   resources :payments do
     member do
       post :payment_success
