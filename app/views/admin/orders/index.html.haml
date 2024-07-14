@@ -1,0 +1,86 @@
+%div.border.rounded-lg.bg-white.shadow#accordion-collapse{"data-accordion" => "collapse"}
+  .grid.grid-cols-12.gap-2.py-2.px-4.font-bold.text-sm
+    .col-span-2.py-2.px-3 
+      = "#order_id"
+    .col-span-2.py-2.px-3
+      = "User"
+    .col-span-2.py-2.px-3
+      = "Price"
+    .col-span-1.py-2.px-3
+      = "Amount"
+    .col-span-1.py-2.px-3
+      = "Order Date"
+    .col-span-2.py-2.px-3
+      = "Expacted Delivery Date"
+    .col-span-1.py-2.px-3
+      = "Status"
+    .col-span-1.py-2.px-3
+     
+  - @orders.each do |order|
+    %div
+      .grid.grid-cols-12.gap-2.border-t.py-2.px-4.hover:cursor-pointer.hover:bg-gray-100.hover:text-gray-500{"aria-controls" => "accordion-collapse-body-#{order.id}", "aria-expanded" => "false", "data-accordion-target" => "#accordion-collapse-body-#{order.id}" , id:"accordion-collapse-heading-#{order.id}"}
+        .col-span-2.py-2.px-3
+          = order.id
+        .col-span-2.py-2.px-3
+          = order.user.full_name
+        .col-span-2.py-2.px-3
+          = order.total_price
+        .col-span-1.py-2.px-3
+          = order.total_price
+        .col-span-1.py-2.px-3
+          = order.created_at.strftime("%d/%m/%y")
+        .col-span-2.py-2.px-3
+          = order.expected_delivery_date&.strftime("%d/%m/%y")
+        .col-span-1.py-2.px-3
+          = status_tag(order.status)
+        .col-span-1.py-2.px-3
+          .float-right
+            %svg.w-3.h-3.rotate-180.shrink-0{"aria-hidden" => "true", "data-accordion-icon" => "", fill: "none", viewbox: "0 0 10 6", xmlns: "http://www.w3.org/2000/svg"}
+              %path{d: "M9 5 5 1 1 5", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"} 
+      .grid.grid-cols-12.gap-2.hidden.bg-white.shadow-lg.shadow-gray-200{"aria-labelledby" => "accordion-collapse-heading-#{order.id}" , id: "accordion-collapse-body-#{order.id}"}
+        .col-span-12
+          %table.w-full.text-sm.text-left.text-gray-500
+            %thead
+              %tr.bg-gray-50.shadow
+                %th.px-6.py-2{scope: "col"}
+                  = "#"
+                %th.px-6.py-2{scope: "col"}
+                  product name
+                %th.px-6.py-2{scope: "col"}
+                  quantity
+                %th.px-6.py-2{scope: "col"}
+                  price
+                %th
+                  .float-right.pr-4
+                    -# = link_to admin_order_path(order) do
+                    -#   = heroicon 'ellipsis-vertical',variant: :solid , options: {class: "w-8 h-8 text-green-500 hover:text-green-600" } 
+                    %div
+                      %button.flex.text-sm.rounded-lg.focus:ring-4.focus:ring-green-300.bg-white{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-#{order.id}", type: "button"}
+                        -# %span.w-auto.h-8.p-2
+                        -#   = "Hi,Admin"
+                        = heroicon 'ellipsis-vertical',variant: :solid , options: {class: "w-8 h-8 text-green-500 hover:text-green-600" } 
+                        -# %img.w-8.h-8.rounded-lg{alt: "user photo", src: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}/
+                    .z-50.hidden.my-4.text-sm.list-none.divide-y.divide-gray-100.rounded-lg.drop-shadow.bg-white{id: "dropdown-#{order.id}"}
+                      -# .px-4.py-3{role: "none"}
+                      -#   %p.text-sm.text-gray-900.dark:text-white{role: "none"}
+                      -#     -# = current_admin_user.full_name
+                      -#   %p.text-sm.font-medium.text-gray-900.truncate.dark:text-gray-300{role: "none"}
+                      -#     = current_admin_user.email
+                      %ul.py-1{role: "none"}
+                        %li.hover:bg-green-50.text-green-500.font-normal
+                          -# %a.block.px-4.py-2.text-sm.text-gray-500.hover:bg-gray-100{href: "#", role: "menuitem"} Profile
+                          = link_to "Details",admin_order_path(order), class: "block px-4 py-2 text-sm "
+                        %li.hover:bg-green-50.text-green-500.font-normal
+                          %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Comfirm order
+                        %li.hover:bg-green-50.text-green-500.font-normal
+                          %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Whish List
+            %tbody
+              - order.order_items.each do |item|
+                %tr
+                  %td.px-6.py-1= image_tag(item.product.product_images.last, size: "40x40", alt: "Product img...")
+                  %td.px-6.py-1= item.product.name
+                  %td.px-6.py-1= item.quantity
+                  %td.px-6.py-1= item.price
+                  %td 
+                  
+  

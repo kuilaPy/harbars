@@ -46,6 +46,10 @@
   color: rgb(23, 206, 23);
 
 }
+.admin-nav-active {
+  background: #6EE7B7;
+  /* color: rgb(23, 206, 23); */
+}
 
 .cart-count{
   top: -16px;
