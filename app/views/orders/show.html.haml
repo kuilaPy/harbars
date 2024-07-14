@@ -1,15 +1,130 @@
-%p#notice= notice
+= turbo_frame_tag 'review_form'
+.grid.grid-cols-12.gap-4.px-4.py-8.h-full.mt-4
+  .col-span-1
+  .col-span-10.mt-14.shadow.p-2.bg-white.rounded-lg
+    - address = @order.shipping_address
+    .grid.grid-cols-12.divide-x
+      .col-span-5
+        %h2.p-2.font-semibold.text-lg Delivery Address
+        %h2.p-2.font-semibold= @order.shipping_address.name
 
-%p
-  %b User:
-  = @order.user
-%p
-  %b Total price:
-  = @order.total_price
-%p
-  %b Status:
-  = @order.status
+        %div.text-sm.text-gray-600.px-2
+          %p #{address.address_line_1}, #{address.address_line_2}
+          %p #{address.city}, #{address.state}, #{address.zip_code}, #{address.country}
 
-= link_to 'Edit', edit_order_path(@order)
-\|
-= link_to 'Back', orders_path
+        %h2.px-2.mt-4.font-semibold.text-sm Phone Number
+        %div.px-2.text-sm.text-gray-500.mb-4= @order.shipping_address.contact_number
+      .col-span-7
+        .mx-4
+          %h2.p-2.font-semibold.text-lg More Actions
+          .flex.justify-between 
+            %div.px-2 
+              = heroicon 'document', variant: :solid, options: { class: "w-6 h-6 mr-1 inline-block text-green-500" }
+              %span.text-base Download Invoice
+            = link_to 'Download', "#", class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+  .col-span-1
+
+.grid.grid-cols-12.gap-4.px-4.h-full
+  .col-span-1
+  .col-span-10.shadow.p-2.bg-white.rounded-lg
+    %h2.p-2.font-semibold.text-lg Timeline
+    .time_container
+      - status = @order.status_before_type_cast
+      - status = 3
+      .time_item{style: 'width: 30%;'}
+        .top_element{style: 'transition-delay: 0s;'}
+          %div{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700" : "text-gray-700"}"} Order Initiate
+        .center_circle{class: "#{status >= 1 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_line{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_bottom
+          %span= @order.created_at.strftime("%d th %l, %y")
+      .time_item{style: 'width: 30%'}
+        .top_element{style: 'transition-delay: 2s;'}
+          %div{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700" : "text-gray-700"}"} Confirmed
+        .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_bottom
+          %span 24th Dec
+      .time_item{style: 'width: 30%'}
+        .top_element{style: 'transition-delay: 3s;'}
+          %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
+        .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_line{class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"}
+        .time_bottom
+          %span 
+      .time_item
+        .top_element{style: 'transition-delay: 4s;'}
+          %div{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700" : "text-gray-700"}"} Delivered
+        .center_circle{style: 'bottom: -4px', class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"} 
+        .time_bottom
+          %span 
+
+
+
+    %h2.p-2.font-semibold.mt-4 Ordered Items
+    - @order.order_items.each do |item|
+      - product = item.product
+      - review = current_user.reviews.find_by(product_id: product.id, order_id: @order.id)
+      .bg-white.shadow-lg.rounded-lg.p-4.flex.justify-between.m-4.items-center
+        .flex.items-center
+          - if product.product_images.attached?
+            = image_tag product.product_images.first, class: "w-24 h-24 rounded-md"
+          -# %img{src: product[:img], alt: product[:name], class: "w-24 h-24 rounded-md"}
+          .ml-8.mr-12
+            %h2.text-xl.font-semibold= product.name
+            %p.text-gray-600.mt-1 Quantity: #{item.quantity}
+            %p.text-xl.font-semibold= item.price&.round(2)
+            
+        %div 
+          - if review.present?
+            .flex.item-center 
+              %span.text-base.w-24.mt-2 Rating:
+              = render 'shared/rating_star', {count: review.rating}
+              %span.text-base.mt-2 (#{review.rating})
+          - else
+            = link_to new_review_path(product_id: product.id, order_id: @order.id), data: { turbo_frame: 'review_form' } do
+              = heroicon 'star',variant: :outline , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
+              %span.text-green-500.text-base Rate and review product
+            
+    
+  .col-span-1
+:css
+  .time_container{
+    position: relative;
+    top: 10px;
+    padding: 0 50px 0 40px;
+    width: 100%;
+  }
+  .time_item{
+    display: inline-block;
+    min-height: 39px;
+    vertical-align: bottom;
+  }
+  .top_element{
+    color: gray;
+    transform: translateX(-7%) translateY(-10px);
+  }
+  .center_circle{
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    position: relative;
+    cursor: pointer;
+    left: -2px;
+  }
+  .time_line{
+    width: calc(100% - 10px);
+    margin-left: 11px;
+    margin-top: -8px;
+    height: 3px;
+  }
+  .time_bottom{
+    transform: translateX(-45%) translateY(10px);
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+    color: gray;
+    width: 100px;
+  }
+
+

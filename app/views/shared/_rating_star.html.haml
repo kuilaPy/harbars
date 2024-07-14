@@ -1,0 +1,4 @@
+%div.flex.items-center.mt-2
+  %span.text-yellow-400.text-sm
+    - ratings = count || 0
+    = (1..5).map { |i| ratings >= i ? "★" : "☆" }.join(' ')
