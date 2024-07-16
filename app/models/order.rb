@@ -11,6 +11,8 @@ class Order < ApplicationRecord
   belongs_to :billing_address, class_name: "Address", foreign_key: "billing_address_id"
 
   before_validation :set_order_reference
+  before_validation :generate_custom_uuid
+  # after_update :update_status
 
   PICKUP_LOCATION = {
     "name": "chandra-herbals",
@@ -23,18 +25,18 @@ class Order < ApplicationRecord
 
   aasm column: 'status', enum: true do
     state :initiate, initial: true
-    state :processed, after_enter: :initiate_order_with_partner
+    state :processed, after_enter: :initiate_order_with_partner 
     state :shipped, after_enter: :update_delivery_cost
     state :delivered
     state :returned
     state :cancelled
 
     event :processing do
-      transitions from: :initiate, to: :processed
+      transitions from: :initiate, to: :processed, after: Proc.new {self.touch(:processed_at)}
     end
 
     event :shipping do
-      transitions from: :processed, to: :shipped
+      transitions from: :processed, to: :shipped, after: Proc.new {self.touch(:shipped_at)}
     end
 
     event :deliver do
@@ -118,6 +120,26 @@ class Order < ApplicationRecord
 
   def generate_key
     SecureRandom.hex[0...16]
+  end
+
+ def set_custom_uuid
+  # debugger
+  self.id = "OD-CH" + SecureRandom.random_number(1_000_000_000).to_s.rjust(10, '0')
+  puts "#{self.id}"
+ end
+
+ def generate_custom_uuid
+  puts "Generating custom UUID"
+  loop do
+    self.id = "ODCH" + SecureRandom.random_number(1_000_000_000).to_s.rjust(10, '0')
+    break unless Order.exists?(id: self.id)
+  end
+end
+  
+  def update_status
+    if saved_change_to_length? && saved_change_to_height? && saved_change_to_width? && saved_change_to_weight?
+      self.processed!
+    end
   end
   
 end

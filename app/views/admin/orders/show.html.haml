@@ -1,8 +1,8 @@
 -# %h1 Order Details
 .grid.grid-cols-12.gap-4
   .col-span-8
-    .rounded-lg.border.bg-white.p-4.drop-shadow-lg
-      %h2.font-semibold.text-lg.border-b All Item
+    .rounded-lg.border.bg-white.p-4
+      %h2.font-semibold.text-lg.border-b All item
       %ul
         - @order.order_items.each do |order_item|
           %li.p-2.my-2.border-b
@@ -19,7 +19,7 @@
               .col-span-3
                 %p.text-gray-500.text-xs Price
                 %p ₹#{order_item.price}
-    .rounded-lg.border.bg-white.p-4.mt-4.drop-shadow-lg
+    .rounded-lg.border.bg-white.p-4.mt-4
       .flex.flex-row.my-2.bg-gray-50.rounded-lg.py-3 
         .font-medium.text-sm.pl-4{class: "basis-1/2"}
           Cart Totals
@@ -47,7 +47,7 @@
           = "₹#{1000.0}"
               
   .col-span-4
-    .rounded-lg.border.bg-white.p-4.drop-shadow-lg
+    .rounded-lg.border.bg-white.p-4
       %h2.font-medium.text-sm Summary
       .flex.flex-row.my-2 
         .text-gray-500.font-light.text-sm{class: "basis-1/4"}
@@ -64,15 +64,15 @@
           Total
         %div.font-medium.text-sm.text-red-500{class: "basis-3/4"} 
           ="₹#{@order.total_price}"
-    .rounded-lg.border.bg-white.p-4.drop-shadow-lg.mt-4
+    .rounded-lg.border.bg-white.p-4.mt-4
       %h2.font-medium.text-sm Shipping Address
       .text-gray-500.font-light.text-sm.my-2 
         %p #{@order.shipping_address.address_line_1}, #{@order.shipping_address.address_line_2}, #{@order.shipping_address.city}, #{@order.shipping_address.state} ,#{@order.shipping_address.zip_code}, #{@order.shipping_address.country||"India"}
-    .rounded-lg.border.bg-white.p-4.drop-shadow-lg.mt-4
+    .rounded-lg.border.bg-white.p-4.mt-4
       %h2.font-medium.text-sm Payment Method
       .text-gray-500.font-light.text-sm.my-2 
         %p Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability.
-    .rounded-lg.border.bg-white.p-4.drop-shadow-lg.mt-4
+    .rounded-lg.border.bg-white.p-4.mt-4
       %h2.font-medium.text-sm Expected Date Of Delivery
       .font-medium.text-sm.text-blue-500.my-2
         = @order.expected_delivery_date&.strftime("%d %^b %Y") || Date.today.strftime("%d %^b %Y")

@@ -54,7 +54,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def add_breadcrumbs
-    breadcrumbs.add "Admin"
+    # breadcrumbs.add "Admin"
     breadcrumbs.add "Products", admin_products_path
   end
 

@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root to: 'dash_board#index'
-    resources :orders
+    resources :orders do
+      member do
+        get :confirm_order
+        patch :update_confirmed_order
+      end
+      collection do
+      end
+    end
     resources :products
   end
   # normal_user_routes
