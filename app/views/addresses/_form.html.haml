@@ -7,38 +7,38 @@
           %li= message
 
   .grid.grid-col-1.md:grid-cols-2
-    %div.p-4.text-blue-500.text-2xl.bold New Address
+    %div.p-4.text-green-500.text-lg.capitilize Add a New address 
   .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
     %div 
       = f.label :name, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :name, autofocus: true, placeholder: "Name",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :name, autofocus: true, placeholder: "Name",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
     %div 
       = f.label :contact_number, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :contact_number, placeholder: "Phone number", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :contact_number, placeholder: "Phone number", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
   .grid.grid-col-1.md:grid-cols-1.gap-4.p-4
     %div 
       = f.label :address_line_1, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :address_line_1, placeholder: "Address line 1",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :address_line_1, placeholder: "Address line 1",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
     %div 
       = f.label :address_line_2, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :address_line_2, placeholder: "Address line 1 2", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :address_line_2, placeholder: "Address line 1 2", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
   .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
     %div 
       = f.label :city, "District", class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :city, autocomplete: "city", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :city, autocomplete: "city", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
     %div 
       = f.label :state, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :state, autocomplete: "state",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.text_field :state, autocomplete: "state",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
   .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
     %div 
       = f.label :zip_code, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.number_field :zip_code, autocomplete: "zip_code", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.number_field :zip_code, autocomplete: "zip_code", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
     %div 
       %label.block.mb-2.text-sm.font-medium.text-gray-900{:for => "countries"} Select an option
-      = f.select :address_type, options_for_select(Address.address_types.collect{|k, v| [k.capitalize, k]}), {include_blank: "-------  Select address type  -------", required: true}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      = f.select :address_type, options_for_select(Address.address_types.collect{|k, v| [k.capitalize, k]}), {include_blank: "-------  Select address type  -------", required: true}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
       
   .grid.grid-col-1.p-4
     .flex.flex-row-reverse
-      = link_to 'Back', cart_path(id: 'order_address'), class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-      = f.submit "Save", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+      = link_to 'Cancel', addresses_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
+      = f.submit "Save", class: "text-white bg-green-500 hover:bg-green-700  font-medium rounded-lg text-sm px-5 text-center py-2"
 

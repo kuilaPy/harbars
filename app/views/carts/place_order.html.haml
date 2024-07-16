@@ -4,3 +4,48 @@
     = render 'indicator', {step: 3}
     .flex-grow.bg-white.ml-4.rounded
       %div.p-4.text-blue-500.text-2xl.bold Payment & Book order
+      %div 
+        = form_with(model: Order.new, url: wizard_path, method: "PATCH") do |f|
+          .grid.grid-cols-1.gap-4.mx-4
+            .text-gray-500.text-lg.font-semibold Order details
+          -# .grid.grid-cols-2.gap-4
+          -#   .flex.p-4.items-center
+          -#     .flex.items-center.h-5.mx-4
+          -#       = f.radio_button :shipping_mode, value: 1, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+          -#     .ms-2.text-sm
+          -#       %label.font-medium.text-gray-500.text-base.my-2
+          -#         Cash on delivery
+          -#   .flex.p-4.items-center
+          -#     .flex.items-center.h-5.mx-4
+          -#       = f.radio_button :shipping_mode, value: 2, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+          -#     .ms-2.text-sm
+          -#       %label.font-medium.text-gray-500.text-base.my-2
+          -#         Other Payment Options
+          .grid.grid-cols-1
+            %div.bg-gray-100.mx-4.my-4.rounded
+              - @cart.cart_items.each do |item|
+                .grid.grid-cols-1.gap-4.mx-4.my-4
+                  .flex.justify-between
+                    %div 
+                      %h3.font-semibold.text-gray-600.text-sm= item.product.name
+                      %p.text-base.font-normal.text-gray-500.text-xs (price: #{item.product.price.round(2)} * #{item.quantity})
+                    %div
+                      %h3.text-gray-900= number_to_currency(item.price.round(2), unit: "Rs. ")
+              %hr.h-px.my-4.bg-gray-900.border-1
+              %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4
+                %span Sub total
+                %span= number_to_currency(@cart.total_price, unit: "Rs. ")
+
+              %div.flex.justify-between.text-sm.text-black-500.px-4
+                %span GST(18%)
+                %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+              %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-900
+              %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4.mb-4
+                %span Total
+                %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
+          .grid.grid-col-1.p-4
+            .flex.flex-row-reverse
+              = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
+              = f.submit "Proceed", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+
+

@@ -1,0 +1,25 @@
+= turbo_frame_tag "address-#{address.id}" do
+  %div.my-2.p-2{class: index == 0 ? "" : index == "appended" ?  "border-green-bottom" : "border-green-top"}
+    %div
+      %span.bg-green-50.text-gray-500.text-xs.font-medium.me-2.rounded-lg.capitalize{class: "px-2.5 py-0.5"}
+        = address.address_type
+      .float-right
+        %div
+          %button.flex{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-address_#{address.id}", type: "button"}
+            = heroicon 'ellipsis-vertical',variant: :outline , options: {class: "w-6 h-6 mr-1"}
+        .z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow{id: "dropdown-address_#{address.id}", role: "menu"}
+          %ul.py-1{role: "none"}
+            %li
+              .block.px-4.py-2.text-sm.text-gray-700.hover:bg-green-50.hover:text-green-500
+                = link_to "Edit", edit_address_path(address) 
+            %li
+              .block.px-4.py-2.text-sm.text-gray-700.hover:bg-green-50.hover:text-green-500
+                = button_to "Delete", address_path(address), method: :delete 
+    %div.my-2
+      %p.text-sm.font-semibold.capitalize
+        =address.name
+        %span= address.contact_number
+    %div.text-sm.text-gray-600
+      %p #{address.address_line_1}, #{address.address_line_2}
+      %p #{address.city}, #{address.state} ,#{address.zip_code}, #{address.country}
+  

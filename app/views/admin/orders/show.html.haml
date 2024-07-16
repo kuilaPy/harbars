@@ -1,0 +1,83 @@
+-# %h1 Order Details
+.grid.grid-cols-12.gap-4
+  .col-span-8
+    .rounded-lg.border.bg-white.p-4
+      %h2.font-semibold.text-lg.border-b All item
+      %ul
+        - @order.order_items.each do |order_item|
+          %li.p-2.my-2.border-b
+            .grid.grid-cols-12.gap-4
+              .col-span-2
+                = image_tag(order_item.product.product_images.last, size: "40x40", alt: "Product Image...")
+              .col-span-4 
+                %p.text-gray-500.text-xs Product name
+                = link_to order_item.product.name , admin_product_path(order_item), class: "hover:text-green-500"
+                -# %h2= order_item.product.name 
+              .col-span-3 
+                %p.text-gray-500.text-xs Quantity 
+                %p= order_item.quantity
+              .col-span-3
+                %p.text-gray-500.text-xs Price
+                %p ₹#{order_item.price}
+    .rounded-lg.border.bg-white.p-4.mt-4
+      .flex.flex-row.my-2.bg-gray-50.rounded-lg.py-3 
+        .font-medium.text-sm.pl-4{class: "basis-1/2"}
+          Cart Totals
+        %div.font-medium.text-sm.text-center{class: "basis-1/2"} 
+          Price
+      .flex.flex-row.my-2.border-b.py-3
+        .text-gray-500.font-light.text-sm.pl-4{class: "basis-1/2"}
+          Subtotal:
+        %div.font-medium.text-sm.text-center{class: "basis-1/2"} 
+          = "₹#{@order.order_items.pluck(:price).sum}"
+      .flex.flex-row.my-2.border-b.py-3 
+        .text-gray-500.font-light.text-sm.pl-4{class: "basis-1/2"}
+          Shipping:
+        %div.font-medium.text-sm.text-center{class: "basis-1/2"} 
+          = "₹#{0}"
+      .flex.flex-row.my-2.border-b.py-3 
+        .text-gray-500.font-light.text-sm.pl-4{class: "basis-1/2"}
+          Tax (GST):
+        %div.font-medium.text-sm.text-center{class: "basis-1/2"} 
+          = "₹#{0}"
+      .flex.flex-row.my-2.rounded-lg
+        .font-medium.text-sm.pl-4{class: "basis-1/2"}
+          Total Price
+        %div.font-medium.text-sm.text-center.text-red-500{class: "basis-1/2"} 
+          = "₹#{1000.0}"
+              
+  .col-span-4
+    .rounded-lg.border.bg-white.p-4
+      %h2.font-medium.text-sm Summary
+      .flex.flex-row.my-2 
+        .text-gray-500.font-light.text-sm{class: "basis-1/4"}
+          Order ID 
+        %div.font-medium.text-sm{class: "basis-3/4"} 
+          = "##{@order.id}"
+      .flex.flex-row.my-2 
+        .text-gray-500.font-light.text-sm{class: "basis-1/4"}
+          Date
+        %div.font-medium.text-sm{class: "basis-3/4"} 
+          = @order.created_at.strftime("%d %^b %Y")
+      .flex.flex-row.my-2 
+        .text-gray-500.font-light.text-sm{class: "basis-1/4"}
+          Total
+        %div.font-medium.text-sm.text-red-500{class: "basis-3/4"} 
+          ="₹#{@order.total_price}"
+    .rounded-lg.border.bg-white.p-4.mt-4
+      %h2.font-medium.text-sm Shipping Address
+      .text-gray-500.font-light.text-sm.my-2 
+        %p #{@order.shipping_address.address_line_1}, #{@order.shipping_address.address_line_2}, #{@order.shipping_address.city}, #{@order.shipping_address.state} ,#{@order.shipping_address.zip_code}, #{@order.shipping_address.country||"India"}
+    .rounded-lg.border.bg-white.p-4.mt-4
+      %h2.font-medium.text-sm Payment Method
+      .text-gray-500.font-light.text-sm.my-2 
+        %p Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability.
+    .rounded-lg.border.bg-white.p-4.mt-4
+      %h2.font-medium.text-sm Expected Date Of Delivery
+      .font-medium.text-sm.text-blue-500.my-2
+        = @order.expected_delivery_date&.strftime("%d %^b %Y") || Date.today.strftime("%d %^b %Y")
+      %div.flex.flex-row.my-2.pl-1
+        = link_to "#" , class: "border border-green-500 bg-white hover:bg-green-500 hover:text-white text-green-500 font-medium py-3 px-36 rounded-2xl " do
+          = heroicon 'truck',variant: :solid , options: {class: "w-5 h-5 inline-block "} 
+          %span.py0.px-0.text-sm Track order
+       

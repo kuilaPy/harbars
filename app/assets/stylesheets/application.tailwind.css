@@ -37,12 +37,18 @@
 }
 
 .breadcrumbs a:hover {
-    text-decoration: var(--secondary_color);
+  text-decoration: var(--secondary_color);
 }
 
 .public-nav-active {
   background: white;
-  color: green;
+  /* color: green; */
+  color: rgb(23, 206, 23);
+
+}
+.admin-nav-active {
+  background: #6EE7B7;
+  /* color: rgb(23, 206, 23); */
 }
 
 .cart-count{
@@ -74,4 +80,18 @@
   position: absolute;
   right: -13px;
   top: 0;
+}
+.border-green{
+  /* border: 0.5px solid #d1d5db; */
+  border: 0.5px solid #2eec4b;
+
+}
+.border-gray{
+  border: 0.5px solid #d1d5db;
+}
+.border-green-top{
+  border-top: 0.5px solid #2eec4b;
+}
+.border-green-bottom{
+  border-bottom: 0.5px solid #2eec4b;
 }

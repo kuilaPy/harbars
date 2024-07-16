@@ -1,19 +1,27 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  devise_for :admin_users, path: 'admin', controllers: {
-    sessions: 'admin_users/sessions',
-    registrations: 'admin_users/registrations'
+  devise_for :admin_users, controllers: {
+    sessions: 'admin/sessions',
+    registrations: 'admin/registrations'
   }
   
   namespace :admin do
     root to: 'dash_board#index'
-    resources :orders
+    resources :orders do
+      member do
+        get :confirm_order
+        patch :update_confirmed_order
+      end
+      collection do
+      end
+    end
     resources :products
   end
   # normal_user_routes
 
-  devise_for :users
+  devise_for :users 
+  resources :users, only: [:show, :edit, :update]
   root "home#index"
   resources :home do
     collection do
@@ -27,8 +35,20 @@ Rails.application.routes.draw do
   resources :replies
   resources :questions
   resources :reviews
-  resources :addresses
-  resources :payments
+  resources :addresses do
+    collection do
+      get :new_order_address
+      post :create_order_address
+    end
+  end
+  resources :payments do
+    member do
+      post :payment_success
+    end
+    collection do
+      post :webhook
+    end
+  end
   resources :cart_items
   resources :carts do 
     member do

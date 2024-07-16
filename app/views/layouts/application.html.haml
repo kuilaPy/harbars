@@ -5,6 +5,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{name: "theme-color", content: "#FFF"}
+    %meta{content: "false", name: "turbo-prefetch"}/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
@@ -14,11 +15,13 @@
 
   %body(data-controller="cart root")
     = render 'layouts/top'
-    %main.bg-gray-100
+    %main.bg-gray-100.min-h-screen.max-h-fit
       .mt-14
+        -# .breadcrumbs
+        -#   = breadcrumbs.render(format: :inline, separator: ">")
         = turbo_frame_tag "log_in_form"
         = yield 
         #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
           = render 'layouts/flash_message'
-        = render 'layouts/footer'
+    = render 'layouts/footer'
       

@@ -13,14 +13,14 @@
       %h3.font-medium.leading-tight Address Info
       %p.text-sm Select delivery address
   %li.mb-10.ms-6
-    %span.absolute.flex.items-center.justify-center.w-8.h-8.rounded-full.-start-4.ring-1.translate-y-2.5{class: "#{get_container_color(step >= 3)}"}
-      = heroicon 'briefcase', options: { class: "w-5 h-5 #{text_color(step >= 3)}" }
+    %span.absolute.flex.items-center.justify-center.w-8.h-8.rounded-full.-start-4.ring-1.translate-y-2.5{class: " #{get_container_color(step >= 3)}"}
+      = heroicon 'banknotes', options: { class: "w-5 h-5 #{text_color(step >= 3)}" }
     %div.px-4.py-1.rounded{class: "#{background_color(step >= 3)}"}
-      %h3.font-medium.leading-tight Review
-      %p.text-sm Overview of your order
-  %li.ms-6
-    %span.absolute.flex.items-center.justify-center.w-8.h-8.rounded-full.-start-4.ring-1.translate-y-2.5{class: " #{get_container_color(step >= 4)}"}
-      = heroicon 'banknotes', options: { class: "w-5 h-5 #{text_color(step >= 4)}" }
-    %div.px-4.py-1.rounded{class: "#{background_color(step >= 4)}"}
       %h3.font-medium.leading-tight Payment
       %p.text-sm Make payment
+  %li.ms-6
+    %span.absolute.flex.items-center.justify-center.w-8.h-8.rounded-full.-start-4.ring-1.translate-y-2.5{class: "#{get_container_color(step >= 4)}"}
+      = heroicon 'briefcase', options: { class: "w-5 h-5 #{text_color(step >= 4)}" }
+    %div.px-4.py-1.rounded{class: "#{background_color(step >= 4)}"}
+      %h3.font-medium.leading-tight Review
+      %p.text-sm Overview of your order
