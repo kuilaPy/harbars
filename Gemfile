@@ -78,5 +78,3 @@ gem 'active_link_to'
 gem "heroicon"
 gem 'uuidtools'
 gem 'wicked'
-gem "aws-sdk-s3"
-
