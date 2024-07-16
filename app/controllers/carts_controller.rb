@@ -7,8 +7,8 @@ class CartsController < ApplicationController
 
   # GET /carts or /carts.json
   def index
-    @cart = Cart.find_by(external_user_id: params[:external_id])
-    @cart_items = @cart.cart_items
+    @cart = Cart.active.find_by(external_user_id: params[:external_id])
+    @cart_items = @cart&.cart_items
   end
 
   # GET /carts/1 or /carts/1.json
@@ -41,7 +41,7 @@ class CartsController < ApplicationController
   # POST /carts or /carts.json
   def create
     begin
-      @cart = Cart.find_by(external_user_id: cart_product_params[:external_user_id])
+      @cart = Cart.active.find_by(external_user_id: cart_product_params[:external_user_id])
       @cart = Cart.new(cart_params) unless @cart.present?
       if @cart.save
         @cart_prod = @cart.cart_items.find_by(product_id: cart_product_params[:product_id])
