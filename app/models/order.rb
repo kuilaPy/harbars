@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   belongs_to :billing_address, class_name: "Address", foreign_key: "billing_address_id"
 
   before_validation :set_order_reference
-  before_create :generate_custom_id
+  # before_create :generate_custom_id
   after_update :update_status
 
   PICKUP_LOCATION = {
