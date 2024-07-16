@@ -1,60 +1,70 @@
 %div.mx-auto.px-4.mt-20.bg-gray-100.w-full.h-screen
   %div.mt-8.p-4
     %h2.text-2xl.font-bold.mb-6 My cart
-    %div.grid.grid-cols-1.md:grid-cols-3.gap-4
-      %div.col-span-2
-        %table.w-full.shadow-md.rounded-lg.bg-white
-          %thead
-            %tr
-              %th.text-left.px-4.py-4 Product
-              %th.text-left.px-4.py-4 Quantity
-              %th.text-left.px-4.py-4 Total
-          %tbody
-            - @cart_items.each do |item|
-              %tr.border-t
-                %td.px-4.py-4
-                  %div.flex.items-center
-                    = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-cover mr-4"
-                    %div
-                      %div.p-4
-                        %h2.text-lg.font-bold.text-gray-800
-                          = item.product.name
-                        %h6= item.product.description
-                        %div.mt-2
-                          %span.text-l.font-bold.text-red-500
-                            = number_to_currency(item.product.price, unit: "Rs. ")
-                          %span.text-sm.text-gray-600.line-through.ml-2
-                            = number_to_currency(item.product.original_price, unit: "Rs. ")
-                %td.px-4.py-4
-                  %div.flex.items-center
-                    %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
-                    %span.mx-2= item.quantity
-                    %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
-                  
-                %td.px-4.py-4
-                  %span.text-xl.font-bold.text-gray-900
-                    = number_to_currency(item.price, unit: "Rs. ")
-                %td.w-2.cursor-pointer
-                  -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
-                  = heroicon 'trash', options: { class: "w-5 h-5 text-red-500",data: {action:"click->cart#remove", "item-id":"#{item.id}"} }
+    - if @cart_items.present?
+      %div.grid.grid-cols-1.md:grid-cols-3.gap-4
+        %div.col-span-2
+          %table.w-full.shadow-md.rounded-lg.bg-white
+            %thead
+              %tr
+                %th.text-left.px-4.py-4 Product
+                %th.text-left.px-4.py-4 Quantity
+                %th.text-left.px-4.py-4 Total
+            %tbody
+              - @cart_items.each do |item|
+                %tr.border-t
+                  %td.px-4.py-4
+                    %div.flex.items-center
+                      = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-cover mr-4"
+                      %div
+                        %div.p-4
+                          %h2.text-lg.font-bold.text-gray-800
+                            = item.product.name
+                          %h6= item.product.description
+                          %div.mt-2
+                            %span.text-l.font-bold.text-red-500
+                              = number_to_currency(item.product.price, unit: "Rs. ")
+                            %span.text-sm.text-gray-600.line-through.ml-2
+                              = number_to_currency(item.product.original_price, unit: "Rs. ")
+                  %td.px-4.py-4
+                    %div.flex.items-center
+                      %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
+                      %span.mx-2= item.quantity
+                      %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
+                    
+                  %td.px-4.py-4
+                    %span.text-xl.font-bold.text-gray-900
+                      = number_to_currency(item.price, unit: "Rs. ")
+                  %td.w-2.cursor-pointer
+                    -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
+                    = heroicon 'trash', options: { class: "w-5 h-5 text-red-500",data: {action:"click->cart#remove", "item-id":"#{item.id}"} }
 
-      %div
-        %div.bg-white.shadow-md.rounded-lg.p-4
-          %h2.text-xl.font-bold.mb-4 Total
-          %div.flex.justify-between.text-lg.font-semibold.text-gray-900
-            %span Sub total
-            %span= number_to_currency(@cart.total_price, unit: "Rs. ")
-          %div.flex.justify-between.text-lg.font-semibold.text-red-500
-            %span You saved
-            %span= number_to_currency(@cart.total_saved, unit: "Rs. ")
-          %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
-          %div.flex.justify-between.text-sm.text-black-500
-            %span GST(18%)
-            %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
-          %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
-          %div.flex.justify-between.text-lg.font-semibold.text-gray-900
-            %span Total
-            %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
+        %div
+          %div.bg-white.shadow-md.rounded-lg.p-4
+            %h2.text-xl.font-bold.mb-4 Total
+            %div.flex.justify-between.text-lg.font-semibold.text-gray-900
+              %span Sub total
+              %span= number_to_currency(@cart.total_price, unit: "Rs. ")
+            %div.flex.justify-between.text-lg.font-semibold.text-red-500
+              %span You saved
+              %span= number_to_currency(@cart.total_saved, unit: "Rs. ")
+            %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
+            %div.flex.justify-between.text-sm.text-black-500
+              %span GST(18%)
+              %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+            %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
+            %div.flex.justify-between.text-lg.font-semibold.text-gray-900
+              %span Total
+              %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
 
-          %div.mt-4
-            = link_to "Checkout", cart_path(id: 'user_details'), class: 'w-full bg-green-500 block text-white px-4 py-2 rounded-lg text-center hover:bg-green-600'
+            %div.mt-4
+              = link_to "Checkout", cart_path(id: 'user_details'), class: 'w-full bg-green-500 block text-white px-4 py-2 rounded-lg text-center hover:bg-green-600'
+    - else 
+      %div.grid.grid-cols-3.md:grid-cols-3.gap-4
+        .col-span-1
+        .col-span-1
+          = image_tag 'empty_cart.svg'
+          %div.flex.justify-center.text-lg.text-red-500.mt-4
+            Your cart is empty. Please add some products into your cart.
+          = link_to "Go to Products", products_path, class: 'bg-green-500 block text-white px-4 py-2 mt-4 rounded-lg text-center hover:bg-green-600'
+        .col-span-1
