@@ -1,6 +1,6 @@
 class AddShippingMode < ActiveRecord::Migration[7.1]
   def up
-    remove_column :payments, :order_id
+    # remove_column :payments, :order_id
     add_column :payments, :razorpay_order_id, :string
     add_column :payments, :payment_reference, :string
     add_column :payments, :user_id, :integer
