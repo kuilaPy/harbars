@@ -1,11 +1,11 @@
 .col-span-1   
-  %div.flex.items-center.shadow.p-2.bg-white.rounded-lg
+  %div.flex.items-center.border.p-2.bg-white.rounded-lg
     = heroicon 'user-circle', options: {class: "w-14 h-14 mr-1 text-green-700"}
     %div.leading-4
       %p.text-xs Hello,
       .text-bold
         = current_user.full_name
-  .shadow.p-2.bg-white.rounded-lg.mt-4
+  .border.p-2.bg-white.rounded-lg.mt-4
     %div.flex.items-center.p-2
       = heroicon 'user', options: {class: "w-8 h-6 mr-1 text-green-700"}
       %span.text-gray-500.font-bold	  Account Setting

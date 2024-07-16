@@ -5,6 +5,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{name: "theme-color", content: "#FFF"}
+    %meta{content: "false", name: "turbo-prefetch"}/
+
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
@@ -20,8 +22,8 @@
         .mt-14
         .breadcrumbs
           = breadcrumbs.render(format: :inline, separator: ">")
+        = turbo_frame_tag "admin_modal"
         = yield
-        = turbo_frame_tag "modal"
         = render 'layouts/flash_message'
 
 

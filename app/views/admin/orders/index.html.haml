@@ -18,7 +18,7 @@
      
   - @orders.each do |order|
     %div
-      .grid.grid-cols-12.gap-2.border-t.py-2.px-4.hover:cursor-pointer.hover:bg-gray-100.hover:text-gray-500{"aria-controls" => "accordion-collapse-body-#{order.id}", "aria-expanded" => "false", "data-accordion-target" => "#accordion-collapse-body-#{order.id}" , id:"accordion-collapse-heading-#{order.id}"}
+      .grid.grid-cols-12.gap-2.border-t.py-2.px-4.hover:cursor-pointer.hover:bg-gray-200.hover:text-gray-500{"aria-controls" => "accordion-collapse-body-#{order.id}", "aria-expanded" => "false", "data-accordion-target" => "#accordion-collapse-body-#{order.id}" , id:"accordion-collapse-heading-#{order.id}"}
         .col-span-2.py-2.px-3
           = order.id
         .col-span-2.py-2.px-3
@@ -52,26 +52,16 @@
                   price
                 %th
                   .float-right.pr-4
-                    -# = link_to admin_order_path(order) do
-                    -#   = heroicon 'ellipsis-vertical',variant: :solid , options: {class: "w-8 h-8 text-green-500 hover:text-green-600" } 
                     %div
-                      %button.flex.text-sm.rounded-lg.focus:ring-4.focus:ring-green-300.bg-white{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-#{order.id}", type: "button"}
-                        -# %span.w-auto.h-8.p-2
-                        -#   = "Hi,Admin"
+                      %button.flex.text-sm.rounded-lg.focus:ring-4.focus:ring-green-300.bg-white.hover:bg-green-100{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-#{order.id}", type: "button"}
                         = heroicon 'ellipsis-vertical',variant: :solid , options: {class: "w-8 h-8 text-green-500 hover:text-green-600" } 
-                        -# %img.w-8.h-8.rounded-lg{alt: "user photo", src: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}/
                     .z-50.hidden.my-4.text-sm.list-none.divide-y.divide-gray-100.rounded-lg.drop-shadow.bg-white{id: "dropdown-#{order.id}"}
-                      -# .px-4.py-3{role: "none"}
-                      -#   %p.text-sm.text-gray-900.dark:text-white{role: "none"}
-                      -#     -# = current_admin_user.full_name
-                      -#   %p.text-sm.font-medium.text-gray-900.truncate.dark:text-gray-300{role: "none"}
-                      -#     = current_admin_user.email
                       %ul.py-1{role: "none"}
                         %li.hover:bg-green-50.text-green-500.font-normal
-                          -# %a.block.px-4.py-2.text-sm.text-gray-500.hover:bg-gray-100{href: "#", role: "menuitem"} Profile
                           = link_to "Details",admin_order_path(order), class: "block px-4 py-2 text-sm "
-                        %li.hover:bg-green-50.text-green-500.font-normal
-                          %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Comfirm order
+                        - if order.status == "initiate"
+                          %li.hover:bg-green-50.text-green-500.font-normal
+                            = link_to "Comfirm order", confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm"
                         %li.hover:bg-green-50.text-green-500.font-normal
                           %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Whish List
             %tbody
