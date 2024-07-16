@@ -11,8 +11,8 @@ class Order < ApplicationRecord
   belongs_to :billing_address, class_name: "Address", foreign_key: "billing_address_id"
 
   before_validation :set_order_reference
-  before_validation :generate_custom_uuid
-  # after_update :update_status
+  before_create :generate_custom_id
+  after_update :update_status
 
   PICKUP_LOCATION = {
     "name": "chandra-herbals",
@@ -122,19 +122,19 @@ class Order < ApplicationRecord
     SecureRandom.hex[0...16]
   end
 
- def set_custom_uuid
-  # debugger
-  self.id = "OD-CH" + SecureRandom.random_number(1_000_000_000).to_s.rjust(10, '0')
-  puts "#{self.id}"
- end
-
- def generate_custom_uuid
-  puts "Generating custom UUID"
-  loop do
-    self.id = "ODCH" + SecureRandom.random_number(1_000_000_000).to_s.rjust(10, '0')
-    break unless Order.exists?(id: self.id)
+  def generate_custom_id
+    self.id = loop do
+      random_id = generate_unique_id
+      break random_id unless Order.exists?(id: random_id)
+    end
   end
-end
+
+  def generate_unique_id
+    prefix = "OD_CH"
+    timestamp = Time.now.strftime("%y%m%d%H%M%S")
+    unique_number = rand(1000..9999).to_s
+    "#{prefix}#{timestamp}#{unique_number}"
+  end
   
   def update_status
     if saved_change_to_length? && saved_change_to_height? && saved_change_to_width? && saved_change_to_weight?
