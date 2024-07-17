@@ -10,7 +10,8 @@ export default class extends Controller {
   ensureExternalUserId() {
     let externalUserId
     if(this.hasUserTarget){
-      externalUserId = this.userTarget.dataset.ExternalId
+      console.log(this.userTarget.dataset)
+      externalUserId = this.userTarget.dataset.externalId
       localStorage.setItem("externalUserId", externalUserId)
     }else{
       externalUserId = localStorage.getItem("externalUserId")
