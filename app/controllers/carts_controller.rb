@@ -13,7 +13,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
-    @cart = Cart.find_by(external_user_id: current_user.external_user_id)
+    @cart = Cart.active.find_by(external_user_id: current_user.external_user_id)
     @cart_items = @cart.cart_items
     case step
     when :user_details
@@ -73,7 +73,7 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1 or /carts/1.json
   def update
-    @cart = Cart.find_by(external_user_id: current_user.external_user_id)
+    @cart = Cart.active.find_by(external_user_id: current_user.external_user_id)
     case step
     when :user_details
       current_user.update(user_params)
