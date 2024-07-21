@@ -11,7 +11,7 @@ export default class extends Controller {
 
   ensureExternalUserId() {
     let externalUserId = localStorage.getItem("externalUserId")
-    if (!externalUserId) {
+    if (externalUserId == 'undefined' || !externalUserId) {
       externalUserId = uuid_v4()
       localStorage.setItem("externalUserId", externalUserId)
     }
