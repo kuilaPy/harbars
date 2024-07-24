@@ -3,7 +3,7 @@
   .flex.pt-4
     = render 'indicator', {step: 3}
     .flex-grow.bg-white.ml-4.rounded
-      %div.p-4.text-blue-500.text-2xl.bold Payment & Book order
+      %div.p-4.text-green-500.text-2xl.bold Payment & Book order
       %div 
         = form_with(model: @payment, url: wizard_path, method: "PATCH", data: {turbo_stream: false, turbo: false}) do |f|
           .grid.grid-cols-1

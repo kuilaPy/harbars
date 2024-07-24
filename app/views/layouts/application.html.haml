@@ -19,7 +19,7 @@
       .mt-14
         -# .breadcrumbs
         -#   = breadcrumbs.render(format: :inline, separator: ">")
-        = turbo_frame_tag "log_in_form"
+        = turbo_frame_tag "global_modal_tag"
         = yield 
         #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
           = render 'layouts/flash_message'
