@@ -16,21 +16,21 @@
                 .grid.grid-cols-2.gap-2
                   %div
                     = f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900"
-                    = f.text_field :first_name,autofocus: true, autocomplete: "first_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    = f.text_field :first_name,autofocus: true, autocomplete: "first_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                   %div 
                     = f.label :last_name,class: "block mb-2 text-sm font-medium text-gray-900"
-                    = f.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    = f.text_field :last_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                 %div 
                   = f.label :phone_number,class: "block mb-2 text-sm font-medium text-gray-900"
-                  = f.text_field :phone_number,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "9932235011", required: true
+                  = f.text_field :phone_number,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", placeholder: "9932235011", required: true
                 %div
                   = f.label :email, class: "block mb-2 text-sm font-medium text-gray-900"
-                  = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                 %div
                   = f.label :password, class: "block mb-2 text-sm font-medium text-gray-900"
-                  = f.password_field :password, autocomplete: "current-password", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  = f.password_field :password, autocomplete: "current-password", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                 %div 
                   = f.label :password_confirmation
-                  = f.password_field :password_confirmation, autocomplete: "new-password",class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  = f.password_field :password_confirmation, autocomplete: "new-password",class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                 %button.w-full.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.my-4.text-center{class: "py-2.5", type: "submit"} Save
               

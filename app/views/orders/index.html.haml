@@ -31,7 +31,7 @@
       %ul.text-sm.p-2
         ORDER STATUS
         %li.p-2
-          = check_box_tag 'On the Way', 'yes', false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+          = check_box_tag 'On the Way', 'yes', false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 "
           %label on the way
 
       %hr/
@@ -46,7 +46,7 @@
         .absolute.inset-y-0.start-0.flex.items-center.ps-3.pointer-events-none
           %svg.w-4.h-4.text-gray-500.dark:text-gray-400{"aria-hidden" => "true", fill: "none", viewbox: "0 0 20 20", xmlns: "http://www.w3.org/2000/svg"}
             %path{d: "m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
-        %input#default-search.block.w-full.p-4.ps-10.text-sm.text-gray-900.border.border-gray-300.rounded-lg.bg-gray-50.focus:ring-blue-500.focus:border-blue-500{placeholder: "Search order...", required: "", type: "search"}/
+        %input#default-search.block.w-full.p-4.ps-10.text-sm.text-gray-900.border.border-gray-300.rounded-lg.bg-gray-50.focus:ring-green-500.focus:border-green-500{placeholder: "Search order...", required: "", type: "search"}/
         %button.text-white.absolute.bg-green-500.hover:bg-green-700.focus:ring-4.focus:outline-none.focus:ring-green-300.font-medium.rounded-lg.text-sm.px-4.py-2{class: "end-2.5 bottom-2.5", type: "submit"} Search
     - @orders.each do |order|
       %div.mt-2  

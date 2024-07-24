@@ -5,7 +5,7 @@
     .flex-grow.bg-white.ml-4.rounded
       = turbo_frame_tag "order_address" do
         .flex.justify-between
-          %div.p-4.text-blue-500.text-2xl.bold Address Information
+          %div.p-4.text-green-500.text-2xl.bold Address Information
           %div.self-center
             = link_to 'Add Address', new_order_address_addresses_path, class: "text-md px-5 text-center py-2 text-white bg-green-500 hover:bg-green-600 mx-4 rounded-lg"
 
@@ -14,7 +14,7 @@
             - current_user.addresses.each do |address|
               .flex.p-4.items-center
                 .flex.items-center.h-5.mx-4
-                  = f.radio_button :shipping_address_id, address.id, checked: address.is_default ? true : false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                  = f.radio_button :shipping_address_id, address.id, checked: address.is_default ? true : false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-green-500 focus:ring-2"
                 .ms-2.text-sm
                   %label.font-medium.text-gray-500.text-base.my-2
                     #{address.name}
