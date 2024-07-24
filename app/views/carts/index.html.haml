@@ -20,7 +20,7 @@
                         %div.p-4
                           %h2.text-lg.font-bold.text-gray-800
                             = item.product.name
-                          %h6= item.product.description
+                          %h6= truncate(item.product.description, {length: 20})
                           %div.mt-2
                             %span.text-l.font-bold.text-red-500
                               = number_to_currency(item.product.price, unit: "Rs. ")
@@ -35,9 +35,10 @@
                   %td.px-4.py-4
                     %span.text-xl.font-bold.text-gray-900
                       = number_to_currency(item.price, unit: "Rs. ")
-                  %td.w-2.cursor-pointer
+                  %td.w-2.cursor-pointer.p-4
                     -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
-                    = heroicon 'trash', options: { class: "w-5 h-5 text-red-500",data: {action:"click->cart#remove", "item-id":"#{item.id}"} }
+                    %button.flex.rounded-lg.hover:ring-2.hover:ring-red-300.bg-white.w-auto.p-2{data: {action: "click->cart#remove", "item-id":"#{item.id}", "product-id": "#{item.product.id}"}}
+                      = heroicon 'trash', options: { class: "w-5 h-5 text-red-500"}
 
         %div
           %div.bg-white.shadow-md.rounded-lg.p-4
