@@ -55,7 +55,7 @@ class CartItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to cart_items_url, notice: "Cart item was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { message: "Product removed successfully"} , status: :ok }
     end
   end
 

@@ -14,7 +14,7 @@ class CartsController < ApplicationController
   # GET /carts/1 or /carts/1.json
   def show
     @cart = Cart.active.find_by(external_user_id: current_user.external_user_id)
-    @cart_items = @cart.cart_items
+    @cart_items = @cart&.cart_items
     case step
     when :user_details
     when :order_address
@@ -24,7 +24,9 @@ class CartsController < ApplicationController
     when :review
       @payment = Payment.find_by(id: params[:payment_id])
       @order = @payment.order
-      @order.get_expect_delivery_date unless @order.expected_delivery_date.present?
+      if @order.present?
+        @order.get_expect_delivery_date unless @order.expected_delivery_date.present?
+      end
     end
     render_wizard
   end

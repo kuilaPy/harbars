@@ -5,7 +5,7 @@
     .flex-grow.bg-white.ml-4.rounded
       %div.p-4.text-green-500.text-2xl.bold Payment & Book order
       %div 
-        = form_with(model: Order.new, url: wizard_path, method: "PATCH") do |f|
+        = form_with(model: Order.new, url: wizard_path, method: "PATCH", data: {turbo: false}) do |f|
           .grid.grid-cols-1.gap-4.mx-4
             .text-gray-500.text-lg.font-semibold Order details
           -# .grid.grid-cols-2.gap-4

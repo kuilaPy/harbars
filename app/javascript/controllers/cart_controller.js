@@ -11,7 +11,7 @@ export default class extends Controller {
 
   ensureExternalUserId() {
     let externalUserId = localStorage.getItem("externalUserId")
-    if (!externalUserId) {
+    if (externalUserId == 'undefined' || !externalUserId) {
       externalUserId = uuid_v4()
       localStorage.setItem("externalUserId", externalUserId)
     }
@@ -44,7 +44,30 @@ export default class extends Controller {
     const quantity = parseInt(event.currentTarget.dataset.quantity)
     const price = parseInt(event.currentTarget.dataset.price)
     const productId = event.currentTarget.dataset.productId
-    if(parseInt(quantity) > 1) this.updateQuantity(itemId, quantity - 1, price, productId)
+    if(parseInt(quantity) > 0) this.updateQuantity(itemId, quantity - 1, price, productId)
+  }
+
+  remove(){
+    const itemId = event.currentTarget.dataset.itemId
+    const productId = event.currentTarget.dataset.productId
+    $.ajax({
+      url: `/cart_items/${itemId}`,
+      type: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      }
+    }).done((res) => {
+      let cart = JSON.parse(localStorage.getItem("cart")) || []
+      const new_cart = cart.filter(item => item.product_id !== productId)
+      localStorage.setItem("cart", JSON.stringify(new_cart))
+      Turbo.visit(window.location.href)
+    }).fail((e) => {
+      console.log("Error", e)
+      this.type = "error"
+      this.message = e?.responseJSON?.message ?? "Something went wrong"
+      this.showToast()
+    })
   }
 
   updateQuantity(itemId, quantity, price, productId) {
