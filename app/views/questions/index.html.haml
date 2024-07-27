@@ -1,25 +1,18 @@
-%h1 Listing questions
-
-%table
-  %thead
-    %tr
-      %th Product
-      %th User
-      %th Content
-      %th
-      %th
-      %th
-
-  %tbody
+= turbo_frame_tag "review_question_listing" do
+  - if @questions.present?
     - @questions.each do |question|
-      %tr
-        %td= question.product
-        %td= question.user
-        %td= question.content
-        %td= link_to 'Show', question
-        %td= link_to 'Edit', edit_question_path(question)
-        %td= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Question', new_question_path
+      - if question.reply.present?
+        %div.p-4
+          %p.text-sm
+            ="Q: #{question.content}"
+          %p.text-sm
+            A: 
+            %span.font-light=question.reply&.content
+          %p.mt-2.text-xs.font-bold.text-gray-400=question.reply&.user.full_name
+          %div.text-xs.text-gray-400.font-light.mt-1 
+            = heroicon 'check-circle',variant: :solid , options: {class: "w-4 h-4 inline-block text-gray-500  "} 
+            =repliyer_type(question.reply) 
+        %hr 
+  - else
+    %p No Question and Reply
+      
