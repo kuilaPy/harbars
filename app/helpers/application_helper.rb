@@ -15,4 +15,14 @@ module ApplicationHelper
       content_tag(:span, status.titleize, class: "bg-gray-100 text-gray-500 text-base font-normal me-2 px-3 py-1 rounded-lg")
     end
   end
+
+  def repliyer_type(reply)
+    if reply.user.present?
+      "Verified Buyer"
+    elsif reply.admin_user.present?
+      "Admin"
+    else
+      "Orthers"
+    end
+  end
 end

@@ -14,6 +14,7 @@
     = javascript_importmap_tags
 
   %body(data-controller="cart root")
+    %div{ data: { controller: "mobile-check" } }
     = render 'layouts/top'
     %main.bg-gray-100.min-h-screen.max-h-fit{"data-root-target": "user", "data-external-id": current_user&.external_user_id }
       .mt-14
