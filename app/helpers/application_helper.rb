@@ -25,4 +25,19 @@ module ApplicationHelper
       "Orthers"
     end
   end
+
+  def star_rating(rating)
+    full_stars = rating.floor
+    empty_stars = 5 - full_stars
+
+    full_star_svg = content_tag(:svg, class: 'h-5 w-5 fill-current text-yellow-500', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor') do
+      content_tag(:path, '', 'fill-rule': 'evenodd', d: 'M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.284 3.955a1 1 0 00.95.69h4.21c.969 0 1.372 1.24.588 1.81l-3.403 2.474a1 1 0 00-.364 1.118l1.284 3.955c.3.921-.755 1.688-1.54 1.118l-3.403-2.474a1 1 0 00-1.175 0l-3.403 2.474c-.784.57-1.838-.197-1.539-1.118l1.283-3.955a1 1 0 00-.364-1.118L2.23 8.382c-.783-.57-.38-1.81.588-1.81h4.21a1 1 0 00.95-.69l1.284-3.955z', 'clip-rule': 'evenodd')
+    end
+
+    empty_star_svg = content_tag(:svg, class: 'h-5 w-5 fill-current text-gray-300', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor') do
+      content_tag(:path, '', 'fill-rule': 'evenodd', d: 'M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.284 3.955a1 1 0 00.95.69h4.21c.969 0 1.372 1.24.588 1.81l-3.403 2.474a1 1 0 00-.364 1.118l1.284 3.955c.3.921-.755 1.688-1.54 1.118l-3.403-2.474a1 1 0 00-1.175 0l-3.403 2.474c-.784.57-1.838-.197-1.539-1.118l1.283-3.955a1 1 0 00-.364-1.118L2.23 8.382c-.783-.57-.38-1.81.588-1.81h4.21a1 1 0 00.95-.69l1.284-3.955z', 'clip-rule': 'evenodd')
+    end
+
+    (full_star_svg * full_stars + empty_star_svg * empty_stars).html_safe
+  end
 end
