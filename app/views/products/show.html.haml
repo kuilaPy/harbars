@@ -16,7 +16,10 @@
             %h3.text-xl.font-bold.mb-4 Reviews
             .grid.grid-cols-12.py-4.mb-4
               .col-span-6.border-r.p-4
-                %p.text-gray-700.text-3xl.text-font-bold 3.7
+                .flex
+                  %p.text-gray-700.text-3xl.text-font-bold.mr-4= @product.avarage_rating
+                  = star_rating(@product.avarage_rating)
+                %p.text-gray-500= "Based on #{@product.review_count} Reviews"
               .col-span-6.pl-4 
                 - [5, 4, 3, 2, 1].each do |key|
                   .flex.items-center.mt-4
@@ -25,18 +28,11 @@
                       .h-5.bg-yellow-300.rounded{:style => "width: #{@rating_percentage[key].to_i}%"}
                     %span.text-sm.font-medium.text-gray-500 #{@rating_percentage[key].to_i}%
             %div.flex.flex-row-reverse.gap-4 
-              = link_to 'Write a review', new_review_path(product_id: @product.id), data: {turbo_frame: "global_modal_tag"}, class: "text-sm border border-gray-200 bg-gray-100 hover:bg-gray-200 hover:text-green-500 rounded-2xl py-2 px-6"
+              - if @product.orders.pluck(:user_id).include?(current_user.id)
+                = link_to 'Write a review', new_review_path(product_id: @product.id), data: {turbo_frame: "global_modal_tag"}, class: "text-sm border border-gray-200 bg-gray-100 hover:bg-gray-200 hover:text-green-500 rounded-2xl py-2 px-6"
               = link_to 'Ask a question', new_question_path(product_id: @product.id),data: {turbo_frame: "global_modal_tag"}, class: "text-sm border border-gray-200 bg-gray-100 hover:bg-gray-200 hover:text-green-500 rounded-2xl py-2 px-6"
             %div
-              .text-sm.font-medium.text-center.text-gray-500.border-b.border-gray-200
-                %ul.flex.flex-wrap.-mb-px
-                  %li.me-2
-                    = active_link_to "Reviews", reviews_path(product_id: @product.id),active: [['reviews', 'products'], []], class_active: 'public-nav-active' , class: "inline-block p-4 border-b-2 border-transparent rounded-t-lg.hover:text-gray-600 hover:border-gray-300" 
-                  %li.me-2
-                    = active_link_to "Questions", questions_path(product_id: @product.id),active: [['question'], []], class_active: 'public-nav-active' , class: "inline-block p-4 border-b-2 border-transparent rounded-t-lg.hover:text-gray-600 hover:border-gray-300" , data: {turbo_frame: "review_question_listing"}
-
-            %div
-              = turbo_frame_tag "review_question_listing"  
+              = render 'review_question'
 
 
       %div.overflow-y-hidden{class: "w-1/3"}

@@ -1,0 +1,24 @@
+
+%p
+  -# Hello #{@admin.name},
+
+  A new question has been submitted for the product "#{@product.name}".
+
+  Question Details:
+  %p
+    Content: #{@question.content}
+
+  You can view the question at:
+  = link_to 'View Product', product_url(@product)
+
+%p
+  -# Hello #{@purchaser.name},
+
+  A new question has been submitted on the product "#{@product.name}" you purchased.
+
+  Question Details:
+  %p
+    Content: #{@question.content}
+
+  You can view your purchase at:
+  = link_to 'View Product', product_url(@product)
