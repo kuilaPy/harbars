@@ -171,6 +171,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
+    indian_postal_codes (0.0.1)
     io-console (0.7.2)
     irb (1.13.1)
       rdoc (>= 4.0.0)
@@ -375,6 +376,7 @@ DEPENDENCIES
   httparty
   image_processing (~> 1.2)
   importmap-rails
+  indian_postal_codes
   jbuilder
   pg (~> 1.1)
   puma (>= 5.0)

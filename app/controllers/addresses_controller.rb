@@ -72,6 +72,11 @@ class AddressesController < ApplicationController
     end
   end
 
+  def postal_code_details
+    details = IndianPostalCodes.details(params[:pin_code])
+    render json: details
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address

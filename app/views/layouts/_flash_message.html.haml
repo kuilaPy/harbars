@@ -37,8 +37,8 @@
 :javascript
   var notice = "#{notice}" 
   var alert_msg = "#{alert}"
-  var alert = notice ? notice : alert_msg ? alert_msg : null
-  if(alert){
+  var _alert = notice ? notice : alert_msg ? alert_msg : null
+  if(_alert){
     $('#flash').removeClass('hidden')
     setTimeout(function(){
       $('#flash').addClass('hidden')

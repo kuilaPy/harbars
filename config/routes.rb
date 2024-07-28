@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     collection do
       get :new_order_address
       post :create_order_address
+      get :postal_code_details
     end
   end
   resources :payments do
