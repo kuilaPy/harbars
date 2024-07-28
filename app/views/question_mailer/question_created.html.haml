@@ -1,24 +1,16 @@
+%p
+  Dear User, 
+  -# #{@admin.name},
 
 %p
-  -# Hello #{@admin.name},
-
   A new question has been submitted for the product "#{@product.name}".
 
+%p
   Question Details:
-  %p
-    Content: #{@question.content}
-
-  You can view the question at:
-  = link_to 'View Product', product_url(@product)
+  %blockquote
+    Q: #{@question.content}
 
 %p
-  -# Hello #{@purchaser.name},
+  You can view the question at:
+  = link_to 'View Product', product_url(@product),class:"button button1"
 
-  A new question has been submitted on the product "#{@product.name}" you purchased.
-
-  Question Details:
-  %p
-    Content: #{@question.content}
-
-  You can view your purchase at:
-  = link_to 'View Product', product_url(@product)
