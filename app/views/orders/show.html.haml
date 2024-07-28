@@ -30,34 +30,33 @@
     %h2.p-2.font-semibold.text-lg Timeline
     .time_container
       - status = @order.status_before_type_cast
-      - status = 3
       .time_item{style: 'width: 30%;'}
         .top_element{style: 'transition-delay: 0s;'}
           %div{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700" : "text-gray-700"}"} Order Initiate
         .center_circle{class: "#{status >= 1 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
-          %span= @order.created_at.strftime("%d th %l, %y")
+          %span= @order.created_at.strftime("%dth %b, %y")
       .time_item{style: 'width: 30%'}
         .top_element{style: 'transition-delay: 2s;'}
           %div{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700" : "text-gray-700"}"} Confirmed
         .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
-          %span 24th Dec
+          %span= @order.processed_at.strftime("%dth %b, %y")
       .time_item{style: 'width: 30%'}
         .top_element{style: 'transition-delay: 3s;'}
           %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
         .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
-          %span 
+          %span= @order.shipped_at.strftime("%dth %b, %y")
       .time_item
         .top_element{style: 'transition-delay: 4s;'}
           %div{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700" : "text-gray-700"}"} Delivered
         .center_circle{style: 'bottom: -4px', class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"} 
         .time_bottom
-          %span 
+          %span= @order.delivered_at.strftime("%dth %b, %y")
 
 
 

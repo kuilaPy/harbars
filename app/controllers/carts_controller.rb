@@ -23,7 +23,7 @@ class CartsController < ApplicationController
       @payment = @cart.payment
     when :review
       @payment = Payment.find_by(id: params[:payment_id])
-      @order = @payment.order
+      @order = @payment&.order
       if @order.present?
         @order.get_expect_delivery_date unless @order.expected_delivery_date.present?
       end

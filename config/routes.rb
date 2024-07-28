@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   resources :payments do
     member do
       post :payment_success
+      get :get_payment_status
     end
     collection do
       post :webhook

@@ -63,6 +63,21 @@ class PaymentsController < ApplicationController
     redirect_to cart_path(id: 'review', payment_id: @payment.id), notice: "Payment was successfully completed."
   end
 
+  def get_payment_status
+    @payment = Payment.find_by(id: params[:id])
+    _razorpay_payment = @payment.fetch_payment(@payment.razorpay_payment_id)
+    if @payment.pending? && _razorpay_payment.status == 'authorized'
+      @payment.authorize!
+      if @payment.captured?
+        render json: {message: @payment.status}, status: :ok 
+      else
+        render json: {message: 'not captured'}, status: :unprocessable_entity
+      end
+    else
+      render json: {message: 'not captured'}, status: :unprocessable_entity
+    end
+  end
+
   def webhook
     webhook_secret = ENV[:WEBHOOK_SECRET]
     payload = request.body.read
@@ -74,7 +89,7 @@ class PaymentsController < ApplicationController
       when 'payment.failed'
       when 'payment.authorized'
         @payment = Payment.find_by(razorpay_payment_id: data[:id])
-        @payment.authorize! if @payment.present?
+        # @payment.authorize! if @payment.present?
       end
       render plain: "Webhook success", status: 200
     else
