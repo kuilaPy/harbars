@@ -19,19 +19,19 @@
                 = form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
                   %div
                     = f.label :email, class: "block mb-2 text-sm font-medium text-gray-900"
-                    = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+                    = f.email_field :email,autofocus: true,placeholder: "example@gmail.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                   %div
                     = f.label :password, class: "block mb-2 text-sm font-medium text-gray-900"
-                    = f.password_field :password, autocomplete: "current-password", placeholder: "••••••••", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+                    = f.password_field :password,required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
                   .flex.justify-between.py-2.5
                     .flex.items-start
                       -# - if devise_mapping.rememberable?
                       -#   .flex.items-center.h-5
                       -#     = f.check_box :remember_me, class: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300", required: "", type: "checkbox", value: ""
                       -#   %label.ms-2.text-sm.font-medium.text-gray-900{for: "remember"} Remember me
-                    %a.text-sm.text-blue-700.hover:underline{href: "#"} Lost Password?
-                  %button.w-full.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.text-center{class: "py-2.5", type: "submit"} Login to your account
+                    %a.text-sm.text-green-500.hover:underline{href: "#"} Lost Password?
+                  %button.w-full.text-white.bg-green-500.hover:bg-green-800.focus:ring-4.focus:outline-none.focus:ring-green-300.font-medium.rounded-lg.text-sm.px-5.text-center{class: "py-2.5", type: "submit"} Login to your account
                 .text-sm.font-medium.text-gray-500
                   Not registered?
-                  -# %a.text-blue-700.hover:underline{href: "#"} Create account
-                  = link_to "Create Account", new_registration_path(resource_name), data: { turbo_frame: 'sign_up_form' }, class: "text-blue-700 hover:underline"
+                  -# %a.text-green-500.hover:underline{href: "#"} Create account
+                  = link_to "Create Account", new_registration_path(resource_name), data: { turbo_frame: 'sign_up_form' }, class: "text-green-500 hover:underline"

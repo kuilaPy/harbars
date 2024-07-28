@@ -5,4 +5,7 @@ class AdminUser < ApplicationRecord
   
   has_many :replies
 
+
+  ADMIN_EMAILS = ["avijitkuila5@gmail.com", "looserpro2024@gamil.com"]
+
 end

@@ -1,0 +1,12 @@
+= turbo_stream.replace "contact_form" do
+  - if @contact.errors.any?
+    %p.text-red-500
+      #{@contact.errors.full_messages.join(", ")}
+  - else
+    %p.text-white
+      Your message has been sent. 
+    %p.text-green-500 
+      Reference ID: #{@contact.msg_rf_id}
+    %p.text-white 
+      Thank you!
+        

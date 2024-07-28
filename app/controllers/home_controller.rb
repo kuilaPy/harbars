@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   layout 'application'
   def index
-    # render 'new_index'
+    @contact = Contact.new
   end
 
   def privacy_policy
