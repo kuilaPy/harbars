@@ -1,0 +1,14 @@
+.container
+  %h4 New Contact Us Message
+  %p
+    %span.label Name:
+    = @contact.name
+  %p
+    %span.label Email:
+    = @contact.email
+  %p
+    %span.label Message:
+    = @contact.message
+  %p.reference-id
+    %strong Reference ID:
+    = @contact.msg_rf_id
