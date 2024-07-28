@@ -45,10 +45,10 @@
           = form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
             %div
               = f.label :email, class: "block mb-2 text-sm font-medium text-gray-900"
-              = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "name@company.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
             %div
               = f.label :password, class: "block mb-2 text-sm font-medium text-gray-900"
-              = f.password_field :password, autocomplete: "current-password", placeholder: "••••••••", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              = f.password_field :password, autocomplete: "current-password", placeholder: "••••••••", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
             .flex.justify-between.py-2.5
               -# .flex.items-start
                 -# - if devise_mapping.rememberable?

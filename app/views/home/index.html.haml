@@ -5,15 +5,17 @@
       %h1.text-4xl.font-bold Welcome to Chandra Herbals
       %p.mt-4.text-lg Premium Quality Spirulina for a Healthier Life
       %a.mt-8.inline-block.bg-blue-700.text-white.px-6.py-2.rounded{:href => "#products"} Explore Our Products
+%section#products.py-16
+  = render 'home/benifites'
 %section#about-spirulina.py-16.bg-gray-100
   .max-w-screen-xl.mx-auto.px-4.text-center
-    %h2.text-4xl.font-bold.mb-8 About Spirulina
+    %h2.text-4xl.font-bold.mb-8 Our Best  Products on the Market - Spirulina
     %p.text-lg.mb-8 Spirulina is a nutrient-rich blue-green algae that has been used for centuries due to its exceptional health benefits. Known for its vibrant color and high protein content, spirulina is a powerful superfood that supports overall wellness and vitality.
     %p.text-lg.mb-8 Our spirulina is cultivated in pristine conditions to ensure the highest quality. It is grown in controlled environments free from contaminants and pollutants, ensuring a pure and potent product. Each batch is carefully monitored to maintain its nutritional integrity, providing you with a reliable source of essential nutrients.
     %p.text-lg.mb-8 Spirulina is packed with proteins, vitamins, and minerals, making it an ideal supplement for those looking to boost their nutrient intake. It contains all essential amino acids, making it a complete protein source. In addition to protein, spirulina is rich in vitamins such as B1, B2, B3, B6, B9, and B12, as well as minerals like iron, magnesium, and potassium.
     %p.text-lg.mb-8 This superfood is also known for its powerful antioxidant properties. It contains a unique pigment called phycocyanin, which gives spirulina its blue-green color and has been shown to combat oxidative stress and inflammation in the body. Regular consumption of spirulina can help support immune function, increase energy levels, and promote healthy skin and hair.
     %p.text-lg.mb-8 At Chandra Herbals, we are committed to sustainable practices. Our spirulina is produced using eco-friendly methods that minimize our environmental footprint. We believe in the power of natural solutions to promote health and well-being, and we strive to deliver products that reflect this commitment.
-    =image_tag 'spirulina_in_bowel.png', class: "mx-auto rounded-lg shadow-lg"
+    =image_tag 'spirulina_2.avif', class: "mx-auto rounded-lg shadow-lg"
 
 
 %section#products.py-16
@@ -67,16 +69,16 @@
   .max-w-screen-xl.mx-auto.px-4
     %h2.text-4xl.font-bold.mb-8.text-center Frequently Asked Questions
     .space-y-4
-      .bg-green-700.p-6.rounded-lg.shadow-md
+      .bg-green-600.p-6.rounded-lg.shadow-md
         %h3.text-xl.font-semibold.mb-2 What is Spirulina?
         %p Spirulina is a type of blue-green algae that is rich in protein, vitamins, minerals, and antioxidants. It is often used as a dietary supplement to support overall health and wellness.
-      .bg-green-700.p-6.rounded-lg.shadow-md
+      .bg-green-600.p-6.rounded-lg.shadow-md
         %h3.text-xl.font-semibold.mb-2 How can Spirulina benefit my health?
         %p Spirulina has numerous health benefits including boosting the immune system, improving digestion, reducing inflammation, and providing essential nutrients for better energy and vitality.
-      .bg-green-700.p-6.rounded-lg.shadow-md
+      .bg-green-600.p-6.rounded-lg.shadow-md
         %h3.text-xl.font-semibold.mb-2 Is Spirulina safe to consume?
         %p Yes, Spirulina is generally safe for most people when consumed in appropriate amounts. However, it is always best to consult with a healthcare provider before adding any new supplement to your diet.
-      .bg-green-700.p-6.rounded-lg.shadow-md
+      .bg-green-600.p-6.rounded-lg.shadow-md
         %h3.text-xl.font-semibold.mb-2 How should I take Spirulina?
         %p Spirulina can be taken in various forms including powder, tablets, and capsules. The recommended dosage varies depending on the form and your specific health needs, so it's important to follow the instructions on the product label or consult with a healthcare provider.
 
@@ -109,17 +111,17 @@
           %label.text-lg.text-white{:for => "name"}
             Name
             %span.required *
-          %input#name.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "name", :required => "", :type => "text"}/
+          %input#name.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-green-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "name", :required => "", :type => "text"}/
         %div
           %label.text-lg.text-white{:for => "email"}
             Email
             %span.required *
-          %input#email.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "email", :required => "", :type => "email"}/
+          %input#email.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-green-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "email", :required => "", :type => "email"}/
         %div
           %label.text-lg.text-white{:for => "message"}
             Message
             %span.required *
-          %textarea#message.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "message", :required => "", :rows => "5"}
+          %textarea#message.mt-1.p-3.block.w-full.rounded-md.shadow-sm.focus:border-green-500.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:name => "message", :required => "", :rows => "5"}
         .text-center.md:text-left
           %button.mt-4.inline-block.bg-blue-600.text-white.px-8.py-3.rounded-full.shadow-lg.hover:bg-blue-700.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50{:type => "submit"} Send Message
 -# %footer.bg-gray-800.py-8.text-center.text-white

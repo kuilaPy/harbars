@@ -1,0 +1,68 @@
+!!! 5
+%html
+  %head
+    %meta{ content: "text/html; charset=utf-8", "http-equiv" => "Content-Type" }/
+    :css
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        max-width: 150px;
+      }
+      .content {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+      }
+      .footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+      }
+      .button {
+        background-color: #1155cc; 
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px
+      }
+      .button1 {
+        background-color: white; 
+        color: #1155cc; 
+        border: 2px solid #1155cc;
+      }
+
+      .button1:hover {
+        background-color: #1155cc;
+        color: white;
+      }
+  %body
+    .container
+      .header
+        %img{src: "/assets/chandra_herbal_logo.jpeg", width: "80", alt: "Chandra Herbals Logo"}
+      .content
+        = yield
+      .footer
+        %p
+          &copy; #{Time.current.year} Chandra Herbals. All rights reserved.

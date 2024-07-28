@@ -1,0 +1,16 @@
+%p
+  Dear User, 
+  -# #{@admin.name},
+
+%p
+  A new question has been submitted for the product "#{@product.name}".
+
+%p
+  Question Details:
+  %blockquote
+    Q: #{@question.content}
+
+%p
+  You can view the question at:
+  = link_to 'View Product', product_url(@product),class:"button button1"
+

@@ -1,0 +1,69 @@
+%div.container.mx-auto.px-4
+  .text-3xl.font-bold.mb-8.text-center Our Benifits
+  %div.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
+    - # Card 1: Natural Ingredients
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      -# %img.w-full.h-48.object-cover{:src => "card-1", :alt => "Natural Ingredients"}
+      = image_tag 'card_1.jpeg' , class: "w-full h-80 object-cover"
+      %div.p-4
+        %h3.text-xl.font-semibold Natural Ingredients
+        %p.mt-2.text-gray-600 Our herbal products are made from 100% natural ingredients, ensuring you get the best of nature’s bounty without any harmful chemicals.
+        %ul.list-disc.pl-5.mt-2
+          %li No synthetic additives
+          %li Gentle on the skin
+          %li Environmentally friendly
+
+    - # Card 2: Health Benefits
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      = image_tag 'card_2.jpeg' , class: "w-full h-80 object-cover"
+      %div.p-4
+        %h3.text-xl.font-semibold Health Benefits
+        %p.mt-2.text-gray-600 Herbal products are known for their numerous health benefits. They can help improve your overall well-being and provide relief from various ailments.
+        %ul.list-disc.pl-5.mt-2
+          %li Boosts immunity
+          %li Enhances digestion
+          %li Reduces stress and anxiety
+
+    - # Card 3: Eco-Friendly
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      = image_tag 'eco_friendly.jpeg' , class: "w-full h-80 object-fit"
+      %div.p-4
+        %h3.text-xl.font-semibold Eco-Friendly
+        %p.mt-2.text-gray-600 Our commitment to sustainability means our herbal products are eco-friendly, from production to packaging.
+        %ul.list-disc.pl-5.mt-2
+          %li Biodegradable packaging
+          %li Sustainable farming practices
+          %li Lower carbon footprint
+
+    - # Card 4: No Side Effects
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      = image_tag 'no_side_effect.jpeg' , class: "w-full h-80 object-fit"
+      %div.p-4
+        %h3.text-xl.font-semibold No Side Effects
+        %p.mt-2.text-gray-600 Herbal products are generally safe and have minimal to no side effects compared to synthetic alternatives.
+        %ul.list-disc.pl-5.mt-2
+          %li Gentle on the body
+          %li Safe for long-term use
+          %li Suitable for all ages
+
+    - # Card 5: Ancient Wisdom
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      = image_tag 'ancient_wisdom.jpeg' , class: "w-full h-80 object-fit"
+      %div.p-4
+        %h3.text-xl.font-semibold Ancient Wisdom
+        %p.mt-2.text-gray-600 Our herbal products are formulated using traditional knowledge passed down through generations, combined with modern science.
+        %ul.list-disc.pl-5.mt-2
+          %li Time-tested remedies
+          %li Holistic approach to health
+          %li Trusted by cultures worldwide
+
+    - # Card 6: Versatile Usage
+    %div.bg-white.shadow-md.rounded-lg.overflow-hidden
+      = image_tag 'versatile_usage.jpeg' , class: "w-full h-80 object-fit"
+      %div.p-4
+        %h3.text-xl.font-semibold Versatile Usage
+        %p.mt-2.text-gray-600 Herbal products can be used in various ways, from skincare and haircare to supplements and teas, catering to different needs and preferences.
+        %ul.list-disc.pl-5.mt-2
+          %li Multi-functional
+          %li Can be easily incorporated into daily routines
+          %li Available in various forms

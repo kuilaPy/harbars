@@ -27,4 +27,8 @@ class Product < ApplicationRecord
     reviews.count
   end
 
+  def avarage_rating
+    reviews&.average(:rating) || 0
+  end
+
 end
