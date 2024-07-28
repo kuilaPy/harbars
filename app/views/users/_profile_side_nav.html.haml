@@ -14,6 +14,6 @@
       %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
         = active_link_to "Profile Information",user_path(current_user),active: [['users'], ["show"]], class_active: 'public-nav-active' 
       %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-        = link_to "Change Password",""
+        = active_link_to "Change Password",edit_password_user_path(current_user),active: [['users'], ["edit_password"]], class_active: 'public-nav-active' 
       %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
         = active_link_to "Manage Addresses", addresses_path, active: [['addresses'], ["index"]], class_active: 'public-nav-active'#, data: { turbo_frame: 'show_user' }
