@@ -27,14 +27,14 @@
       = f.text_field :address_line_1, placeholder: "Address line 1",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
     %div 
       = f.label :city,"City/Town name",class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :city, autocomplete: "city", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5",disabled: true
+      = f.text_field :city, autocomplete: "city", required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500  block w-full p-2.5"#,disabled: true
   .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
     %div 
       = f.label :address_line_2,"District", class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :address_line_2, placeholder: "District", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5",:disabled => true
+      = f.text_field :address_line_2, placeholder: "District", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500  block w-full p-2.5"#,:disabled => true
     %div 
       = f.label :state, class: "block mb-2 text-sm font-medium text-gray-900"
-      = f.text_field :state, autocomplete: "state",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", :disabled => true
+      = f.text_field :state, autocomplete: "state",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500  block w-full p-2.5"#, :disabled => true
   .grid.grid-col-1.md:grid-cols-2.gap-4.p-4
     %div 
       = f.label :zip_code, class: "block mb-2 text-sm font-medium text-gray-900"do
@@ -54,6 +54,9 @@
 
 :javascript
   $(document).ready(function() {
+    $("#address_city").prop('readonly', true);
+    $("#address_address_line_2").prop('readonly', true);
+    $("#address_state").prop('readonly', true);
     const pinCodeField = $("#address_zip_code");
     if (pinCodeField.length) {
       pinCodeField.on("blur", function() {

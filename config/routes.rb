@@ -21,7 +21,14 @@ Rails.application.routes.draw do
   # normal_user_routes
 
   devise_for :users 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do 
+    member do
+      get :edit_password
+    end
+    collection do
+      patch :update_password
+    end
+  end
   root "home#index"
   resources :home do
     collection do
