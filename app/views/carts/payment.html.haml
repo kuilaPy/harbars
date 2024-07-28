@@ -15,11 +15,11 @@
                       %h3.font-semibold.text-gray-600.text-sm= item.product.name
                       %p.text-base.font-normal.text-gray-500.text-xs (price: #{item.product.price.round(2)} * #{item.quantity})
                     %div
-                      %h3.text-gray-900= number_to_currency(item.price.round(2), unit: "Rs. ")
+                      %h3.text-gray-900= number_to_currency(item.price, precision: 0, unit: "Rs. ")
               %hr.h-px.my-4.bg-gray-900.border-1
               %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4
                 %span Sub total
-                %span= number_to_currency(@cart.total_price, unit: "Rs. ")
+                %span= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
 
               %div.flex.justify-between.text-sm.text-black-500.px-4
                 %span GST(18%)

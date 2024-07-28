@@ -23,9 +23,9 @@
                           %h6= truncate(item.product.description, {length: 20})
                           %div.mt-2
                             %span.text-l.font-bold.text-red-500
-                              = number_to_currency(item.product.price, unit: "Rs. ")
+                              = number_to_currency(item.product.price, precision: 0, unit: "Rs. ")
                             %span.text-sm.text-gray-600.line-through.ml-2
-                              = number_to_currency(item.product.original_price, unit: "Rs. ")
+                              = number_to_currency(item.product.original_price, precision: 0, unit: "Rs. ")
                   %td.px-4.py-4
                     %div.flex.items-center
                       %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
@@ -34,7 +34,7 @@
                     
                   %td.px-4.py-4
                     %span.text-xl.font-bold.text-gray-900
-                      = number_to_currency(item.price, unit: "Rs. ")
+                      = number_to_currency(item.price, precision: 0, unit: "Rs. ")
                   %td.w-2.cursor-pointer.p-4
                     -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
                     %button.flex.rounded-lg.hover:ring-2.hover:ring-red-300.bg-white.w-auto.p-2{data: {action: "click->cart#remove", "item-id":"#{item.id}", "product-id": "#{item.product.id}"}}
@@ -45,10 +45,10 @@
             %h2.text-xl.font-bold.mb-4 Total
             %div.flex.justify-between.text-lg.font-semibold.text-gray-900
               %span Sub total
-              %span= number_to_currency(@cart.total_price, unit: "Rs. ")
+              %span= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
             %div.flex.justify-between.text-lg.font-semibold.text-red-500
               %span You saved
-              %span= number_to_currency(@cart.total_saved, unit: "Rs. ")
+              %span= number_to_currency(@cart.total_saved, precision: 0, unit: "Rs. ")
             %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
             %div.flex.justify-between.text-sm.text-black-500
               %span GST(18%)

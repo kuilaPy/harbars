@@ -20,7 +20,7 @@ class Product < ApplicationRecord
   end
 
   def product_ratings
-    reviews&.average(:rating) || 0
+    reviews&.average(:rating)&.round(1) || 0
   end
 
   def review_count 
@@ -28,7 +28,7 @@ class Product < ApplicationRecord
   end
 
   def avarage_rating
-    reviews&.average(:rating) || 0
+    reviews&.average(:rating)&.round(1) || 0
   end
 
 end
