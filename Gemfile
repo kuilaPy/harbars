@@ -84,4 +84,5 @@ gem "aws-sdk-s3"
 gem "figaro"
 gem "aasm"
 gem "httparty"
+gem 'indian_postal_codes'
 
