@@ -54,9 +54,6 @@
 
 :javascript
   $(document).ready(function() {
-    $("#address_city").prop('readonly', true);
-    $("#address_address_line_2").prop('readonly', true);
-    $("#address_state").prop('readonly', true);
     const pinCodeField = $("#address_zip_code");
     if (pinCodeField.length) {
       pinCodeField.on("blur", function() {

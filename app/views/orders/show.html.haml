@@ -43,20 +43,20 @@
         .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
-          %span= @order.processed_at.strftime("%dth %b, %y")
+          %span= @order.processed_at&.strftime("%dth %b, %y")
       .time_item{style: 'width: 30%'}
         .top_element{style: 'transition-delay: 3s;'}
           %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
         .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
-          %span= @order.shipped_at.strftime("%dth %b, %y")
+          %span= @order.shipped_at&.strftime("%dth %b, %y")
       .time_item
         .top_element{style: 'transition-delay: 4s;'}
           %div{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700" : "text-gray-700"}"} Delivered
         .center_circle{style: 'bottom: -4px', class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"} 
         .time_bottom
-          %span= @order.delivered_at.strftime("%dth %b, %y")
+          %span= @order.delivered_at&.strftime("%dth %b, %y")
 
 
 
