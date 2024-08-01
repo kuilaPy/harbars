@@ -58,10 +58,9 @@
                     .z-50.hidden.my-4.text-sm.list-none.divide-y.divide-gray-100.rounded-lg.drop-shadow.bg-white{id: "dropdown-#{order.id}"}
                       %ul.py-1{role: "none"}
                         %li.hover:bg-green-50.text-green-500.font-normal
-                          = link_to "Details",admin_order_path(order), class: "block px-4 py-2 text-sm "
-                        - if order.status == "initiate"
-                          %li.hover:bg-green-50.text-green-500.font-normal
-                            = link_to "Comfirm order", confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm"
+                          = link_to "Details",admin_order_path(order), class: "block px-4 py-2 text-sm"
+                        %li.hover:bg-green-50.text-green-500.font-normal
+                          = link_to render_next_order_status(order), confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm"
                         %li.hover:bg-green-50.text-green-500.font-normal
                           %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Whish List
             %tbody

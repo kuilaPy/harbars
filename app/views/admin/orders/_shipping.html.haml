@@ -1,0 +1,5 @@
+.grid.grid-cols-1.gap-2
+  = f.hidden_field :shipped_at, value: DateTime.now
+  = f.hidden_field :status, value: 'shipped'
+  %center 
+    = image_tag 'shipped.svg', alt: '', height: '150px', width: 'auto'

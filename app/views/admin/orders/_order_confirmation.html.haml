@@ -1,0 +1,14 @@
+.grid.grid-cols-2.gap-2
+  %div
+    = f.label :length, class: "block mb-2 text-sm font-medium text-gray-900"
+    = f.text_field :length, autofocus: true, autocomplete: "first_name", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", required: true, placeholder: "in c.m" 
+  %div 
+    = f.label :width,class: "block mb-2 text-sm font-medium text-gray-900"
+    = f.text_field :width, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", required: true,placeholder: "in c.m" 
+.grid.grid-cols-2.gap-2
+  %div 
+    = f.label :height,class: "block mb-2 text-sm font-medium text-gray-900"
+    = f.text_field :height,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", required: true,placeholder: "in c.m" 
+  %div
+    = f.label :weight,class: "block mb-2 text-sm font-medium text-gray-900"
+    = f.text_field :weight,class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5", required: true, placeholder: "in gram"

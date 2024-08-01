@@ -24,6 +24,7 @@
           = breadcrumbs.render(format: :inline, separator: ">")
         = turbo_frame_tag "admin_modal"
         = yield
-        = render 'layouts/flash_message'
+        #flash.flash.hidden{"data-controller": 'toast', "data-toast-target": 'toast'}
+          = render 'layouts/flash_message'
 
 
