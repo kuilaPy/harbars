@@ -1,0 +1,10 @@
+%div.w-full.text-sm.text-left.rtl:text-right.text-gray-500
+  %div.text-sm.text-gray-700.uppercase.bg-gray-50.flex.font-semibold
+    %div.p-4.flex-1.text-center= "#id"
+    %div.px-6.py-3.flex-1.text-center Name
+    %div.px-6.py-3.flex-1.text-center Description
+    %div.px-6.py-3.flex-1.text-center Created at
+    %div.px-6.py-3.flex-1.text-center Action
+  = turbo_frame_tag "categories" do
+    - @categories.each do |category|
+      = render "category", category: category

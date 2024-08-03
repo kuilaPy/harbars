@@ -7,7 +7,7 @@
       %div.border-green.my-2.p-3.rounded-lg
         = turbo_frame_tag Address.new do
           = link_to new_address_path(for: "user_new_address") do
-            = heroicon 'plus',variant: :outline , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
+            = heroicon 'plus',variant: :solid , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
             %span.text-green-500.text-base Add New Address
       %div.border-green.rounded-lg
         = turbo_frame_tag "addresses" do

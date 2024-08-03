@@ -25,9 +25,9 @@
               .flex.items-center.ms-3
                 %div
                   %button.flex.rounded-lg.focus:ring-4.focus:ring-blue-300.bg-white.w-auto.h-10.p-2{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-user", type: "button"}
-                    = heroicon 'user-circle',variant: :outline , options: {class: "w-6 h-6 mr-1"}
+                    = heroicon 'user-circle',variant: :solid , options: {class: "w-6 h-6 mr-1"}
                     %div= current_user.first_name
-                    = heroicon 'chevron-down',variant: :outline , options: {class: "w-4 h-4 ml-1 mt-1"}
+                    = heroicon 'chevron-down',variant: :solid , options: {class: "w-4 h-4 ml-1 mt-1"}
                 #dropdown-user.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow
                   .px-4.py-3{role: "none"}
                     %p.text-sm.text-gray-900{role: "none"}
@@ -38,22 +38,22 @@
                     %li
                       .block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100
                         = link_to user_path(current_user) do
-                          = heroicon 'user-circle',variant: :outline , options: {class: "w-4 h-4 mr-1 inline-block "} 
+                          = heroicon 'user-circle',variant: :solid , options: {class: "w-4 h-4 mr-1 inline-block "} 
                           %span Profile
                     %li
                       .block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100
                         = link_to orders_path do
-                          = heroicon 'cube',variant: :outline , options: {class: "w-4 h-4 mr-1 inline-block "} 
+                          = heroicon 'cube',variant: :solid , options: {class: "w-4 h-4 mr-1 inline-block "} 
                           %span Orders
                     %li
                       .block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100
                         = link_to orders_path do
-                          = heroicon 'heart',variant: :outline , options: {class: "w-4 h-4 mr-1 inline-block "} 
+                          = heroicon 'heart',variant: :solid , options: {class: "w-4 h-4 mr-1 inline-block "} 
                           %span Wishlist
                     %li
                       .block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100
                         = button_to  destroy_user_session_path, method: :delete do 
-                          = heroicon 'arrow-up-tray',variant: :outline , options: {class: "w-4 h-4 mr-1 inline-block "} 
+                          = heroicon 'arrow-up-tray',variant: :solid , options: {class: "w-4 h-4 mr-1 inline-block "} 
                           %span Log Out
 
 

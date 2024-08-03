@@ -6,7 +6,7 @@
       .float-right
         %div
           %button.flex{"aria-expanded" => "false", "data-dropdown-toggle" => "dropdown-address_#{address.id}", type: "button"}
-            = heroicon 'ellipsis-vertical',variant: :outline , options: {class: "w-6 h-6 mr-1"}
+            = heroicon 'ellipsis-vertical',variant: :solid , options: {class: "w-6 h-6 mr-1"}
         .z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow{id: "dropdown-address_#{address.id}", role: "menu"}
           %ul.py-1{role: "none"}
             %li

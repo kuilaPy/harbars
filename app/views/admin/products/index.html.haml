@@ -1,22 +1,22 @@
 .relative.overflow-x-auto.shadow-md.sm:rounded-lg
   .flex.items-center.justify-between.flex-column.md:flex-row.flex-wrap.space-y-4.md:space-y-0.p-4.bg-white
     %div
-      %button#dropdownActionButton.inline-flex.items-center.text-gray-500.bg-white.border.border-gray-300.focus:outline-none.hover:bg-gray-100.focus:ring-4.focus:ring-gray-100.font-medium.rounded-lg.text-sm.px-3{:class => "py-1.5", "data-dropdown-toggle" => "dropdownAction", :type => "button"}
-        %span.sr-only Action button
-        Action
-        %svg{"aria-hidden" => "true", :class => "w-2.5 h-2.5 ms-2.5", :fill => "none", :viewbox => "0 0 10 6", :xmlns => "http://www.w3.org/2000/svg"}
-          %path{:d => "m1 1 4 4 4-4", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
-      / Dropdown menu
-      #dropdownAction.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-44
-        %ul.py-1.text-sm.text-gray-700{"aria-labelledby" => "dropdownActionButton"}
-          %li
-            %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Reward
-          %li
-            %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Promote
-          %li
-            %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Activate account
-        .py-1
-          %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{:href => "#"} Delete User
+      -# %button#dropdownActionButton.inline-flex.items-center.text-gray-500.bg-white.border.border-gray-300.focus:outline-none.hover:bg-gray-100.focus:ring-4.focus:ring-gray-100.font-medium.rounded-lg.text-sm.px-3{:class => "py-1.5", "data-dropdown-toggle" => "dropdownAction", :type => "button"}
+      -#   %span.sr-only Action button
+      -#   Action
+      -#   %svg{"aria-hidden" => "true", :class => "w-2.5 h-2.5 ms-2.5", :fill => "none", :viewbox => "0 0 10 6", :xmlns => "http://www.w3.org/2000/svg"}
+      -#     %path{:d => "m1 1 4 4 4-4", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+      -# / Dropdown menu
+      -# #dropdownAction.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-44
+      -#   %ul.py-1.text-sm.text-gray-700{"aria-labelledby" => "dropdownActionButton"}
+      -#     %li
+      -#       %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Reward
+      -#     %li
+      -#       %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Promote
+      -#     %li
+      -#       %a.block.px-4.py-2.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white{:href => "#"} Activate account
+      -#   .py-1
+      -#     %a.block.px-4.py-2.text-sm.text-gray-700.hover:bg-gray-100{:href => "#"} Delete User
     = link_to "New Product", new_admin_product_path, class: "btn bg-green-600 text-white px-4 py-2 rounded-md"
     -# %label.sr-only{:for => "table-search"} Search
     -# .relative
