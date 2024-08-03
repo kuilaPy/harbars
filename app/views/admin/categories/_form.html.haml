@@ -1,0 +1,19 @@
+= form_for [:admin, @category], as: @category ,data: { turbo: false } do |f|
+  - if @category.errors.any?
+    #error_explanation.p-3.mb-4.border-2.border-red-400.rounded-lg
+      .text-red-500.text-base.font-semibold= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
+      %ul.px-4.py-2
+        - @category.errors.full_messages.each do |message|
+          %li= message
+  .grid.grid-cols-1.gap-4
+    .col-span-1
+      = f.label :name, class: "block mb-2 text-sm font-medium text-gray-900"do
+        Name
+        %span.p-0{ class: "text-red-500" } *
+      = f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true, autofocus: true
+    .col-span-1
+      = f.label :description, class: "block mb-2 text-sm font-medium text-gray-900"
+      = f.text_area :description, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 "
+    .col-span-1.mt-6
+      = f.submit "Submit", class: "text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+      -# = link_to "cancel", "" , class: "text-sm "

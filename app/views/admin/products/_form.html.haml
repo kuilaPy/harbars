@@ -25,10 +25,13 @@
       %div.mt-1
         = f.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "form-select block w-full border-gray-300 rounded-md shadow-sm"}
         -# = f.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category", class: "form-select block w-full border-gray-300 rounded-md shadow-sm"
+    - if @product.product_images.present?
+      - @product.product_images.each do |ph|
+        = f.hidden_field :product_images, multiple: true, value: ph.signed_id
     .col-span-1
-      %label.block.text-sm.font-medium.text-gray-700 Product Images
+      %label.block.text-sm.font-medium.text-gray-700{:for => "multiple_files"} Product Images
       %div.mt-1
-        = f.file_field :product_images, multiple: true, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
+        = f.file_field :product_images, multiple: true, class: "block w-full form-input text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
 
   .col-span-2
     %label.block.text-sm.font-medium.text-gray-700 Description

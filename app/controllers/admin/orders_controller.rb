@@ -45,7 +45,6 @@ class Admin::OrdersController < Admin::BaseController
     else
       render :confirm_order
     end
-    
   end
 
   private
@@ -55,11 +54,10 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def add_breadcrumbs
-    # breadcrumbs.add "Admin"
     breadcrumbs.add "Orders", admin_orders_path
   end
 
   def order_params
-    params.require(:order).permit(:order_number, :user_id, :order_status_id, :length, :width, :height, :weight)
+    params.require(:order).permit(:order_number, :user_id, :order_status_id, :status, :shipped_at, :length, :width, :height, :weight)
   end
 end

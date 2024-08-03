@@ -1,0 +1,11 @@
+= turbo_frame_tag "category-#{category.id}" do
+  %div.bg-white.border-b.hover:bg-gray-50.flex.items-center.text-center
+    %div.w-4.p-4.flex-1= category.id
+    %div.px-6.py-4.text-gray-900.whitespace-nowrap.flex-1= category.name
+    %div.px-6.py-4.flex-1= category.description
+    %div.px-6.py-4.flex-1= category.created_at.strftime("%d-%^b-%y")
+    %div.px-6.py-4.flex-1
+      = link_to edit_admin_category_path(category), data: {turbo: true} do
+        = heroicon 'pencil-square', variant: :solid, options: {class: "w-6 h-6 inline-block text-green-500 hover:text-green-700"}
+      = button_to  admin_category_path(category), method: :delete, data: {confirm: "Are you sure?"}, class: "ml-4" do
+        = heroicon 'trash', variant: :solid, options: {class: "w-6 h-6 inline-block text-red-500 hover:text-red-800"}
