@@ -1,0 +1,12 @@
+%div.w-full.text-sm.text-left.text-gray-500
+  %div.text-sm.text-gray-700.uppercase.bg-gray-50.flex.font-semibold
+    %div.p-4.flex-1= "#id"
+    %div.px-6.py-3.flex-1 Full Name
+    %div.px-6.py-3.flex-1 Email
+    %div.px-6.py-3.flex-1 Phone Number
+    %div.px-6.py-3.flex-1 Created at
+    %div.px-6.py-3.flex-1 external_user_id
+    %div.px-6.py-3.flex-1 Action
+  = turbo_frame_tag "users" do
+    - @users.each do |user|
+      = render "user", user: user
