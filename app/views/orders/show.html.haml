@@ -30,21 +30,21 @@
     %h2.p-2.font-semibold.text-lg Timeline
     .time_container
       - status = @order.status_before_type_cast
-      .time_item{style: 'width: 30%;'}
+      .time_item{style: 'width: 25%;'}
         .top_element{style: 'transition-delay: 0s;'}
           %div{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700" : "text-gray-700"}"} Order Initiate
         .center_circle{class: "#{status >= 1 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
           %span= @order.created_at.strftime("%dth %b, %y")
-      .time_item{style: 'width: 30%'}
+      .time_item{style: 'width: 25%'}
         .top_element{style: 'transition-delay: 2s;'}
           %div{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700" : "text-gray-700"}"} Confirmed
         .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
         .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
         .time_bottom
           %span= @order.processed_at&.strftime("%dth %b, %y")
-      .time_item{style: 'width: 30%'}
+      .time_item{style: 'width: 25%'}
         .top_element{style: 'transition-delay: 3s;'}
           %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
         .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
