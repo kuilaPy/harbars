@@ -60,7 +60,7 @@
                         %li.hover:bg-green-50.text-green-500.font-normal
                           = link_to "Details",admin_order_path(order), class: "block px-4 py-2 text-sm"
                         %li.hover:bg-green-50.text-green-500.font-normal
-                          = link_to render_next_order_status(order), confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm"
+                          = link_to render_next_order_status(order), confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm", data: { turbo_frame: "admin_modal"}
                         %li.hover:bg-green-50.text-green-500.font-normal
                           %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Whish List
             %tbody

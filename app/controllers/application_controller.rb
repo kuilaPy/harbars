@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  layout -> {
+    if turbo_frame_request?
+      "turbo_rails/frame"
+    else
+      "application"
+    end
+  }
   
 
   protected

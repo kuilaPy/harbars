@@ -5,7 +5,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{name: "theme-color", content: "#FFF"}
-    %meta{content: "false", name: "turbo-prefetch"}/
+    %meta{content: "false", name: "turbo-prefetch"}
+    %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"}
 
     = csrf_meta_tags
     = csp_meta_tag
@@ -18,8 +19,7 @@
     = render 'layouts/admin_top_nav_bar'
     = render 'layouts/admin_side_bar'
     %main.bg-gray-100.min-h-screen.max-h-fit
-      .p-4.ml-16
-        .mt-14
+      .p-4.ml-16.mt-14
         .breadcrumbs
           = breadcrumbs.render(format: :inline, separator: ">")
         = turbo_frame_tag "admin_modal"

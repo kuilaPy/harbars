@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root to: 'dash_board#index'
-    resources :orders do
+    resources :orders, only: [:index, :show, :update] do
       member do
         get :confirm_order
         patch :update_confirmed_order
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
     resources :products
+    resources :categories
   end
   # normal_user_routes
 
@@ -67,7 +68,6 @@ Rails.application.routes.draw do
   resources :order_items
   resources :orders
   resources :products
-  resources :categories
   resources :reviews
   resources :contacts, only: [:new, :create]
 end
