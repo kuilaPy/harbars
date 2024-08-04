@@ -1,6 +1,4 @@
-
-
-%div.bg-white.shadow-md.rounded-lg.overflow-hidden.relative
+%div.bg-white.dark:bg-gray-800.shadow-md.rounded-lg.overflow-hidden.relative
   - if product.discount.present?
     %span.absolute.top-0.left-0.bg-red-500.text-white.px-2.py-1.text-xs.font-bold.uppercase
       Save #{product.discount}%
@@ -10,19 +8,18 @@
         = image_tag product.product_images.first, class: "w-full h-52 object-cover mt-8 mb-8 hover:opacity-75"
   %div.p-4
     = link_to product_path(product) do
-      %h2.mt-1.text-lg.font-bold.text-gray-800.hover:text-gray-500
+      %h2.mt-1.text-lg.font-bold.text-gray-800.dark:text-gray-100.hover:text-gray-500
         = product.name
     %div.flex.items-center.mt-2
       %span.text-yellow-400.text-sm
         - ratings = product&.product_ratings
         = (1..5).map { |i| ratings >= i ? "★" : "☆" }.join(' ')
-      %span.text-gray-600.text-sm
+      %span.text-gray-600.dark:text-gray-400.text-sm.ml-2
         = "#{ratings.to_f} (#{product&.review_count} reviews)"
     %div.mt-6
-      %span.text-l.font-bold.text-red-500
+      %span.text-lg.font-bold.text-red-500
         = number_to_currency(product.price, precision: 0, unit: "Rs. ")
-      %span.text-sm.text-gray-600.line-through.ml-2
+      %span.text-sm.text-gray-600.dark:text-gray-400.line-through.ml-2
         = number_to_currency(product.original_price, precision: 0, unit: "Rs. ")
     %button.mt-8.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600{'data-action': "click->cart#addToCart", 'data-product-id': "#{product.id}"}
       Add to cart
-    

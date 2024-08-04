@@ -1,6 +1,6 @@
 = render partial: "shared/breadcrumbs"
-.grid.grid-cols-4.gap-4.px-24.py-8
+.grid.grid-cols-1.md:grid-cols-4.gap-4.px-4.md:px-24.py-8
   = render "profile_side_nav" 
-  .col-span-3.rounded-lg.shadow.p-2.bg-white.h-auto
+  .col-span-1.md:col-span-3.rounded-lg.shadow.p-2.bg-white.dark:bg-gray-800.h-auto
     = turbo_frame_tag "show_user" do
-      = render partial: "users/personal_information", locals: {user: current_user} 
+      = render partial: "users/personal_information", locals: {user: current_user}
