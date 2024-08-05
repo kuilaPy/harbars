@@ -27,7 +27,7 @@ jobs:
       - name: Run deployment script
         run: |
           ssh -o StrictHostKeyChecking=no root@68.183.94.116 << 'EOF'
-            cd root/projects/harbars
+            cd projects/harbars
             # Set up environment
             export RAILS_ENV=production
             # Install dependencies
