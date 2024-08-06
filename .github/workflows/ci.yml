@@ -1,42 +1,42 @@
-name: Chandra CI/CD Pipeline 
+# name: Chandra CI/CD Pipeline 
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.DO_SSH_KEY }}
+#       - name: Set up SSH
+#         uses: webfactory/ssh-agent@v0.5.4
+#         with:
+#           ssh-private-key: ${{ secrets.DO_SSH_KEY }}
 
-      - name: Copy files to server
-        run: |
-          rsync -avz --delete \
-          -e "ssh -o StrictHostKeyChecking=no" \
-          ./ root@68.183.94.116:/root/projects/harbars
+#       - name: Copy files to server
+#         run: |
+#           rsync -avz --delete \
+#           -e "ssh -o StrictHostKeyChecking=no" \
+#           ./ root@68.183.94.116:/root/projects/harbars
 
-      - name: Run deployment script
-        run: |
-          ssh -o StrictHostKeyChecking=no root@68.183.94.116 << 'EOF'
-            cd projects/harbars
-            # Set up environment
-            export RAILS_ENV=production
-            # Install dependencies
-            bundle install --without development test
-            yarn install
-            # Migrate database
-            bundle exec rails db:migrate
-            # Precompile assets
-            bundle exec rails assets:precompile
-            # Restart application server (e.g., Puma, Unicorn)
-            systemctl restart chandra_herbals.service
-          EOF
+#       - name: Run deployment script
+#         run: |
+#           ssh -o StrictHostKeyChecking=no root@68.183.94.116 << 'EOF'
+#             cd projects/harbars
+#             # Set up environment
+#             export RAILS_ENV=production
+#             # Install dependencies
+#             bundle install --without development test
+#             yarn install
+#             # Migrate database
+#             bundle exec rails db:migrate
+#             # Precompile assets
+#             bundle exec rails assets:precompile
+#             # Restart application server (e.g., Puma, Unicorn)
+#             systemctl restart chandra_herbals.service
+#           EOF

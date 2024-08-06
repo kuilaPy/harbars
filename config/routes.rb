@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       get :shipping_policy
       get :return_policy
       get :cancellation_policy
+      get :contacts
     end
   end
   resources :replies

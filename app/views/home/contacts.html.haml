@@ -1,0 +1,60 @@
+%div.py-8.px-8
+  %section.company-info
+    %div
+      %h2 Company Information
+
+    %div
+      %h3 Company Name
+      %p Chandra herbals
+
+    %div
+      %h3 Email
+      %p chandraherbals2024@gmail.com
+
+    %div
+      %h3 Location
+      %p NOHAR, WARD NO 05, VILLAGE CHAK DEIDASPURA,Chak Deidaspura, Hanumangarh, Rajasthan PIN-335523
+
+    %div
+      %h3 Contact Number
+      %p 9413538145
+
+    %div
+      %h3 Contact Person
+      %p Ram kumar varma
+
+  %section.container.mx-auto.py-6
+    %h2.text-2xl.font-bold.mb-4 Contacts
+    %form
+      .grid.grid-cols-1.gap-6.md:grid-cols-2
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="first_name") First Name
+          %input#first_name.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="last_name") Last Name
+          %input#last_name.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="email") Email Address
+          %input#email.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="phone") Phone Number
+          %input#phone.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="country") Country
+          %select#country.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+            %option United States
+            %option Canada
+            %option United Kingdom
+            %option Australia
+        %div
+          %label.block.text-sm.font-medium.text-gray-700(for="city") City
+          %input#city.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm
+        %div.col-span-2
+          %label.block.text-sm.font-medium.text-gray-700(for="address") Address
+          %textarea#address.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm.rows="3"
+        %div.col-span-2
+          %label.block.text-sm.font-medium.text-gray-700(for="additional_info") Additional Information
+          %textarea#additional_info.mt-1.block.w-full.bg-gray-100.border-none.rounded-md.shadow-sm.rows="4"
+      %div.mt-6
+        %button.inline-flex.items-center.px-4.py-2.bg-blue-600.border.border-transparent.rounded-md.font-semibold.text-white.hover:bg-blue-700
+          Save Contact

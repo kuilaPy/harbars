@@ -18,4 +18,7 @@ class HomeController < ApplicationController
 
   def cancellation_policy
   end
+
+  def contacts
+  end
 end
