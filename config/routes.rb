@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       end
     end
     resources :products
-    resources :categories
+    resources :categories  
+    resources :users 
   end
   # normal_user_routes
 
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
       get :shipping_policy
       get :return_policy
       get :cancellation_policy
+      get :contacts
     end
   end
   resources :replies

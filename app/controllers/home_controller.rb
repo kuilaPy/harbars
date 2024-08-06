@@ -18,4 +18,8 @@ class HomeController < ApplicationController
 
   def cancellation_policy
   end
+
+  def contacts
+    @contact = Contact.new
+  end
 end
