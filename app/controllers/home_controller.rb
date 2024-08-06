@@ -20,5 +20,6 @@ class HomeController < ApplicationController
   end
 
   def contacts
+    @contact = Contact.new
   end
 end
