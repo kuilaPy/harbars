@@ -66,8 +66,9 @@ class PaymentsController < ApplicationController
   def get_payment_status
     @payment = Payment.find_by(id: params[:id])
     _razorpay_payment = @payment.fetch_payment(@payment.razorpay_payment_id)
-    if @payment.pending? && _razorpay_payment.status == 'authorized'
+    if @payment.pending? && (_razorpay_payment.status == 'authorized' || _razorpay_payment.status == 'captured')
       @payment.authorize!
+      @payment.reload
       if @payment.captured?
         render json: {message: @payment.status}, status: :ok 
       else
