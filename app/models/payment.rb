@@ -64,6 +64,9 @@ class Payment < ApplicationRecord
       razorpay_payment.capture({ amount: (self.amount.to_f.round(2) * 100).to_i })
       self.capture!
       self.touch(:captured_at)
+    if razorpay_payment.status == "captured"
+      self.capture!
+      self.touch(:captured_at)
     else
       self.invalidate!
       update(remarks: "Unable to 'capture' payment as Razorpay payment is not in 'authorized' state. Current Razorpay status is: #{razorpay_payment.status}.")
