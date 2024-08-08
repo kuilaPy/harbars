@@ -64,7 +64,7 @@ class Payment < ApplicationRecord
       razorpay_payment.capture({ amount: (self.amount.to_f.round(2) * 100).to_i })
       self.capture!
       self.touch(:captured_at)
-    if razorpay_payment.status == "captured"
+    elsif razorpay_payment.status == "captured"
       self.capture!
       self.touch(:captured_at)
     else
