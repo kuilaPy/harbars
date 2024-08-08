@@ -15,43 +15,73 @@
  */
 
 :root {
-  --primary_bg_color: #038d3e;
-  --secondary_color:  #f6921e;
+  --primary_bg_color: #038d3e; /* Primary green color */
+  --secondary_color: #f6921e;  /* Secondary orange color */
+  --primary_text_color: #ffffff; /* Light text for dark backgrounds */
+  --secondary_text_color: #000000; /* Dark text for light backgrounds */
+  --form_bg_color: #0a1f44; /* Form section background color */
+  --form_input_bg_color: #102a57; /* Form input background color */
+  --form_input_border_color: #4a5568; /* Form input border color */
+  --form_input_focus_border_color: #63b3ed; /* Form input focus border color */
+  --required_color: #f56565; /* Required asterisk color */
 }
+
+.dark:root {
+  --primary_bg_color: #036329; /* Darker primary color for dark mode */
+  --secondary_color: #e67e22;  /* Slightly darker secondary color for dark mode */
+  --primary_text_color: #ffffff; /* Light text color for dark mode */
+  --secondary_text_color: #f5f5f5; /* Light secondary text color */
+  --form_bg_color: #0a1f44; /* Unchanged, already dark */
+  --form_input_bg_color: #102a57; /* Unchanged, already dark */
+  --form_input_border_color: #4a5568; /* Unchanged, already dark */
+  --form_input_focus_border_color: #63b3ed; /* Unchanged, already suitable for dark mode */
+  --required_color: #f56565; /* Unchanged, stands out in both modes */
+}
+
 .primary-bg {
   background-color: var(--primary_bg_color);
 }
-.primary_color{
+
+.primary_color {
   color: var(--primary_bg_color);
 }
-.secondary_color{
+
+.secondary_color {
   color: var(--secondary_color);
 }
-.flex-grow{
+
+.flex-grow {
   flex-grow: 1;
 }
+
 .form-section {
-  background-color: #0a1f44;
+  background-color: var(--form_bg_color);
 }
+
 .form-section input, .form-section textarea {
-  background-color: #102a57;
-  border: 1px solid #4a5568;
-  color: #ffffff;
+  background-color: var(--form_input_bg_color);
+  border: 1px solid var(--form_input_border_color);
+  color: var(--primary_text_color);
 }
+
 .form-section input:focus, .form-section textarea:focus {
-  border-color: #63b3ed;
+  border-color: var(--form_input_focus_border_color);
   outline: none;
 }
+
 .form-section label {
   display: block;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: var(--primary_text_color);
 }
+
 .form-section .required {
-  color: #f56565;
+  color: var(--required_color);
 }
+
 #desktop-message {
   font-size: 14px;
   border-radius: 5px;
+  color: var(--secondary_text_color);
 }
-

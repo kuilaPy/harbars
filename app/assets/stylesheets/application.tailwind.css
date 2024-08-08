@@ -20,7 +20,7 @@
   color: rgb(145, 158, 171);
 }
 
-.breadcrumbs  a, span {
+.breadcrumbs a, span {
   padding: 0px 6px;
 }
 
@@ -33,34 +33,34 @@
 .breadcrumbs.first {
   padding-left: 0px;
   font-size: 25px;
-  color: "red"
+  color: red;
 }
 
 .breadcrumbs a:hover {
-  text-decoration: var(--secondary_color);
+  text-decoration: underline; /* Removed var(--secondary_color) to standardize hover */
 }
 
 .public-nav-active {
   background: white;
-  /* color: green; */
   color: rgb(23, 206, 23);
-
 }
+
 .admin-nav-active {
   background: #6EE7B7;
-  /* color: rgb(23, 206, 23); */
 }
 
-.cart-count{
+.cart-count {
   top: -16px;
   right: -16px;
   background-color: red !important;
   padding: 0px 4px;
   border-radius: 8px;
 }
-.public-nav-active .cart-count{
+
+.public-nav-active .cart-count {
   color: #fff;
 }
+
 .flag {
   display: inline-block;
   box-sizing: border-box;
@@ -73,7 +73,8 @@
   margin-right: 12px;
   height: 25px;
 }
-.flag-extension{
+
+.flag-extension {
   border-top: 12px solid #084e8a;
   border-bottom: 13px solid #084e8a;
   border-right: 13px solid transparent;
@@ -81,17 +82,63 @@
   right: -13px;
   top: 0;
 }
-.border-green{
-  /* border: 0.5px solid #d1d5db; */
-  border: 0.5px solid #2eec4b;
 
+.border-green {
+  border: 0.5px solid #2eec4b;
 }
-.border-gray{
+
+.border-gray {
   border: 0.5px solid #d1d5db;
 }
-.border-green-top{
+
+.border-green-top {
   border-top: 0.5px solid #2eec4b;
 }
-.border-green-bottom{
+
+.border-green-bottom {
   border-bottom: 0.5px solid #2eec4b;
+}
+
+/* Dark Mode Styles */
+.dark .breadcrumbs > span.separator,
+.dark .breadcrumbs span {
+  color: rgb(200, 200, 200); /* Light gray for better contrast in dark mode */
+}
+
+.dark .breadcrumbs a {
+  color: rgb(245, 245, 245); /* Lighter color for links in dark mode */
+}
+
+.dark .public-nav-active {
+  background: #111827; /* Dark background for active public nav */
+  color: rgb(50, 255, 50); /* Bright green text in dark mode */
+}
+
+.dark .admin-nav-active {
+  background: rgb(22, 178, 120); /* Slightly darker green for admin nav in dark mode */
+}
+
+.dark .cart-count {
+  background-color: rgb(200, 50, 50) !important; /* Dark red for cart count in dark mode */
+}
+
+.dark .flag {
+  background-color: #056099; /* Slightly darker blue for flag in dark mode */
+}
+
+.dark .flag-extension {
+  border-top: 12px solid #056099;
+  border-bottom: 13px solid #056099;
+}
+
+.dark .border-green {
+  border: 0.5px solid #1bbb3b; /* Slightly darker green for dark mode */
+}
+
+.dark .border-green-top {
+  border-top: 0.5px solid #1bbb3b;
+}
+
+.dark .border-green-bottom {
+  border-bottom: 0.5px solid #1bbb3b;
 }
