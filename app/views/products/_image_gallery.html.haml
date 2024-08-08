@@ -1,8 +1,7 @@
-%div.flex.bg-white.dark:bg-gray-800.rounded.p-4
-  .flex.flex-col.items-center.overflow-y-auto{class: "h-[600px] w-[70px]"}
-    - @product.product_images.each_with_index do |image, index|
-      %div.mb-2.cursor-pointer
-        = image_tag image, alt: @product.name, class: "object-contain w-full h-auto border-2 #{index.zero? ? 'border-green-500' : 'border-transparent'}", data: { action: "click->product#selectImage", image_url: url_for(image) }
-  %div.flex-1.flex.justify-center.items-center
-    %div.w-full.max-w-lg
-      = image_tag @product.product_images.first, alt: @product.name, id: "main_product_image", class: "object-contain w-full h-auto border-2 border-gray-200 dark:border-gray-600", data: {"product-target": 'mainImage'}
+%div.flex.flex-row.lg:flex-col.items-center.overflow-y-auto{class: "lg:h-[600px] h-[90px] lg:w-[60px] w-full"}
+  - @product.product_images.each_with_index do |image, index|
+    %div.mb-2.cursor-pointer
+      = image_tag image, alt: @product.name, class: "object-contain w-[60px] h-auto border-2 #{index.zero? ? 'border-green-500' : 'border-transparent'} hover:opacity-80 transition-opacity duration-200 ease-in-out", data: { action: "click->product#selectImage", image_url: url_for(image) }
+%div.flex-1.flex.justify-center.items-center
+  %div.w-full.max-w-lg
+    = image_tag @product.product_images.first, alt: @product.name, id: "main_product_image", class: "object-contain w-full h-auto border-2 border-gray-200 dark:border-gray-600 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out", data: {"product-target": 'mainImage'}
