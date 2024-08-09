@@ -81,7 +81,7 @@
               = render 'shared/rating_star', {count: review.rating}
               %span.text-base.mt-2 (#{review.rating})
           - else
-            = link_to new_review_path(product_id: product.id, order_id: @order.id), data: { turbo_frame: 'review_form' } do
+            = link_to new_review_path(product_id: product.id, order_id: @order.id), data: { turbo_frame: 'global_modal_tag' } do
               = heroicon 'star',variant: :solid , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
               %span.text-green-500.text-base Rate and review product
             

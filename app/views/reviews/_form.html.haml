@@ -5,6 +5,7 @@
       %ul
         - @review.errors.full_messages.each do |message|
           %li= message
+  = hidden_field :order_id, params[:order_id]
 
   .field
     = f.label :product
