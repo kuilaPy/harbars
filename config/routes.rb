@@ -68,7 +68,12 @@ Rails.application.routes.draw do
     end
   end
   resources :order_items
-  resources :orders
+  resources :orders do 
+    member do
+      get :invoice
+      patch :cancel
+    end
+  end
   resources :products
   resources :reviews
   resources :contacts, only: [:new, :create]

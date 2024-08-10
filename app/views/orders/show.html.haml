@@ -5,7 +5,13 @@
     - address = @order.shipping_address
     .grid.grid-cols-12.divide-x
       .col-span-5
-        %h2.p-2.font-semibold.text-lg Delivery Address
+        .flex.justify-between
+          %h2.p-2.font-semibold.text-lg Delivery Address
+          - if @order.initiate?
+            %div.mt-2.mr-2
+              = form_with(model: @order, url: cancel_order_path(@order), method: "PATCH", data: {turbo_stream: false, turbo: false}) do |f|
+                = f.submit 'Cancel order', class: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+
         %h2.p-2.font-semibold= @order.shipping_address.name
 
         %div.text-sm.text-gray-600.px-2
@@ -21,46 +27,14 @@
             %div.px-2 
               = heroicon 'document', variant: :solid, options: { class: "w-6 h-6 mr-1 inline-block text-green-500" }
               %span.text-base Download Invoice
-            = link_to 'Download', "#", class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+            = link_to 'Download', invoice_order_path(@order, format: :pdf), class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 text-center py-2"
   .col-span-1
 
 .grid.grid-cols-12.gap-4.px-4
   .col-span-1
-  .col-span-10.shadow.p-2.bg-white.rounded-lg
-    %h2.p-2.font-semibold.text-lg Timeline
-    .time_container
-      - status = @order.status_before_type_cast
-      .time_item{style: 'width: 25%;'}
-        .top_element{style: 'transition-delay: 0s;'}
-          %div{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700" : "text-gray-700"}"} Order Initiate
-        .center_circle{class: "#{status >= 1 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_line{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_bottom
-          %span= @order.created_at.strftime("%dth %b, %y")
-      .time_item{style: 'width: 25%'}
-        .top_element{style: 'transition-delay: 2s;'}
-          %div{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700" : "text-gray-700"}"} Confirmed
-        .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_bottom
-          %span= @order.processed_at&.strftime("%dth %b, %y")
-      .time_item{style: 'width: 25%'}
-        .top_element{style: 'transition-delay: 3s;'}
-          %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
-        .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_line{class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"}
-        .time_bottom
-          %span= @order.shipped_at&.strftime("%dth %b, %y")
-      .time_item
-        .top_element{style: 'transition-delay: 4s;'}
-          %div{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700" : "text-gray-700"}"} Delivered
-        .center_circle{style: 'bottom: -4px', class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"} 
-        .time_bottom
-          %span= @order.delivered_at&.strftime("%dth %b, %y")
-
-
-
-    %h2.p-2.font-semibold.mt-4 Ordered Items
+  .col-span-10.shadow.p-2.bg-white.rounded-lg.mb-4
+    = render 'timeline'
+    %h2.p-2.font-semibold.mt-8 Ordered Items
     - @order.order_items.each do |item|
       - product = item.product
       - review = current_user.reviews.find_by(product_id: product.id, order_id: @order.id)

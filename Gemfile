@@ -85,4 +85,5 @@ gem "figaro"
 gem "aasm"
 gem "httparty"
 gem 'indian_postal_codes'
+gem 'receipts'
 

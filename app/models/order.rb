@@ -1,10 +1,11 @@
 class Order < ApplicationRecord
   include AASM
-  enum shipping_mode: {cash: 1, online: 2}
+  enum shipping_mode: {COD: 1, online: 2}
   enum status: {initiate: 1, processed: 2, shipped: 3, delivered: 4, returned: 5, cancelled: 6}
 
   has_many :order_items
   has_many :products, through: :order_items
+  has_one :refund
   belongs_to :payment, optional: true
   belongs_to :user
   belongs_to :shipping_address, class_name: "Address", foreign_key: "shipping_address_id"
@@ -29,7 +30,7 @@ class Order < ApplicationRecord
     state :shipped, after_enter: :update_delivery_cost
     state :delivered
     state :returned
-    state :cancelled
+    state :cancelled, after_enter: :initiate_refund
 
     event :processing do
       transitions from: :initiate, to: :processed, after: Proc.new {self.touch(:processed_at)}
@@ -107,6 +108,55 @@ class Order < ApplicationRecord
     res = DeliveryPartner.get_delivery_cost shipping_address.zip_code, 100
     puts res
     self.update(delivery_cost: res)
+  end
+
+  def initiate_refund
+    paymentId = self.payment.razorpay_payment_id
+    para_attr = {
+      "amount": self.total_with_gst.to_f.round(2) * 100,
+      "speed": "normal",
+      "receipt": "#{self.order_reference}"
+    }
+    _razorpay_payment = Razorpay::Payment.fetch(paymentId).refund(para_attr)
+    if _razorpay_payment.present? and _razorpay_payment.id.present?
+      self.refund.create(raz_refund_id: _razorpay_payment.id, status: _razorpay_payment.status, payment_id: self.payment.id, amount: _razorpay_payment.amount / 100)
+    end
+  end
+
+  def generate_invoice
+    user = self.user
+    line_items = [["<b>Item</b>", "<b>Unit Cost</b>", "<b>Quantity</b>", "<b>Amount</b>"]]
+    self.order_items.each do |oi|
+      line_items << [oi.product.name, "#{oi.product.price.to_f.round(2) }", oi.quantity, "#{oi.price.to_f.round(2)}"]
+    end
+
+    line_items << [nil, nil, "<b>Total</b>", "#{self.total_with_gst.to_f.round(2)}"]
+    Receipts::Receipt.new(
+      # title: "Receipt",
+      details: [
+        ["Receipt Number", "#{self.order_reference}"],
+        ["Paid on", self.created_at.to_date],
+        ["Payment method", "Online"]
+      ],
+      company: {
+        name: "Chandra Herbals",
+
+        address: "\n<link href='https://maps.google.com/'>NOHAR, WARD NO 05,\n VILLAGE CHAK DEIDASPURA,\n Chak Deidaspura, Hanumangarh,\n Rajasthan PIN-335523</link>\n",
+        email: "chandraherbals2024@gmail.com",
+        logo: File.expand_path("app/assets/images/chandra_herbal_logo.jpeg")
+      },
+      recipient: [
+        "<b>#{user&.full_name}</b>",
+        nil,
+        self.billing_address&.address_line_1,
+        "#{self.billing_address&.city}, #{self.billing_address&.state} PIN-#{self.billing_address&.zip_code}",
+        nil,
+        user.email
+      ],
+      line_items: line_items,
+      footer: "Thanks for your business. Please contact us if you have any questions.",
+      logo_height: 30
+    )
   end
 
   private 

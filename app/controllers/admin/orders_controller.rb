@@ -41,7 +41,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def update_confirmed_order
     if @order.update(order_params)
-      redirect_to admin_orders_path
+      @order.initiate_refund if @order.cancelled?
+      redirect_to admin_orders_path, notice: "Order #{@order.status}"
     else
       render :confirm_order
     end

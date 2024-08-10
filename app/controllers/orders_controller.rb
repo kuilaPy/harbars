@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ show edit update destroy invoice cancel]
 
   # GET /orders or /orders.json
   def index
@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    @refund = @order.refund
   end
 
   # GET /orders/new
@@ -59,10 +60,34 @@ class OrdersController < ApplicationController
     end
   end
 
+  def invoice
+    respond_to do |format|
+      format.pdf { send_pdf }
+    end
+  end
+
+  def cancel
+    if @order.cancel!
+      redirect_to @order, notice: "Order Canceled"
+    else
+      redirect_to @order, alert: "Order is not canceled"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def send_pdf
+      r = @order.generate_invoice
+      # Render the PDF in memory and send as the response
+      send_data r.render,
+        filename: "#{@order.order_reference}-receipt.pdf",
+        type: "application/pdf",
+        disposition: "attachment"
+        # disposition: :inline # or :attachment to download
     end
 
     # Only allow a list of trusted parameters through.

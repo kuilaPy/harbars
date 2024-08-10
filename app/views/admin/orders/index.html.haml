@@ -63,6 +63,8 @@
                           = link_to render_next_order_status(order), confirm_order_admin_order_path(order), class: "block px-4 py-2 text-sm", data: { turbo_frame: "admin_modal"}
                         %li.hover:bg-green-50.text-green-500.font-normal
                           %a.block.px-4.py-2.text-sm{href: "#", role: "menuitem"} Whish List
+                        %li.hover:bg-green-50.text-green-500.font-normal
+                          = link_to "Cancel", confirm_order_admin_order_path(order, type: 'cancel'), class: "block px-4 py-2 text-sm", data: { turbo_frame: "admin_modal"}
             %tbody
               - order.order_items.each do |item|
                 %tr
