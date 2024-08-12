@@ -1,4 +1,12 @@
-= form_with(model: [:admin, @product], local: true, class: "space-y-6") do |f|
+= form_with(model: [:admin, @product], data: {turbo: false}, class: "space-y-6") do |f|
+
+  - if @product.errors.any?
+    #error_explanation.p-4.m-4.border-2.border-red-400.rounded-lg
+      %h2.text-red-500.text-lg.font-semibold= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul.p-4
+        - @product.errors.full_messages.each do |message|
+
+          %li= message
   .grid.grid-cols-1.md:grid-cols-2.gap-6
     .col-span-1
       %label.block.text-sm.font-medium.text-gray-700 Name
@@ -6,10 +14,18 @@
         = f.text_field :name, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
 
     .col-span-1
-      %label.block.text-sm.font-medium.text-gray-700 Price
+      %label.block.text-sm.font-medium.text-gray-700 Manufacturing cost
+      %div.mt-1
+        = f.number_field :mfg_cost, step: 0.01, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
+    .col-span-1
+      %label.block.text-sm.font-medium.text-gray-700 MRP
       %div.mt-1
         = f.number_field :original_price, step: 0.01, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
     
+    .col-span-1
+      %label.block.text-sm.font-medium.text-gray-700 Approx delivery cost
+      %div.mt-1
+        = f.number_field :approx_delivery_cost, class: "form-input block w-full border-gray-300 rounded-md shadow-sm"
     .col-span-1
       %label.block.text-sm.font-medium.text-gray-700 Discount
       %div.mt-1

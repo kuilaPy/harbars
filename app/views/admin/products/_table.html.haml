@@ -6,13 +6,19 @@
       %th.px-6.py-3{:scope => "col"}
         Name
       %th.px-6.py-3{:scope => "col"}
-        Description
+        Category
       %th.px-6.py-3{:scope => "col"}
-        Price
+        MRP
+      %th.px-6.py-3{:scope => "col"}
+        MFG cost
+      %th.px-6.py-3{:scope => "col"}
+        Discount(%)
+      %th.px-6.py-3{:scope => "col"}
+        Selling price
+      %th.px-6.py-3{:scope => "col"}
+        A.. delivery cost
       %th.px-6.py-3{:scope => "col"}
         Stock quantity
-      %th.px-6.py-3{:scope => "col"}
-        Category
       %th.px-6.py-3{:scope => "col"}
         Action
   %tbody
@@ -20,10 +26,15 @@
       %tr.bg-white.border-b.hover:bg-gray-200
         %td.w-4.p-4= product.id
         %th.px-6.py-4.text-gray-900.whitespace-nowrap{:scope => "row"}= product.name
-        %td.px-6.py-4= product.description
-        %td.px-6.py-4= product.price
-        %td.px-6.py-4= product.stock_quantity
         %td.px-6.py-4= product.category&.name
+        %td.px-6.py-4= product.original_price
+        %td.px-6.py-4= product.mfg_cost
+        %td.px-6.py-4= product.discount
+        %td.px-8.py-4
+          .bg-blue-100.text-blue-400.text-base.font-normal.rounded-lg.text-center
+            = number_to_currency(product.price, precision: 0, unit: "₹ ")
+        %td.px-6.py-4= product.approx_delivery_cost
+        %td.px-6.py-4= product.stock_quantity
         %td.px-6.py-4
-          = link_to "Edit", edit_admin_product_path(product), class: "font-medium text-blue-600 hover:underline"
+          = link_to "Edit", edit_admin_product_path(product), class: "font-medium text-green-500 hover:underline"
       
