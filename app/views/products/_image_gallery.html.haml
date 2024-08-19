@@ -1,4 +1,4 @@
-%div.flex.flex-row.lg:flex-col.items-center.overflow-y-auto{class: "lg:h-[600px] h-[90px] lg:w-[60px] w-full"}
+%div.flex.flex-row.lg:flex-col.items-center.overflow-y-auto{class: "lg:h-[350px] h-[90px] lg:w-[60px] w-full"}
   - @product.product_images.each_with_index do |image, index|
     %div.mb-2.cursor-pointer
       = image_tag image, alt: @product.name, class: "object-contain w-[60px] h-auto border-2 #{index.zero? ? 'border-green-500' : 'border-transparent'} hover:opacity-80 transition-opacity duration-200 ease-in-out", data: { action: "click->product#selectImage", image_url: url_for(image) }

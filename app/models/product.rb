@@ -14,6 +14,16 @@ class Product < ApplicationRecord
 
   after_save :update_price 
 
+  scope :by_search,     lambda { |search| where('name ILIKE ?', "%#{search.downcase}%")}
+  scope :by_category,   lambda { |category_id| where(category_id: category_id) }
+  scope :by_review,     lambda { |review| left_joins(:reviews).group('products.id').having('AVG(reviews.rating) > ?', review) }
+
+
+  def self.popular_product
+    left_joins(:reviews).group('products.id').order('COUNT(reviews.id) DESC')
+  end
+
+
   def update_price
     price = (original_price * (1 - discount / 100))
     update_columns(price: price)

@@ -3,7 +3,13 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.all.includes(:reviews)
+    @products = @products.by_search(params[:search]) if params[:search].present?
+    @products = @products.order(price: params[:price]) if params[:price].present?
+    @products = @products.by_category(params[:category_id]) if params[:category_id].present?
+    @products = @products.order(created_at: params[:created_at]) if params[:created_at].present?
+    @products = @products.by_review(params[:rating]) if params[:rating].present?
+    @products = @products.popular_product if params[:popular].present?
   end
 
   # GET /products/1 or /products/1.json
