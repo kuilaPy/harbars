@@ -11,6 +11,10 @@ class Product < ApplicationRecord
   has_rich_text :specification
 
   validates :name, presence: true
+  validates :original_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :approx_delivery_cost, presence: true,  numericality: { greater_than_or_equal_to: 0 }
+  validates :discount, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+
 
   after_save :update_price 
 
@@ -25,7 +29,7 @@ class Product < ApplicationRecord
 
 
   def update_price
-    price = (original_price * (1 - discount / 100))
+    price = ((original_price - approx_delivery_cost )* (1 - discount / 100))
     update_columns(price: price)
   end
 
