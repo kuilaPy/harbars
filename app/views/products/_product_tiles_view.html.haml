@@ -5,10 +5,10 @@
   %div.relative
     = link_to product_path(product) do
       - if product.product_images.attached?
-        = image_tag product.product_images.first, class: "w-full h-52 object-cover mt-8 mb-8 hover:opacity-75"
+        = image_tag product.product_images.first, class: "w-full h-52 object-contain object-center mt-8 hover:opacity-75"
   %div.p-4
     = link_to product_path(product) do
-      %h2.mt-1.text-lg.font-bold.text-gray-800.dark:text-gray-100.hover:text-gray-500
+      .h-12.mt-1.text-lg.font-bold.text-gray-800.dark:text-gray-100.hover:text-gray-500
         = product.name
     %div.flex.items-center.mt-2
       %span.text-yellow-400.text-sm
@@ -21,5 +21,5 @@
         = number_to_currency(product.price, precision: 0, unit: "Rs. ")
       %span.text-sm.text-gray-600.dark:text-gray-400.line-through.ml-2
         = number_to_currency(product.original_price, precision: 0, unit: "Rs. ")
-    %button.mt-8.w-full.bg-green-500.text-white.px-4.py-2.rounded-lg.text-center.hover:bg-green-600{'data-action': "click->cart#addToCart", 'data-product-id': "#{product.id}"}
-      Add to cart
+    %button.mt-8.w-full.inline-block.bg-gradient-to-r.from-green-500.to-blue-500.text-white.px-4.py-2.rounded-lg.text-center.shadow-lg.hover:from-blue-500.hover:to-green-500.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50.transition-transform.transform.hover:scale-105{'data-action': "click->cart#addToCart", 'data-product-id': "#{product.id}"}
+      Add to Cart
