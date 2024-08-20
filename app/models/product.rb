@@ -11,6 +11,10 @@ class Product < ApplicationRecord
   has_rich_text :specification
 
   validates :name, presence: true
+  validates :original_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :approx_delivery_cost, presence: true,  numericality: { greater_than_or_equal_to: 0 }
+  validates :discount, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+
 
   after_save :update_price 
 
