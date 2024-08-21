@@ -13,7 +13,8 @@
           
       %div.px-6.py-4.flex-1
         = f.text_field :description, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 "
-      %div.px-6.py-4.flex-1= @category.created_at.strftime("%d-%^b-%y")
+      %div.px-6.py-4.flex-1
+        = f.select :parent_category_id, options_for_select(@parents.collect{|e| [e.name, e.id]}, @category.parent_category_id),{}, class: 'selectable focus:ring-green-500 focus:border-green-500'
       %div.px-6.py-4.flex-1
         = f.submit "Update", class: "text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         = link_to "cancel", "" , class: "text-sm ml-4 text-sm border border-gray-200  hover:bg-gray-300 rounded-xl py-2 px-6 text-gray-500"

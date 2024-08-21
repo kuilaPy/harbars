@@ -39,7 +39,7 @@
     .col-span-1
       %label.block.text-sm.font-medium.text-gray-700 Category
       %div.mt-1
-        = f.collection_select :category_id, Category.all, :id, :name, {prompt: "Select Category"}, {class: "form-select block w-full border-gray-300 rounded-md shadow-sm"}
+        = f.collection_select :category_id, @categories, :id, :name, {prompt: "Select Category"}, {class: "selectable w-full border-gray-300 rounded-md shadow-sm"}
         -# = f.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category", class: "form-select block w-full border-gray-300 rounded-md shadow-sm"
     - if @product.product_images.present?
       - @product.product_images.each do |ph|

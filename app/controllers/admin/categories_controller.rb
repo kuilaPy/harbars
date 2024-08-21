@@ -1,5 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController 
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_parents, only: %i[ new edit create update ]
   before_action :add_breadcrumbs
 
 
@@ -25,7 +26,7 @@ class Admin::CategoriesController < Admin::BaseController
         # format.json { render :show, status: :created, location: @category }
         format.turbo_stream do
           flash.now[:notice] = "Created!"
-          render turbo_stream: turbo_stream.after(:categories, partial: "admin/categories/category_tr", locals: { category: @category },)
+          render turbo_stream: [turbo_stream.after(:categories, partial: "admin/categories/category", locals: { category: @category }), turbo_stream.remove("admin_modal")]
         end
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -67,11 +68,15 @@ class Admin::CategoriesController < Admin::BaseController
     def set_category
       @category = Category.find_by_id(params[:id])
     end
+
+    def set_parents
+      @parents = Category.left_joins(:products).group(:id).having('COUNT(products.id) = 0').order(:name)
+    end
     
     def add_breadcrumbs
       breadcrumbs.add "Categories", admin_categories_path
     end
     def category_params
-      params.require(:category).permit(:name, :description)
+      params.require(:category).permit(:name, :description, :parent_category_id)
     end
 end
