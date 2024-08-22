@@ -17,6 +17,15 @@
             .p-4.md:p-5
               .space-y-4
                 = form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
+                  - if resource.errors.any?
+                    #error_explanation.p-3.mb-4.border-2.border-red-400.rounded-lg
+                      .text-red-500.text-base.font-semibold= "#{pluralize(resource.errors.count, "error")} prohibited to sign in:"
+                      %ul.px-4.py-2
+                        - resource.errors.full_messages.each do |message|
+                          %li= message
+                  - if notice.present? or alert.present?
+                    #error_explanation.p-3.mb-4.border-2.border-red-400.rounded-lg
+                      .text-red-500.text-base.font-semibold= alert || notice
                   %div
                     = f.label :email, class: "block mb-2 text-sm font-medium text-gray-900"
                     = f.email_field :email,autofocus: true,placeholder: "example@gmail.com",required: "", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"

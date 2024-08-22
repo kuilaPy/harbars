@@ -14,6 +14,8 @@
  *= require_self
  */
 
+ @import "aos";
+
 :root {
   --primary_bg_color: #038d3e; /* Primary green color */
   --secondary_color: #f6921e;  /* Secondary orange color */
