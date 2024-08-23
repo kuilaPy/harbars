@@ -14,6 +14,8 @@
  *= require_self
  */
 
+ @import "aos";
+
 :root {
   --primary_bg_color: #038d3e; /* Primary green color */
   --secondary_color: #f6921e;  /* Secondary orange color */
@@ -84,4 +86,13 @@
   font-size: 14px;
   border-radius: 5px;
   color: var(--secondary_text_color);
+}
+.nice-select{
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 1rem;
+}
+select.selectable{
+  position: absolute;
 }

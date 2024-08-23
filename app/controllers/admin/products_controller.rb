@@ -1,6 +1,7 @@
 class Admin::ProductsController < Admin::BaseController 
   before_action :find_by_id_product, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumbs
+  before_action :set_category, only: [:new, :create, :edit, :update]
   
   def index
     @products = Product.all.with_rich_text_specification
@@ -46,8 +47,12 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path
   end 
 
+
   private
   
+  def set_category
+    @categories = Category.left_joins(:child_categories).group('categories.id').having('COUNT(child_categories_categories.id) = 0')
+  end
   def find_by_id_product
     @product = Product.find_by_id(params[:id])
   end
