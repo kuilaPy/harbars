@@ -37,12 +37,14 @@
                 %span= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
 
               %div.flex.justify-between.text-sm.text-black-500.px-4
-                %span GST(18%)
-                %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+                -# %span GST(18%)
+                -# %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+                %span Delivery charge
+                %span= number_to_currency(0, unit: "Rs. ")
               %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-900
               %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4.mb-4
                 %span Total
-                %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
+                %span= number_to_currency(@cart.total_price, unit: "Rs. ")
           .grid.grid-col-1.p-4
             .flex.flex-row-reverse
               = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
