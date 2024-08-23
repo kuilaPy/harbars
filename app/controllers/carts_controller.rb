@@ -48,7 +48,7 @@ class CartsController < ApplicationController
       if @cart.save
         @cart_prod = @cart.cart_items.find_by(product_id: cart_product_params[:product_id])
         if @cart_prod.present?
-          @cart_prod.update_columns(quantity: @cart_prod.quantity + 1, price: @cart_prod.product.price * @cart_prod.quantity + 1 )
+          @cart_prod.update(quantity: @cart_prod.quantity + 1, price: @cart_prod.product.price * (@cart_prod.quantity + 1) )
         else
           @cart_prod = @cart.cart_items.new(cart_product_params)
           @cart_prod.quantity =  1
