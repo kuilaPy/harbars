@@ -1,26 +1,25 @@
 .p-4.text-bold.text-xl.flex.flex-row
-  %div Personal Information
+  %div.text-gray-900.dark:text-gray-100 Personal Information
   %div
-    = link_to edit_user_path(user) , data:{turbo: true} do
-      = heroicon 'pencil-square',variant: :solid , options: {class: "w-6 h-6 ml-2 inline-block text-green-500" } 
-.grid.grid-cols-3.gap-4.p-4.border-t
+    = link_to edit_user_path(user), data: { turbo: true } do
+      = heroicon 'pencil-square', variant: :solid, options: { class: "w-6 h-6 ml-2 inline-block text-green-500" } 
+
+.grid.grid-cols-3.md:grid-cols-3.gap-4.p-4.border-t.border-gray-300.dark:border-gray-600
   .col-span-1
-    %p.block.mb-2.text-sm.font-medium.text-gray-600 First Name
-    .bg-gray-50.border.border-gray-300.text-gray-600.text-sm.rounded-lg.block.w-full.p-2.5    
+    %p.block.mb-2.text-sm.font-medium.text-gray-600.dark:text-gray-400 First Name
+    .bg-gray-50.dark:bg-gray-800.border.border-gray-300.dark:border-gray-600.text-gray-600.dark:text-gray-300.text-sm.rounded-lg.block.w-full.p-2.5
       = user.first_name
   .col-span-1
-    %p.block.mb-2.text-sm.font-medium.text-gray-600 Last Name
-    .bg-gray-50.border.border-gray-300.text-gray-600.text-sm.rounded-lg.block.w-full.p-2.5
+    %p.block.mb-2.text-sm.font-medium.text-gray-600.dark:text-gray-400 Last Name
+    .bg-gray-50.dark:bg-gray-800.border.border-gray-300.dark:border-gray-600.text-gray-600.dark:text-gray-300.text-sm.rounded-lg.block.w-full.p-2.5
       = user.last_name
   .col-span-1
   .col-span-1
-    %p.block.mb-2.text-sm.font-medium.text-gray-600 Email
-    .bg-gray-50.border.border-gray-300.text-gray-600.text-sm.rounded-lg.block.w-full.p-2.5
+    %p.block.mb-2.text-sm.font-medium.text-gray-600.dark:text-gray-400 Email
+    .bg-gray-50.dark:bg-gray-800.border.border-gray-300.dark:border-gray-600.text-gray-600.dark:text-gray-300.text-sm.rounded-lg.block.w-full.p-2.5
       = user.email
   .col-span-1
-    %p.block.mb-2.text-sm.font-medium.text-gray-600 Phone Number
-    .bg-gray-50.border.border-gray-300.text-gray-600.text-sm.rounded-lg.block.w-full.p-2.5
+    %p.block.mb-2.text-sm.font-medium.text-gray-600.dark:text-gray-400 Phone Number
+    .bg-gray-50.dark:bg-gray-800.border.border-gray-300.dark:border-gray-600.text-gray-600.dark:text-gray-300.text-sm.rounded-lg.block.w-full.p-2.5
       = user.phone_number
   .col-span-1
-
-    
