@@ -1,16 +1,15 @@
 = render partial: "shared/breadcrumbs"
-.grid.grid-cols-4.gap-4.px-24.pt-2.pb-8
+.grid.grid-cols-1.md:grid-cols-4.gap-4.px-4.md:px-24.pt-2.pb-8
   = render "users/profile_side_nav"
-  .col-span-3.rounded-lg.border.p-2.bg-white.h-auto
-    .p-4.text-bold.text-xl
-      %div Mange Addresses
-      %div.border-green.my-2.p-3.rounded-lg
+  .col-span-3.rounded-lg.border.p-2.bg-white.dark:bg-gray-800.h-auto
+    .p-4.text-xl
+      %div Manage Addresses
+      %div.border-green.my-2.p-3.rounded-lg.dark:border-green-700
         = turbo_frame_tag Address.new do
           = link_to new_address_path(for: "user_new_address") do
-            = heroicon 'plus',variant: :solid , options: {class: "w-6 h-6 mr-1 inline-block text-green-500"} 
-            %span.text-green-500.text-base Add New Address
-      %div.border-green.rounded-lg
+            = heroicon 'plus', variant: :solid, options: {class: "w-6 h-6 mr-1 inline-block text-green-500 dark:text-green-300"} 
+            %span.text-green-500.text-base.dark:text-green-300 Add New Address
+      %div.border-green.rounded-lg.dark:border-green-700
         = turbo_frame_tag "addresses" do
           - @addresses.each_with_index do |address, index|
             = render partial: "address", locals: {address: address, index: index}
-      

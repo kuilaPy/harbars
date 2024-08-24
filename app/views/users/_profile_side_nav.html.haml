@@ -1,19 +1,20 @@
-.col-span-1   
-  %div.flex.items-center.border.p-2.bg-white.rounded-lg
-    = heroicon 'user-circle', options: {class: "w-14 h-14 mr-1 text-green-700"}
+.col-span-1
+  %div.flex.items-center.border.p-2.bg-white.dark:bg-gray-800.rounded-lg
+    = heroicon 'user-circle', options: { class: "w-14 h-14 mr-1 text-green-700" }
     %div.leading-4
-      %p.text-xs Hello,
-      .text-bold
+      %p.text-xs.text-gray-500.dark:text-gray-400 Hello,
+      .font-bold.text-gray-900.dark:text-gray-100
         = current_user.full_name
-  .border.p-2.bg-white.rounded-lg.mt-4
+
+  .border.p-2.bg-white.dark:bg-gray-800.rounded-lg.mt-4
     %div.flex.items-center.p-2
-      = heroicon 'user', options: {class: "w-8 h-6 mr-1 text-green-700"}
-      %span.text-gray-500.font-bold	  Account Setting
-    %hr/
-    %ul.p-2.text-sm
-      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-        = active_link_to "Profile Information",user_path(current_user),active: [['users'], ["show"]], class_active: 'public-nav-active' 
-      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-        = active_link_to "Change Password",edit_password_user_path(current_user),active: [['users'], ["edit_password"]], class_active: 'public-nav-active' 
-      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500
-        = active_link_to "Manage Addresses", addresses_path, active: [['addresses'], ["index"]], class_active: 'public-nav-active'#, data: { turbo_frame: 'show_user' }
+      = heroicon 'user', options: { class: "w-8 h-6 mr-1 text-green-700" }
+      %span.text-gray-900.dark:text-gray-100.font-bold Account Setting
+    %hr.border-gray-300.dark:border-gray-600/
+    %ul.p-2.text-sm.text-gray-700.dark:text-gray-300
+      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500.dark:hover:bg-green-900.dark:hover:text-green-300
+        = active_link_to "Profile Information", user_path(current_user), active: [['users'], ["show"]], class_active: 'public-nav-active'
+      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500.dark:hover:bg-green-900.dark:hover:text-green-300
+        = active_link_to "Change Password", edit_password_user_path(current_user), active: [['users'], ["edit_password"]], class_active: 'public-nav-active'
+      %li.py-2.pl-10.hover:bg-green-50.hover:text-green-500.dark:hover:bg-green-900.dark:hover:text-green-300
+        = active_link_to "Manage Addresses", addresses_path, active: [['addresses'], ["index"]], class_active: 'public-nav-active'
