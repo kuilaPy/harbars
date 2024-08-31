@@ -7,6 +7,6 @@ class Cart < ApplicationRecord
   scope :active, ->{where(status: true)}
 
   def total_saved
-    self.cart_items.joins(:product).sum('products.original_price * cart_items.quantity') - self.total_price
+    self.cart_items.joins(:product).sum('(products.original_price  - products.approx_delivery_cost) * cart_items.quantity') - self.total_price
   end
 end

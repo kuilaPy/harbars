@@ -10,7 +10,7 @@
   .text-right.w-40
     %p.text-xl.font-semibold= product.price
     - if product.discount.present? and product.discount > 0
-      %p.text-gray-500.line-through= product.original_price
+      %p.text-gray-500.line-through= product.original_price - product.approx_delivery_cost
       %p.text-green-500.font-semibold.mt-1= "#{product.discount}% OFF"
     %button.w-full.inline-block.bg-gradient-to-r.from-green-500.to-blue-500.text-white.px-8.py-3.rounded-lg.shadow-lg.mt-8.mb-4.hover:from-blue-500.hover:to-green-500.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50.transition-transform.transform.hover:scale-105 Add to Cart
 

@@ -29,7 +29,7 @@ class Product < ApplicationRecord
 
 
   def update_price
-    price = (original_price * (1 - discount / 100))
+    price = ((original_price - approx_delivery_cost )* (1 - discount / 100))
     update_columns(price: price)
   end
 
