@@ -1,3 +1,4 @@
+@import "nice-select2";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -110,7 +111,7 @@
 }
 
 .dark .public-nav-active {
-  background: #111827; /* Dark background for active public nav */
+  background: #1f2937; /* Dark background for active public nav */
   color: rgb(50, 255, 50); /* Bright green text in dark mode */
 }
 

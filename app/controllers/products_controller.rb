@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     @products = @products.order(created_at: params[:created_at]) if params[:created_at].present?
     @products = @products.by_review(params[:rating]) if params[:rating].present?
     @products = @products.popular_product if params[:popular].present?
+    @filter_count = request&.query_parameters&.count {|k, v| v.present?}
   end
 
   # GET /products/1 or /products/1.json

@@ -22,16 +22,18 @@
                 %span= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
 
               %div.flex.justify-between.text-sm.text-black-500.px-4
-                %span GST(18%)
-                %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+                -# %span GST(18%)
+                -# %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+                %span Delivery charge
+                %span= number_to_currency(0, unit: "Rs. ")
               %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-900
               %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4.mb-4
                 %span Total
-                %span= number_to_currency(@cart.total_price * 1.18, unit: "Rs. ")
+                %span= number_to_currency(@cart.total_price, unit: "Rs. ")
           .grid.grid-col-1.p-4
             .flex.flex-row-reverse
               = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-              %button#rzp-button1 Pay with Razorpay
+              %button#rzp-button1.inline-block.bg-gradient-to-r.from-green-500.to-blue-500.text-white.px-4.py-2.rounded-lg.text-center.shadow-lg.hover:from-blue-500.hover:to-green-500.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50.transition-transform.transform.hover:scale-105 Pay with Razorpay
               -# %script{"data-buttontext"=>"Pay INR #{(@payment.amount.to_f).round} with Razorpay", "data-order_id" =>  "#{@payment.razorpay_order_id}", "data-description" => "Campaign Name", "data-key" => "#{Figaro.env.RAZORPAY_KEY}", "data-name" => "herbal", "data-prefill.contact" => "#{current_user.phone_number}", "data-prefill.email" => "#{current_user.email}", "data-prefill.name" => "", "data-theme.color" => "#198F69", :src => "https://checkout.razorpay.com/v1/checkout.js", "data-disable-with" => "Please wait..." }
               %script{:src => "https://checkout.razorpay.com/v1/checkout.js", "data-turbo-track": "reload" }
 
@@ -39,8 +41,8 @@
   var options = {
       "key": "#{Figaro.env.RAZORPAY_KEY}", // Enter the Key ID generated from the Dashboard
       "currency": "INR",
-      "name": "Chandra Herbal",
-      "description": "Chandra Herbal",
+      "name": "Chandra Herbals",
+      "description": "Chandra Herbals",
       "order_id": "#{@payment.razorpay_order_id}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       "callback_url": "#{Figaro.env.BASE_URL}/payments/#{@payment.id}/payment_success",
       "prefill": {
@@ -52,7 +54,7 @@
           "address": "Razorpay Corporate Office"
       },
       "theme": {
-          "color": "#3399cc"
+          "color": "#038d3e"
       }
   };
   var rzp1 = new Razorpay(options);
