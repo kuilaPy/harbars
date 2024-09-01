@@ -1,44 +1,41 @@
-%div.mx-auto.px-4.bg-gray-100.w-full.h-screen.dark:bg-gray-900
+%div.mx-auto.px-4.bg-gray-100.w-full.dark:bg-gray-900
   %div.p-4.pt-8
     %h2.text-2xl.font-bold.mb-6 My cart
     - if @cart_items.present?
       %div.grid.grid-cols-1.md:grid-cols-3.gap-4
-        %div.col-span-2
-          %table.w-full.shadow-md.rounded-lg.bg-white.dark:bg-gray-800
-            %thead
-              %tr
-                %th.text-left.px-4.py-4.dark:text-gray-100 Product
-                %th.text-left.px-4.py-4.dark:text-gray-100 Quantity
-                %th.text-left.px-4.py-4.dark:text-gray-100 Total
-            %tbody
-              - @cart_items.each do |item|
-                %tr.border-t
-                  %td.px-4.py-4
-                    %div.flex.items-center
-                      = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-contain mr-4"
-                      %div
-                        %div.p-4
-                          %h2.text-lg.font-bold.text-gray-800.dark:text-gray-100
-                            = item.product.name
-                          %h6.dark:text-gray-100= truncate(item.product.description, {length: 20})
-                          %div.mt-2
-                            %span.text-l.font-bold.text-red-500.dark:text-red-450
-                              = number_to_currency(item.product.price, precision: 0, unit: "Rs. ")
-                            %span.text-sm.text-gray-600.line-through.ml-2.dark:text-gray-300
-                              = number_to_currency(item.product.original_price, precision: 0, unit: "Rs. ")
-                  %td.px-4.py-4
-                    %div.flex.items-center
-                      %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300.dark:bg-gray-800.dark:text-gray-100(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
-                      %span.mx-2.dark:text-gray-100= item.quantity
-                      %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300.dark:bg-gray-800.dark:text-gray-100(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
-                    
-                  %td.px-4.py-4
-                    %span.text-xl.font-bold.text-gray-900.dark:text-gray-100
-                      = number_to_currency(item.price, precision: 0, unit: "Rs. ")
-                  %td.w-2.cursor-pointer.p-4
-                    -# %button.px-2.py-1.bg-red-500.text-white.rounded-lg.hover:bg-red-600(data-action="click->cart#remove" data-item-id="#{item.id}") Remove
-                    %button.flex.rounded-lg.hover:ring-2.hover:ring-red-300.bg-white.w-auto.p-2{data: {action: "click->cart#remove", "item-id":"#{item.id}", "product-id": "#{item.product.id}"}}
-                      = heroicon 'trash', options: { class: "w-5 h-5 text-red-500"}
+        %div.col-span-1.md:col-span-2
+          %div.grid.grid-cols-1.gap-1.rounded
+            %div.hidden.md:grid.md:grid-cols-7.font-bold.bg-white.dark:bg-gray-800.px-2.py-4.rounded
+              %div.col-span-3.text-center Product
+              %div.col-span-1.text-center Quantity
+              %div.col-span-3.text-center Total
+
+            - @cart_items.each do |item|
+              %div.grid.grid-cols-1.md:grid-cols-7.items-center.bg-white.dark:bg-gray-800.px-2.py-4.rounded.gap-2
+                %div.flex.items-start.md:items-center.col-span-3
+                  = image_tag item.product.product_images.first, alt: item.product.name, class: "w-16 h-16 object-contain mb-2 md:mb-0 md:mr-4"
+                  %div.pl-20.md:pl-0
+                    %h2.text-lg.font-bold.text-gray-800.dark:text-gray-100
+                      = item.product.name
+                    %h6.dark:text-gray-100= truncate(item.product.description, {length: 20})
+                    %div.mt-2
+                      %span.text-l.font-bold.text-red-500.dark:text-red-450
+                        = number_to_currency(item.product.price, precision: 0, unit: "Rs. ")
+                      %span.text-sm.text-gray-600.line-through.ml-3.md:ml-2.dark:text-gray-300
+                        = number_to_currency(item.product.original_price, precision: 0, unit: "Rs. ")
+
+                %div.flex.items-center.justify-start.md:justify-center.col-span-1
+                  %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300.dark:bg-gray-800.dark:text-gray-100(data-action="click->cart#decrement" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") -
+                  %span.mx-2.dark:text-gray-100= item.quantity
+                  %button.px-2.py-1.bg-gray-200.rounded-lg.hover:bg-gray-300.dark:bg-gray-800.dark:text-gray-100(data-action="click->cart#increment" data-item-id="#{item.id}" data-quantity="#{item.quantity}" data-price="#{item.product.price}" data-product-id="#{item.product.id}") +
+
+                %div.flex.justify-start.md:justify-center.col-span-2
+                  %span.text-xl.font-bold.text-gray-900.dark:text-gray-100
+                    = number_to_currency(item.price, precision: 0, unit: "Rs. ")
+                -# %div.flex.justify-end.md:justify-center
+                %div.flex.justify-start.md:justify-center.col-span-1
+                  %button.flex.rounded-lg.hover:ring-2.hover:ring-red-300.bg-white.w-auto.p-2{data: {action: "click->cart#remove", "item-id":"#{item.id}", "product-id": "#{item.product.id}"}}
+                    = heroicon 'trash', options: { class: "w-5 h-5 text-red-500"}
 
         %div
           %div.bg-white.shadow-md.rounded-lg.p-4.dark:bg-gray-800
@@ -51,8 +48,6 @@
               %span= number_to_currency(@cart.total_saved, precision: 0, unit: "Rs. ")
             %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700
             %div.flex.justify-between.text-sm.text-black-500
-              -# %span GST(18%)
-              -# %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
               %span Delivery charge
               %span= number_to_currency(0, unit: "Rs. ")
             %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-700

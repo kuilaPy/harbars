@@ -1,34 +1,37 @@
 
-%div.mx-auto.p-8.bg-gray-100.w-full.h-auto.container.max-w-screen-lg
-  .flex.pt-4
-    = render 'indicator', {step: 2}
-    .flex-grow.bg-white.ml-4.rounded
-      = turbo_frame_tag "order_address" do
-        .flex.justify-between
-          %div.p-4.text-green-500.text-2xl.bold Address Information
-          %div.self-center
-            = link_to 'Add Address', new_order_address_addresses_path, class: "text-md px-5 text-center py-2 text-white bg-green-500 hover:bg-green-600 mx-4 rounded-lg"
+%div.mx-auto.p-8.bg-gray-100.dark:bg-gray-900.w-full.container.max-w-screen-lg
+  .pt-10
+    .grid.grid-cols-1.md:grid-cols-8.gap-4
+      .grid-span-1.md:col-span-2
+        = render 'indicator', {step: 2}
+      .grid-span-1.md:col-span-6
+        .flex-grow.bg-white.ml-4.rounded.dark:bg-gray-800
+          = turbo_frame_tag "order_address" do
+            .flex.justify-between
+              %div.p-4.text-green-500.text-md.md:text-2xl.bold Address Information
+              %div.self-center
+                = link_to 'Add Address', new_order_address_addresses_path, class: "text-sm md:text-md px-5 text-center py-2 text-white bg-green-500 hover:bg-green-600 mx-4 rounded-lg", style: "text-wrap: nowrap;"
 
-        %div 
-          = form_with(model: Order.new, url: wizard_path, local: true, data: {turbo: false, turbo_stream: false}, method: "PATCH") do |f|
-            - current_user.addresses.each do |address|
-              .flex.p-4.items-center
-                .flex.items-center.h-5.mx-4
-                  = f.radio_button :shipping_address_id, address.id, checked: address.is_default ? true : false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-green-500 focus:ring-2"
-                .ms-2.text-sm
-                  %label.font-medium.text-gray-500.text-base.my-2
-                    #{address.name}
-                    %span.mx-4.bg-blue-100.text-blue-800.text-xs.font-medium.me-2.rounded{:class => "px-2.5 py-0.5"}= address.address_type.capitalize
-                  %p#helper-radio-text.text-xs.font-normal.text-gray-500.mt-2= address.address_line_1
-                  %p#helper-radio-text.text-xs.font-normal.text-gray-500= address.address_line_2
-                  %p#helper-radio-text.text-xs.font-normal.text-gray-500 #{address.city}, #{address.state}, pin-#{address.zip_code}
-                  %p#helper-radio-text.text-xs.font-normal.text-gray-500 #{address.contact_number}
-            
-            .grid.grid-col-1.p-4
-              .flex.flex-row-reverse
-                = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-                - if current_user.addresses.count > 0
-                  = f.submit "Save", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center py-2"
+            %div 
+              = form_with(model: Order.new, url: wizard_path, local: true, data: {turbo: false, turbo_stream: false}, method: "PATCH") do |f|
+                - current_user.addresses.each do |address|
+                  .flex.p-4.items-center
+                    .flex.items-center.h-5.mx-4
+                      = f.radio_button :shipping_address_id, address.id, checked: address.is_default ? true : false, class: "w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 focus:ring-2"
+                    .ms-2.text-sm
+                      %label.font-medium.text-gray-500.text-base.my-2
+                        #{address.name}
+                        %span.mx-4.bg-green-100.text-green-800.text-xs.font-medium.me-2.rounded{:class => "px-2.5 py-0.5"}= address.address_type.capitalize
+                      %p#helper-radio-text.text-xs.font-normal.text-gray-500.mt-2= address.address_line_1
+                      %p#helper-radio-text.text-xs.font-normal.text-gray-500= address.address_line_2
+                      %p#helper-radio-text.text-xs.font-normal.text-gray-500 #{address.city}, #{address.state}, pin-#{address.zip_code}
+                      %p#helper-radio-text.text-xs.font-normal.text-gray-500 #{address.contact_number}
+                
+                .grid.grid-col-1.p-4
+                  .flex.flex-row-reverse
+                    = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-green dark:text-gray-700 bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
+                    - if current_user.addresses.count > 0
+                      = f.submit "Save", class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 text-center py-2"
 
 
 
