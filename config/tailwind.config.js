@@ -20,8 +20,8 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    require('flowbite/plugin')({
-      charts: true,
-    }),
+    // require('flowbite/plugin')({
+    //   charts: true,
+    // }),
   ]
 }
