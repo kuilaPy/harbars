@@ -4,7 +4,7 @@ import 'flowbite';
 import "controllers"
 import 'apexcharts'
 
-import "./my_chart"
+import "my_chart"
 import "nice-select2"
 import "aos";
 import "trix"
