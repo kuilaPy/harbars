@@ -2,9 +2,9 @@
   .h-full.pb-4.overflow-y-auto.bg-green-50
     %ul.space-y-2.font-medium
       %li
-        = active_link_to admin_products_path,active: [['admin/dashbord'], []], class_active: 'admin-nav-active' ,class: "flex items-center px-6 py-2 text-gray-800 hover:bg-green-200 group hover:text-green-900"  do
+        = active_link_to admin_root_path,active: [['admin/dashbord'], []], class_active: 'admin-nav-active' ,class: "flex items-center px-6 py-2 text-gray-800 hover:bg-green-200 group hover:text-green-900"  do
           = heroicon 'squares-2x2',variant: :solid , options: {class: "flex-shrink-0 w-5 h-5 text-gray-500 transition.duration-75 group-hover:text-green-900"} 
-          %span.ms-4 Dashbord
+          %span.ms-4 Dashboard
       -# %li
       -#   %a.flex.items-center.px-4.py-2.text-gray-800.hover:bg-green-200.group.hover:text-green-900.group{href: "#"}
       -#     %svg.flex-shrink-0.w-5.h-5.text-gray-500.transition.duration-75.group-hover:text-green-900{"aria-hidden" => "true", fill: "currentColor", viewbox: "0 0 18 18", xmlns: "http://www.w3.org/2000/svg"}
