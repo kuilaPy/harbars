@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
+    resources :questions
     root to: 'dash_board#index'
     resources :orders, only: [:index, :show, :update] do
       member do

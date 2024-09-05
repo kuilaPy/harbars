@@ -1,0 +1,10 @@
+%div.w-full.text-sm.text-left.rtl:text-right.text-gray-500
+  %div.text-sm.text-gray-700.uppercase.bg-gray-50.flex.font-semibold
+    %div.p-4.flex-1.text-center= "#id"
+    %div.px-6.py-3.flex-1.text-center Product
+    %div.px-6.py-3.flex-1.text-center Question
+    %div.px-6.py-3.flex-1.text-center Answer
+    %div.px-6.py-3.flex-1.text-center Action
+  = turbo_frame_tag "questions" do
+    - @questions.each do |question|
+      = render "question", question: question

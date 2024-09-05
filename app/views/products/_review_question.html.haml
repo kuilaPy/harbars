@@ -28,10 +28,11 @@
     - @questions = @product.questions.order(created_at: :desc)
     - if @questions.present?
       - @questions.each do |question|
-        - if question.reply.present?
-          %div.p-4
-            %p.text-sm.text-gray-700.dark:text-gray-300
-              ="Q: #{question.content}"
+        %div.p-4
+          %p.text-sm.text-gray-700.dark:text-gray-300
+            %b="Q:" 
+            %span= question.content
+          - if question.reply.present?
             %p.text-sm.text-gray-700.dark:text-gray-300
               A: 
               %span.font-light= question.reply&.content
