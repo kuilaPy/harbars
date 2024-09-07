@@ -2,10 +2,12 @@
 import "@hotwired/turbo-rails"
 import 'flowbite';
 import "controllers"
+import 'apexcharts'
 
 import "nice-select2"
 import "aos";
 import "trix"
+import "my_chart"
 import "@rails/actiontext"
 
 import jQuery from "jquery"

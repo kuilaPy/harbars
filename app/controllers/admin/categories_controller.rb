@@ -70,7 +70,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
 
     def set_parents
-      @parents = Category.left_joins(:products).group(:id).having('COUNT(products.id) = 0').order(:name)
+      @parents = Category.left_joins(:products).where.not(id: @category.id).group(:id).having('COUNT(products.id) = 0').order(:name)
     end
     
     def add_breadcrumbs

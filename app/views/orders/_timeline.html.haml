@@ -1,44 +1,44 @@
 %h2.p-2.font-semibold.text-lg Timeline
-.time_container.justify-self-center.block
+.time_container.justify-self-center.flex
   - status = @order.status_before_type_cast
-  .time_item{style: 'width: 25%;'}
+  .time_item{style: 'flex: 1;'}
     .top_element{style: 'transition-delay: 0s;'}
-      %div{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700" : "text-gray-700"}"} Order Initiate
-    .center_circle{class: "#{status >= 1 ? "bg-green-700" : "bg-gray-700"}"}
-    .time_line{class: "#{(status >= 2 || @order.cancelled?) ? "bg-green-700" : "bg-gray-700"}"}
+      %div.text-sm{style: "display: inline-block;", class: "#{status >= 1 ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Order Initiate
+    .center_circle{class: "#{status >= 1 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
+    .time_line{class: "#{(status >= 2 || @order.cancelled?) ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
     .time_bottom
       %span= @order.created_at.strftime("%dth %b, %y")
   - unless @refund.present?
-    .time_item{style: 'width: 25%'}
+    .time_item{style: 'flex: 1'}
       .top_element{style: 'transition-delay: 2s;'}
-        %div{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700" : "text-gray-700"}"} Confirmed
-      .center_circle{class: "#{status >= 2 ? "bg-green-700" : "bg-gray-700"}"}
-      .time_line{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
+        %div.text-sm{style: "display: inline-block;", class: "#{status >= 2 ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Confirmed
+      .center_circle{class: "#{status >= 2 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
+      .time_line{class: "#{status >= 3 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
       .time_bottom
         %span= @order.processed_at&.strftime("%dth %b, %y")
-    .time_item{style: 'width: 25%'}
+    .time_item{style: 'flex: 1'}
       .top_element{style: 'transition-delay: 3s;'}
-        %div{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700" : "text-gray-700"}"} Picked up
-      .center_circle{class: "#{status >= 3 ? "bg-green-700" : "bg-gray-700"}"}
-      .time_line{class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"}
+        %div.text-sm{style: "display: inline-block;", class: "#{status >= 3 ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Picked up
+      .center_circle{class: "#{status >= 3 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
+      .time_line{class: "#{status >= 4 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
       .time_bottom
         %span= @order.shipped_at&.strftime("%dth %b, %y")
-    .time_item
+    %div
       .top_element{style: 'transition-delay: 4s;'}
-        %div{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700" : "text-gray-700"}"} Delivered
-      .center_circle{style: 'bottom: -4px', class: "#{status >= 4 ? "bg-green-700" : "bg-gray-700"}"} 
+        %div.text-sm{style: "display: inline-block;", class: "#{status >= 4 ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Delivered
+      .center_circle{style: 'bottom: -4px; top: -1px', class: "#{status >= 4 ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"} 
       .time_bottom
         %span= @order.delivered_at&.strftime("%dth %b, %y")
   - else 
-    .time_item{style: 'width: 25%'}
+    .time_item{style: 'flex: 1'}
       .top_element{style: 'transition-delay: 2s;'}
-        %div{style: "display: inline-block;", class: "#{@order.cancelled? ? "text-green-700" : "text-gray-700"}"} Refund processed
-      .center_circle{class: "#{@order.cancelled? ? "bg-green-700" : "bg-gray-700"}"}
-      .time_line{class: "#{@refund.status == 'processed' ? "bg-green-700" : "bg-gray-700"}"}
+        %div.text-sm{style: "display: inline-block;", class: "#{@order.cancelled? ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Refund processed
+      .center_circle{class: "#{@order.cancelled? ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
+      .time_line{class: "#{@refund.status == 'processed' ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"}
       .time_bottom -
     .time_item
       .top_element{style: 'transition-delay: 4s;'}
-        %div{style: "display: inline-block;", class: "#{@refund.status == 'processed' ? "text-green-700" : "text-gray-700"}"} Refund Completed
-      .center_circle{style: 'bottom: -4px', class: "#{@refund.status == 'processed' ? "bg-green-700" : "bg-gray-700"}"} 
+        %div.text-sm{style: "display: inline-block;", class: "#{@refund.status == 'processed' ? "text-green-700 dark:text-green-400" : "text-gray-700 dark:text-gray-400"}"} Refund Completed
+      .center_circle{style: 'bottom: -4px; top: -1px', class: "#{@refund.status == 'processed' ? "bg-green-700 dark:bg-green-400" : "bg-gray-700 dark:bg-gray-400"}"} 
       .time_bottom -
           

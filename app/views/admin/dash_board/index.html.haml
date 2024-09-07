@@ -1,5 +1,49 @@
-%h1 
-  Admin Dash Board
-%div
-  -# = link_to 'Logout', destroy_admin_user_session_path, method: :delete, data: { turbo: false } 
+%h1.mb-5 Dashboard
+.grid.grid-cols-4.gap-4
+  .col-span-1
+    .w-full.max-w-sm.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.bg-contain.bg-no-repeat(style="background-image: url(#{asset_path 'people.svg'})")
+      .p-10
+        %div 
+        .flex.justify-end.items-end.mb-2
+          %span.text-4xl.font-bold.text-gray-900.dark:text-white= User.count
+        .flex.justify-end.items-end.mb-5{:class => "mt-2.5"}
+          %span.bg-blue-100.text-blue-800.text-xs.font-semibold.rounded.dark:bg-blue-200.dark:text-blue-800.ms-3{:class => "px-2.5 py-0.5"} Total user
+  .col-span-1
+    .w-full.max-w-sm.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.bg-left-bottom.bg-contain.bg-no-repeat(style="background-image: url(#{asset_path 'shipped.svg'}); background-size: 50%;")
+      .p-10
+        %div 
+        .flex.justify-end.items-end.mb-2
+          %span.text-4xl.font-bold.text-gray-900.dark:text-white= Order.count
+        .flex.justify-end.items-end.mb-5{:class => "mt-2.5"}
+          %span.bg-blue-100.text-blue-800.text-xs.font-semibold.rounded.dark:bg-blue-200.dark:text-blue-800.ms-3{:class => "px-2.5 py-0.5"} Orders count
+  
+  .col-span-1
+    .w-full.max-w-sm.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.bg-contain.bg-left-bottom.bg-no-repeat(style="background-image: url(#{asset_path 'order_payment.svg'}); background-size: 50%;")
+      .p-10
+        %div 
+        .flex.justify-end.items-end.mb-2
+          %span.text-4xl.font-bold.text-gray-900.dark:text-white= Order.sum(:total_price).round
+        .flex.justify-end.items-end.mb-5{:class => "mt-2.5"}
+          %span.bg-blue-100.text-blue-800.text-xs.font-semibold.rounded.dark:bg-blue-200.dark:text-blue-800.ms-3{:class => "px-2.5 py-0.5"} Order amount
+  
+  .col-span-1
+    .w-full.max-w-sm.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.bg-contai.bg-left-bottom.bg-no-repeat(style="background-image: url(#{asset_path 'price.svg'}); background-size: 70%;")
+      .p-10
+        %div 
+        .flex.justify-end.items-end.mb-2
+          %span.text-4xl.font-bold.text-gray-900.dark:text-white= Order.sum(:profit).round
+        .flex.justify-end.items-end.mb-5{:class => "mt-2.5"}
+          %span.bg-blue-100.text-blue-800.text-xs.font-semibold.rounded.dark:bg-blue-200.dark:text-blue-800.ms-3{:class => "px-2.5 py-0.5"} Profit
+.grid.grid-cols-3.gap-4.mt-5
+  .col-span-1
+    .w-full.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.p-2
+      #chart1.max-w-lg.mx-auto{"data-chart-categories" => "[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\"]", "data-chart-series" => "[{\"name\":\"Sales\",\"data\":[10,41,35,51,49,62,69,91,148]}]", "data-chart-colors" => '["#3357FF"]', "data-chart-type" => "bar", "data-chart-y-name" => 'Revenue', "data-chart-legend" => 'false'}
+  .col-span-1
+    .w-full.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.p-2
+      #chart2.max-w-lg.mx-auto{"data-chart-categories" => "[\"Q1\",\"Q2\",\"Q3\",\"Q4\",\"Q5\",\"Q6\",\"Q7\",\"Q8\",\"Q9\"]", "data-chart-series" => "[{\"name\":\"Revenue\",\"data\":[30,70,40,90,50,80,100,120,140]}]", "data-chart-type" => "area"}
+  .col-span-1 
+    .w-full.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.p-2
+      #chart3.max-w-lg.mx-auto{"data-chart-categories" => "[\"Apple\",\"Mango\",\"Orange\",\"Watermelon\",\"Grapes\"]", "data-chart-series" => "[44, 55, 41, 17, 15]", "data-chart-type" => "pie", "data-chart-legend" => true}
+
+
 

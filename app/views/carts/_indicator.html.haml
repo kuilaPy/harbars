@@ -1,5 +1,5 @@
 - step = step || 1
-%ol.relative.text-gray-500.border-s.border-gray-200.py-4
+%ol.relative.text-gray-500.border-s.border-gray-200.py-4.hidden.md:block
   %li.mb-10.ms-6
     %span.absolute.flex.items-center.justify-center.w-8.h-8.rounded-full.-start-4.ring-1.translate-y-2.5{class: "#{get_container_color(step >= 1)}"}
       = heroicon 'check', options: { class: "w-5 h-5 #{text_color(step >= 1)}" }
@@ -24,3 +24,34 @@
     %div.px-4.py-1.rounded{class: "#{background_color(step >= 4)}"}
       %h3.font-medium.leading-tight Review
       %p.text-sm Overview of your order
+
+
+%ol.items-center.flex.md:hidden
+  %li.relative.mb-0.flex-grow
+    .flex.items-center
+      .z-10.flex.items-center.justify-center.w-6.h-6.rounded-full.ring-0.ring-white.sm:ring-8.shrink-0{class: "#{get_container_color(step >= 1)}"}
+        = heroicon 'check', options: { class: "w-4 h-4 #{text_color(step >= 1)}" }
+      .flex.w-full.bg-gray-200.dark:bg-gray-700{:class => "h-0.5"}
+    .mt-3.sm:pe-8
+      %h3.text-xs.text-gray-900.dark:text-white Personal Info
+  %li.relative.mb-0.flex-grow
+    .flex.items-center
+      .z-10.flex.items-center.justify-center.w-6.h-6.rounded-full.ring-0.ring-white.sm:ring-8.shrink-0{class: "#{get_container_color(step >= 2)}"}
+        = heroicon 'clipboard-document-list', options: { class: "w-4 h-4 #{text_color(step >= 2)}" }
+      .flex.w-full.bg-gray-200.dark:bg-gray-700{:class => "h-0.5"}
+    .mt-3.sm:pe-8
+      %h3.text-xs.text-gray-900.dark:text-white Address Info
+  %li.relative.mb-0.flex-grow
+    .flex.items-center
+      .z-10.flex.items-center.justify-center.w-6.h-6.rounded-full.ring-0.ring-white.sm:ring-8.shrink-0{class: "#{get_container_color(step >= 3)}"}
+        = heroicon 'banknotes', options: { class: "w-4 h-4 #{text_color(step >= 3)}" }
+      .flex.w-full.bg-gray-200.dark:bg-gray-700{:class => "h-0.5"}
+    .mt-3.sm:pe-8
+      %h3.text-xs.text-gray-900.dark:text-white Payment
+  %li.relative.mb-0.flex-grow
+    .flex.items-center
+      .z-10.flex.items-center.justify-center.w-6.h-6.rounded-full.ring-0.ring-white.sm:ring-8.shrink-0{class: "#{get_container_color(step >= 4)}"}
+        = heroicon 'briefcase', options: { class: "w-4 h-4 #{text_color(step >= 4)}" }
+    .mt-3.sm:pe-8
+      %h3.text-xs.text-gray-900.dark:text-white.mr-2 Review
+  

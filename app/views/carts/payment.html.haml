@@ -1,41 +1,44 @@
 
-%div.mx-auto.px-4.mt-20.bg-gray-100.w-full.h-screen.container.max-w-screen-lg
-  .flex.pt-4
-    = render 'indicator', {step: 3}
-    .flex-grow.bg-white.ml-4.rounded
-      %div.p-4.text-green-500.text-2xl.bold Payment & Book order
-      %div 
-        = form_with(model: @payment, url: wizard_path, method: "PATCH", data: {turbo_stream: false, turbo: false}) do |f|
-          .grid.grid-cols-1
-            %div.bg-gray-100.mx-4.my-4.rounded
-              - @cart.cart_items.each do |item|
-                .grid.grid-cols-1.gap-4.mx-4.my-4
-                  .flex.justify-between
-                    %div 
-                      %h3.font-semibold.text-gray-600.text-sm= item.product.name
-                      %p.text-base.font-normal.text-gray-500.text-xs (price: #{item.product.price.round(2)} * #{item.quantity})
-                    %div
-                      %h3.text-gray-900= number_to_currency(item.price, precision: 0, unit: "Rs. ")
-              %hr.h-px.my-4.bg-gray-900.border-1
-              %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4
-                %span Sub total
-                %span= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
+%div.mx-auto.px-4.bg-gray-100.dark:bg-gray-900.w-full.h-screen.container.max-w-screen-lg
+  .pt-20
+    .grid.grid-cols-1.md:grid-cols-8.gap-4
+      .grid-span-1.md:col-span-2
+        = render 'indicator', {step: 3}
+      .grid-span-1.md:col-span-6
+        .flex-grow.bg-white.md:ml-4.rounded.dark:bg-gray-800
+          %div.p-4.text-green-500.text-2xl.bold Payment & Book order
+          %div 
+            = form_with(model: @payment, url: wizard_path, method: "PATCH", data: {turbo_stream: false, turbo: false}) do |f|
+              .grid.grid-cols-1
+                %div.bg-gray-100.dark:bg-gray-700.mx-4.my-4.rounded
+                  - @cart.cart_items.each do |item|
+                    .grid.grid-cols-1.gap-4.mx-4.my-4
+                      .flex.justify-between
+                        %div 
+                          %h3.font-semibold.text-gray-600.dark:text-gray-200.text-sm= item.product.name
+                          %p.text-base.font-normal.text-gray-500.text-xs.dark:text-gray-400 (price: #{item.product.price.round(2)} * #{item.quantity})
+                        %div
+                          %h3.text-gray-900.dark:text-gray-200= number_to_currency(item.price, precision: 0, unit: "Rs. ")
+                  %hr.h-px.my-4.bg-gray-900.border-1
+                  %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4
+                    %span.dark:text-gray-200 Sub total
+                    %span.dark:text-gray-200= number_to_currency(@cart.total_price, precision: 0, unit: "Rs. ")
 
-              %div.flex.justify-between.text-sm.text-black-500.px-4
-                -# %span GST(18%)
-                -# %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
-                %span Delivery charge
-                %span= number_to_currency(0, unit: "Rs. ")
-              %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-900
-              %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4.mb-4
-                %span Total
-                %span= number_to_currency(@cart.total_price, unit: "Rs. ")
-          .grid.grid-col-1.p-4
-            .flex.flex-row-reverse
-              = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 hover:bg-gray-300 mx-4 rounded-lg"
-              %button#rzp-button1.inline-block.bg-gradient-to-r.from-green-500.to-blue-500.text-white.px-4.py-2.rounded-lg.text-center.shadow-lg.hover:from-blue-500.hover:to-green-500.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50.transition-transform.transform.hover:scale-105 Pay with Razorpay
-              -# %script{"data-buttontext"=>"Pay INR #{(@payment.amount.to_f).round} with Razorpay", "data-order_id" =>  "#{@payment.razorpay_order_id}", "data-description" => "Campaign Name", "data-key" => "#{Figaro.env.RAZORPAY_KEY}", "data-name" => "herbal", "data-prefill.contact" => "#{current_user.phone_number}", "data-prefill.email" => "#{current_user.email}", "data-prefill.name" => "", "data-theme.color" => "#198F69", :src => "https://checkout.razorpay.com/v1/checkout.js", "data-disable-with" => "Please wait..." }
-              %script{:src => "https://checkout.razorpay.com/v1/checkout.js", "data-turbo-track": "reload" }
+                  %div.flex.justify-between.text-sm.text-black-500.px-4
+                    -# %span GST(18%)
+                    -# %span= number_to_currency(@cart.total_price * 0.18, unit: "Rs. ")
+                    %span.dark:text-gray-200 Delivery charge
+                    %span.dark:text-gray-200= number_to_currency(0, unit: "Rs. ")
+                  %hr.h-px.my-4.bg-gray-200.border-1.dark:bg-gray-900
+                  %div.flex.justify-between.text-lg.font-semibold.text-gray-900.px-4.mb-4
+                    %span.dark:text-gray-200 Total
+                    %span.dark:text-gray-200= number_to_currency(@cart.total_price, unit: "Rs. ")
+              .grid.grid-col-1.p-4
+                .flex.flex-row-reverse
+                  = link_to 'Back', previous_wizard_path, class: "text-sm px-5 text-center py-2 text-blue bg-gray-100 dark:text-gray-900 hover:bg-gray-300 mx-4 rounded-lg"
+                  %button#rzp-button1.inline-block.bg-gradient-to-r.from-green-500.to-blue-500.text-white.px-4.py-2.rounded-lg.text-center.shadow-lg.hover:from-blue-500.hover:to-green-500.focus:outline-none.focus:ring.focus:ring-blue-200.focus:ring-opacity-50.transition-transform.transform.hover:scale-105 Pay with Razorpay
+                  -# %script{"data-buttontext"=>"Pay INR #{(@payment.amount.to_f).round} with Razorpay", "data-order_id" =>  "#{@payment.razorpay_order_id}", "data-description" => "Campaign Name", "data-key" => "#{Figaro.env.RAZORPAY_KEY}", "data-name" => "herbal", "data-prefill.contact" => "#{current_user.phone_number}", "data-prefill.email" => "#{current_user.email}", "data-prefill.name" => "", "data-theme.color" => "#198F69", :src => "https://checkout.razorpay.com/v1/checkout.js", "data-disable-with" => "Please wait..." }
+                  %script{:src => "https://checkout.razorpay.com/v1/checkout.js", "data-turbo-track": "reload" }
 
 :javascript
   var options = {

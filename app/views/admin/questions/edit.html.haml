@@ -1,0 +1,22 @@
+= turbo_frame_tag "question-#{@question.id}" do
+  = form_for [:admin, @question], as: @question  do |f|
+    %div.bg-white.border-b.hover:bg-gray-50.flex.text-center.border.border-green-500
+      %div.w-4.p-4.flex-1= @question.id
+      %div.w-4.p-4.flex-1= @question.product&.name
+      %div.w-4.p-4.flex-1= @question.content
+      %div.px-6.py-4.text-gray-900.whitespace-nowrap.flex-1
+        -# -  if @question.errors.any?
+        -#   = f.text_area :replay, class: "bg-gray-50 border border-gray-300 text-red-600 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 ", required: true, autofocus: true
+        -#   %p.mt-2.text-sm.text-red-600.dark:text-red-500
+        -#     %span.font-medium Oh, snapp!
+        -#     = @question.errors.full_messages.join(",")
+        -# - else
+        = f.fields_for :reply do |d|
+          = d.hidden_field :user_id, value: current_admin_user.id
+          = d.hidden_field :question_id, value: @question.id
+          = d.text_area :content, class: "bg-gray-50 border border-gray-300 text-green-600 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 ", required: true, autofocus: true
+          
+      %div.px-6.py-4.flex-1
+        = f.submit "Update", class: "text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        = link_to "cancel", "" , class: "text-sm ml-4 text-sm border border-gray-200  hover:bg-gray-300 rounded-xl py-2 px-6 text-gray-500"
+
